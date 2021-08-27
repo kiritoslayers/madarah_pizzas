@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Para instalar todas as dependencias basta usar
 
 - pip install -r requirements.txt
@@ -21,3 +22,8 @@ except psycopg2.errors.DuplicateTable:
 
 # Referencia de blueprints
 - https://www.youtube.com/watch?v=EML_F6W_zrU&ab_channel=HenriqueGuazzelliMendes
+=======
+Para instalar todas as dependencias basta usar
+
+- pip install -r requirements.txt
+>>>>>>> developer
