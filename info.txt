@@ -1,0 +1,29 @@
+<<<<<<< HEAD
+Para instalar todas as dependencias basta usar
+
+- pip install -r requirements.txt
+
+references de lib 
+
+- https://pypi.org/
+
+testar a conexão do banco
+
+try:
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "CREATE TABLE madarah.teste (name varchar, idade int);"
+                # o certo aqui não é criar é apenas inserir, em formas de função!
+            )
+except psycopg2.errors.DuplicateTable:
+    pass
+
+
+# Referencia de blueprints
+- https://www.youtube.com/watch?v=EML_F6W_zrU&ab_channel=HenriqueGuazzelliMendes
+=======
+Para instalar todas as dependencias basta usar
+
+- pip install -r requirements.txt
+>>>>>>> developer

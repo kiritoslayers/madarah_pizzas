@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<section class="banner">
+    <div class="banner__slider">
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://blog.consumer.com.br/wp-content/uploads/2020/01/hist%C3%B3ria-da-pizza.capa_.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 1</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Faça seu pedido</button>
+            </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://exame.com/wp-content/uploads/2020/11/Muzzarela-1.jpg?quality=70&strip=info);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 2</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Conheça nosso cardápio</button>
+            </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xsabores-de-pizza.jpeg.pagespeed.ic.Aok6EiErup.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 3</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Promoção</button>
+            </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://i.ytimg.com/vi/o-kKe3lu2aY/maxresdefault.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 4</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Ver mais informações</button>
+            </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://www.pizzaprime.com.br/wp-content/uploads/2021/07/slides-pizza-prime-promocoes.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 5</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cardapio py-5 px-5">
+    <h3 class="text-center">Conheça nosso cardápio</h3>
+    <div class="cardapio__list d-flex justify-content-center flex-wrap w-90 m-auto">
+        {% for pizza in pizzas %}
+            <div class="card col-lg-2 col-md-3 col-sm-6 col-12 p-0 m-4">
+                <div class="card-img-top">
+                    <img src="{{pizza['url_foto']}}" alt="Pizza {{pizza['sabor']}}">
+                </div>
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">{{pizza['sabor']}}</h5>
+                    <p class="card-text">{{pizza['descricao']}}</p>
+                    <p class="card-text mb-2">R${{pizza['valor']}}</p>
+                    <a href="#" class="btn btn-dark mt-auto">Pedir</a>
+                </div>
+            </div>
+          {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
