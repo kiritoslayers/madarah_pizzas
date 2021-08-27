@@ -66,6 +66,7 @@ img {
     background: #0e0d0d;
     align-items: stretch;
     width: 100vw;
+    z-index: 9;
 }
 
 .btn-toggleMenu {
@@ -291,6 +292,23 @@ button.btn.btn-info {}
     background-color: #c73c04;
     border-color: #c73c04;
     box-shadow: 0 0 0 0.2rem rgb(199 60 4 / 39%);
+}
+
+.cardapio__list .card-img, .cardapio__list .card-img-top {
+    height: 150px;
+    width: 100%;
+    background-image: linear-gradient(45deg, #0d3693, #071a46);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardapio__list .card-img img, .cardapio__list .card-img-top img {
+    height: 100%;
+    width: auto;
+    max-width: unset;
+    color: #fff;
 }
 
 @media (max-width: 600px) {
