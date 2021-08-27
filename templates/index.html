@@ -1,179 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="./../static/css/bootstrap.4.5.0.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./../static/libs/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./../static/libs/toastr/toastr.min.css">
-    <link rel="stylesheet" href="./../static/libs/nprogress/nprogress.css">
-    <link rel="stylesheet" href="./../static/libs/jquery-ui/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./../static/libs/slick/slick.css">
-    <link rel="stylesheet" href="./../static/libs/slick/slick-theme.css">
-    <link rel="stylesheet" href="./../static/css/site.css">
-
-    <script src="./../static/libs/jquery/jquery.min.js"></script>
-    <script src="./../static/libs/jquery-ui/jquery-ui.js"></script>
-    <script src="./../static/libs/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./../static/libs/nprogress/nprogress.js"></script>
-    <script src="./../static/libs/toastr/toastr.min.js"></script>
-    <script src="./../static/libs/slick/slick.min.js"></script>
-    <script src="./../static/js/functions.js"></script>
-    <script src="./../static/js/app.js" defer></script>
-
-    <link rel="shortcut icon" href="./../static/img/favicon.ico" type="image/x-icon">
-    <title>Madarah Pizzaria</title>
-</head>
-<body>
-    <header class="header navbar navbar-expand justify-content-between">
-        <div class="d-flex justify-content-between menu-mobile">
-            <a class="navbar-brand">
-                <img src="./../static/img/logo.png" alt="Logo Pizza" class="header__logo">
-            </a>
-            <button class="btn-toggleMenu" onclick="toggleMenuMobile()">
-                <span class="open"><i class="fas fa-bars"></i></span>
-                <span class="close"><i class="fas fa-times"></i></span>
-            </button>
-        </div>
-        <nav class="navbar-nav">
-            <a class="nav-item nav-link">Cardápio</a>
-            <a class="nav-item nav-link" href="/pizzas">Gerenciar Cardápio</a>
-            <a class="nav-item nav-link">Pedidos</a>
-            <a class="nav-item nav-link">Login</a>
-            <a class="nav-item nav-link"><span class="mr-2">Carrinho</span class="mr-1"><i class="fas fa-shopping-basket"></i></a>
-            <div class="nav-item dropdown">
-                <a class="nav-link nav-item dropdown-toggle noafter" id="navbarDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-cog"></i>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
-                        <a class="dropdown-item">
-                            <span>Perfil</span> 
-                            <i class="fas fa-user"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item">
-                            <span>Sair</span>
-                            <i class="fas fa-sign-out-alt"></i>
-                        </a>
-                    </li>
-                </ul>
+{% extends "base.html" %}
+{% block conteudo %}
+<section class="banner">
+    <div class="banner__slider">
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://blog.consumer.com.br/wp-content/uploads/2020/01/hist%C3%B3ria-da-pizza.capa_.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 1</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Faça seu pedido</button>
             </div>
-        </nav>
-    </header>
-    <main class="main">
-        <section class="banner">
-            <div class="banner__slider">
-                <div class="banner__slider-item">
-                    <div class="banner__slider-item-img" style="background-image: url(https://blog.consumer.com.br/wp-content/uploads/2020/01/hist%C3%B3ria-da-pizza.capa_.jpg);"></div>
-                    <div class="banner__slider-item-text">
-                        <h3>Lorem Ipsum 1</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
-                        <button class="btn btn-info">Faça seu pedido</button>
-                    </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://exame.com/wp-content/uploads/2020/11/Muzzarela-1.jpg?quality=70&strip=info);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 2</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Conheça nosso cardápio</button>
+            </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xsabores-de-pizza.jpeg.pagespeed.ic.Aok6EiErup.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 3</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Promoção</button>
+            </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://i.ytimg.com/vi/o-kKe3lu2aY/maxresdefault.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 4</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+                <button class="btn btn-info">Ver mais informações</button>
+            </div>
+        </div>
+        <div class="banner__slider-item">
+            <div class="banner__slider-item-img" style="background-image: url(https://www.pizzaprime.com.br/wp-content/uploads/2021/07/slides-pizza-prime-promocoes.jpg);"></div>
+            <div class="banner__slider-item-text">
+                <h3>Lorem Ipsum 5</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cardapio py-5 px-5">
+    <h3 class="text-center">Conheça nosso cardápio</h3>
+    <div class="cardapio__list d-flex justify-content-center flex-wrap w-90 m-auto">
+        {% for pizza in pizzas %}
+            <div class="card col-lg-2 col-md-3 col-sm-6 col-12 p-0 m-4">
+                <div class="card-img-top">
+                    <img src="{{pizza['url_foto']}}" alt="Pizza {{pizza['sabor']}}">
                 </div>
-                <div class="banner__slider-item">
-                    <div class="banner__slider-item-img" style="background-image: url(https://exame.com/wp-content/uploads/2020/11/Muzzarela-1.jpg?quality=70&strip=info);"></div>
-                    <div class="banner__slider-item-text">
-                        <h3>Lorem Ipsum 2</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
-                        <button class="btn btn-info">Conheça nosso cardápio</button>
-                    </div>
-                </div>
-                <div class="banner__slider-item">
-                    <div class="banner__slider-item-img" style="background-image: url(https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xsabores-de-pizza.jpeg.pagespeed.ic.Aok6EiErup.jpg);"></div>
-                    <div class="banner__slider-item-text">
-                        <h3>Lorem Ipsum 3</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
-                        <button class="btn btn-info">Promoção</button>
-                    </div>
-                </div>
-                <div class="banner__slider-item">
-                    <div class="banner__slider-item-img" style="background-image: url(https://i.ytimg.com/vi/o-kKe3lu2aY/maxresdefault.jpg);"></div>
-                    <div class="banner__slider-item-text">
-                        <h3>Lorem Ipsum 4</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
-                        <button class="btn btn-info">Ver mais informações</button>
-                    </div>
-                </div>
-                <div class="banner__slider-item">
-                    <div class="banner__slider-item-img" style="background-image: url(https://www.pizzaprime.com.br/wp-content/uploads/2021/07/slides-pizza-prime-promocoes.jpg);"></div>
-                    <div class="banner__slider-item-text">
-                        <h3>Lorem Ipsum 5</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ad molestias asperiores exercitationem, necessitatibus ratione rem, rerum, tempora eius dolorum quae placeat odio aliquam repellat! Eos quam molestiae quaerat saepe?</p>
-                    </div>
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">{{pizza['sabor']}}</h5>
+                    <p class="card-text">{{pizza['descricao']}}</p>
+                    <p class="card-text mb-2">R${{pizza['valor']}}</p>
+                    <a href="#" class="btn btn-dark mt-auto">Pedir</a>
                 </div>
             </div>
-        </section>
-        <section class="cardapio py-5 px-5">
-            <h3 class="text-center">Conheça nosso cardápio</h3>
-            <div class="cardapio__list d-flex justify-content-center flex-wrap w-90 m-auto">
-                {% for pizza in pizzas %}
-                    <div class="card col-lg-2 col-md-3 col-sm-6 col-12 p-0 m-4">
-                        <div class="card-img-top">
-                            <img src="{{pizza['url_foto']}}" alt="Pizza {{pizza['sabor']}}">
-                        </div>
-                        <div class="card-body d-flex flex-column ">
-                            <h5 class="card-title">{{pizza['sabor']}}</h5>
-                            <p class="card-text">{{pizza['descricao']}}</p>
-                            <p class="card-text mb-2">R${{pizza['valor']}}</p>
-                            <a href="#" class="btn btn-dark mt-auto">Pedir</a>
-                        </div>
-                    </div>
-                  {% endfor %}
-            </div>
-        </section>
-    </main>
-    <footer class="footer d-flex flex-wrap justify-content-between">
-        <nav class="footer__nav">
-            <a href="" class="footer__nav-link--logo">
-                <img src="./../static/img/logo-blue.png" alt="">
-            </a>
-            <a href="" class="footer__nav-link">Cardápio</a>
-            <a href="" class="footer__nav-link">Pedidos</a>
-            <a href="" class="footer__nav-link">Gerenciar Menu</a>
-            <a href="" class="footer__nav-link">Login</a>
-            <a href="" class="footer__nav-link">Carrinho</a> 
-        </nav>
-        <div class="footer__social">
-            <p>
-                <span class="mr-1"><i class="fab fa-instagram"></i></span>
-                <span>instagram</span>
-            </p>
-            <p class="mt-1">
-                <span class="mr-1"><i class="fab fa-facebook"></i></span>
-                <span>Facebook</span>
-            </p>
-            <p class="mt-1">
-                <span class="mr-1"><i class="fab fa-tiktok"></i></span>
-                <span>tiktok</span>
-            </p>
-            <p class="mt-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, maxime nostrum commodi qui et explicabo cum 
-            </p>
-        </div>
-        <div class="footer__info">
-            <p>
-                <span class="mr-1"><i class="fas fa-map-marked"></i></span>
-                <span>Rua do canavial, 1006 - Sítio Morro Doce - 00000000</span>
-            </p>
-            <p class="mt-1">
-                <span class="mr-1"><i class="fas fa-phone"></i></span>
-                <span>+55 (11) 6544-6545</span>
-            </p>
-            <p class="mt-1">
-                <span class="mr-1"><i class="fab fa-whatsapp"></i></span>
-                <span>+55 (11) 96544-6545</span>
-            </p>
-        </div>
-    </footer>  
-    <div class="footer__copy w-100 text-light text-center py-2" style="background-color: #0e0d0d;">
-        &copy; Copyright Mandarah 2021
-    </div>  
-</body>
-</html>
+          {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
