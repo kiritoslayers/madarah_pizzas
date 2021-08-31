@@ -22,6 +22,10 @@ def index():
         lista = rows_to_dict(cursor.description, cursor.fetchall())
     return render_template('index.html', pizzas=lista)
 
+@app.route('/meu-carrinho')
+def carrinho():
+    return render_template('carrinho.html')
+
 
 def row_to_dict(description, row):
     if row is None: return None

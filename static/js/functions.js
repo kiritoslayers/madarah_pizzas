@@ -8,3 +8,11 @@ function toggleMenuMobile() {
         $('.navbar-nav').removeClass('active')
     }
 }
+
+function toggleCarrinho(){
+    $('.carrinho').toggleClass('active')
+}
+
+function pizza_QtdChange(el, preco) {
+    
+}
