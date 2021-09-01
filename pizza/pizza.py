@@ -8,9 +8,15 @@ POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02
 pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')
 
 
-@pizzaBP.route('/cardapio', methods=['GET'])
-def home_pizza():
-    return render_template('cardapio.html')
+@pizzaBP.route('/pizzas', methods=['GET'])
+def list():
+    connection = psycopg2.connect(POSTGRESQL_URI)    
+    with connection.cursor() as cursor:
+        sql = """select * from madarah.tb_pizza order by sabor"""
+        cursor.execute(sql)
+        lista = rows_to_dict(cursor.description, cursor.fetchall())
+    return render_template("list.html", pizzas=lista)
+
 
 
 @pizzaBP.route('/cadastro_pizza', methods=['GET', 'POST'])
@@ -49,26 +55,30 @@ def edicao_pizza():
 
 
 
-@pizzaBP.route('/pizzas', methods=['GET'])
-def list_pizza():
-    connection = psycopg2.connect(POSTGRESQL_URI)    
-    with connection.cursor() as cursor:
-        sql = """select * from madarah.tb_pizza order by id_pizza"""
-        cursor.execute(sql)
-        lista = cursor.fetchall()
-    return render_template("pizzas.html", pizzas=lista)
-
-
-
-@pizzaBP.route('/delete_pizza/<int:id>', methods=['POST', 'GET'])
-def delete_pizza(id):
-    id_pizza = flask.request.args.get('id')
-    connection = psycopg2.connect(POSTGRESQL_URI)
-    with connection.cursor() as cursor:
-        sql = """select * from madarah.tb_pizza WHERE id_pizza = (%s)"""
-        cursor.execute(sql, (id))
-        pizza = cursor.fetchall()
-    return render_template('delete_pizza.html')
+# @pizzaBP.route('/delete_pizza/<int:id>', methods=['POST', 'GET'])
+# def delete_pizza(id):
+#     id_pizza = flask.request.args.get('id')
+#     connection = psycopg2.connect(POSTGRESQL_URI)
+#     with connection.cursor() as cursor:
+#         sql = """select * from madarah.tb_pizza WHERE id_pizza = (%s)"""
+#         cursor.execute(sql, (id))
+#         pizza = cursor.fetchall()
+#     return render_template('delete_pizza.html')
         
     
+
+def row_to_dict(description, row):
+    if row is None: return None
+    d = {}
+    for i in range(0, len(row)):
+        d[description[i][0]] = row[i]
+    return d
+
+# Converte uma lista de linhas em um lista de dicionários.
+def rows_to_dict(description, rows):
+    result = []
+    for row in rows:
+        result.append(row_to_dict(description, row))
+    return result
+
 

@@ -11,8 +11,13 @@ function toggleMenuMobile() {
 
 function toggleCarrinho(){
     $('.carrinho').toggleClass('active')
+    $('.btn-carrinho').toggleClass('active')
 }
 
 function pizza_QtdChange(el, preco) {
     
+}
+
+function carrinho_removeItem(item){
+
 }
