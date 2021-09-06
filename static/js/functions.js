@@ -14,6 +14,30 @@ function toggleCarrinho(){
     $('.btn-carrinho').toggleClass('active')
 }
 
+
+function carregaModal(controller, acctions){
+    let url = `/${controller}/${acctions}`
+    // requisição feita em js
+    $.ajax({
+        method: 'GET',
+        url: url,
+        success: function(data){
+            $('#modalConteudo').html(data)
+            $('#modal').modal('show')
+        }
+    })
+
+}
+
+
+function closeModal(modal){
+    $(modal).modal('hide')
+    $(modal).find('.modal-content').html('')
+    
+}
+
+
+
 function pizza_QtdChange(el, preco) {
     
 }

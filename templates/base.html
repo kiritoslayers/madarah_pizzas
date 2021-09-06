@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./../static/css/responsive.css">
 
     <script src="./../static/libs/jquery/jquery.min.js"></script>
+    <script src="./../static/libs/mask/jquery.mask.js"></script>
     <script src="./../static/libs/jquery-ui/jquery-ui.js"></script>
     <script src="./../static/libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="./../static/libs/nprogress/nprogress.js"></script>
@@ -76,17 +77,25 @@
             </nav>
         </div>
     </header>
-    <button class="btn-carrinho"  onclick="toggleCarrinho()">
+    <button class="btn-carrinho" onclick="toggleCarrinho()">
         <span><i class="fas fa-shopping-basket"></i></span>
         <span><i class="fas fa-times"></i></span>
     </button>
     <main class="main">
         {% block conteudo %}{% endblock %}
-        {% block carrinho %}{% endblock %}
+        <div class="modal" tabindex="-1" role="dialog" id="modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" id="modalConteudo">
+                </div>
+            </div>
+        </div>
+
     </main>
     <aside class="carrinho">
         <div class="carrinho__item">
-            <div class="carrinho__item-img" style="background-image: url(https://blog.duogourmet.com.br/wp-content/uploads/2019/07/41-Duo-Gourmet-pizza.jpg)"></div>
+            <div class="carrinho__item-img"
+                style="background-image: url(https://blog.duogourmet.com.br/wp-content/uploads/2019/07/41-Duo-Gourmet-pizza.jpg)">
+            </div>
             <div class="carrinho__item-text">
                 <h2>Pizza Calabreza</h2>
                 <p>Lorem ipsum...</p>
@@ -102,7 +111,7 @@
         <div class="carrinho__item-total">
             <span>Total: R$ <span id="valorTotal" class="fw-bold">00,00</span></span>
             <button>Finalizar</button>
-        </div> 
+        </div>
     </aside>
     <footer class="footer d-flex flex-wrap justify-content-between">
         <nav class="footer__nav">
@@ -152,4 +161,4 @@
     </div>
 </body>
 
-</html> 
+</html>

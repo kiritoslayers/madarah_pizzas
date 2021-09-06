@@ -5,7 +5,7 @@
     <div class="wrapper">
         <div class="list__header d-flex justify-content-between align-items-center col-lg-12">
             <h3>Cardápio</h3>
-            <button class="btn btn-info">Adicionar</button>
+            <button class="btn btn-info" onclick="carregaModal('pizza', 'cadastro')">Adicionar</button>
         </div>
         <div class="list__content d-flex justify-content-between flex-wrap align-items-stretch">
             {% for pizza in pizzas %}

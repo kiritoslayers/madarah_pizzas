@@ -7,4 +7,8 @@ $(window).on('load', function(){
         dots: true,
         arrows: true,
     })
+    $('body').on('click', '.close', ()=>{
+        $('#modal').modal('hide')
+        
+    })
 })

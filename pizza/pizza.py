@@ -19,7 +19,7 @@ def list():
 
 
 
-@pizzaBP.route('/cadastro_pizza', methods=['GET', 'POST'])
+@pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])
 def cadastro_pizza():
     if flask.request.method == 'POST':
         sabor = str(request.form['sabor']),
