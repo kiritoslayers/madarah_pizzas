@@ -1,0 +1,36 @@
+<script>
+    $('.modal-dialog').css({
+        'max-width': '450px'
+    })
+</script>
+<div class="modal-header">
+    <h5 class="modal-title">Login</h5>
+    <button type="button" class="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body px-4">
+    <form id="editar_pizza" method="POST" action="/account/login">
+        <div class="form-row">
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
+                <label for="email">E-mail: </label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com"
+                    required>
+            </div>
+            <div class="password-container col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group mb-1">
+                    <label for="senha">Senha:</label>
+                    <input type="password" class="form-control password" id="senha" name="senha">
+                </div>
+                <p class="form-group mb-2 py-0">
+                    <input type="checkbox" class="togglePassword" id="togglePassword">
+                    <label for="togglePassword">Exibir senha</label>
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer p-0 mt-4">
+            <button type="submit" class="w-100 btn btn-submit btn-primary m-0">Entrar</button>
+        </div>
+        <p class="text-center my-3">Não possui uma conta? <a href="">Registre-se</a></p>
+    </form>
+</div>

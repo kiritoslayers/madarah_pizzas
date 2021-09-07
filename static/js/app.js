@@ -32,10 +32,21 @@ $(window).on('load', function () {
         complete: afterSend,
     });
 
-    // $('body').on('click', '.btn-submit', function(event){
-    //     event.preventDefault();
-    //     postForm(event)
-
-    // })
+    $('body').on('click', '.btn-submit[type=submit]', function(event){
+        event.preventDefault();
+        postForm(event)
+    });
+    // $('body').unbind('change', '.togglePassword')
+    $('body').on('change', '.togglePassword', function(){
+        let checked = $(this).prop('checked')
+        if(checked) {
+            $(this).siblings('label').html('Esconder senha');
+            $(this).parents('.password-container').find('.password').attr('type', 'text')
+        } else {
+            $(this).siblings('label').html('Exibir senha');
+            $(this).parents('.password-container').find('.password').attr('type', 'password')
+            
+        }
+    })
 })
 fnProgressBarLoading()

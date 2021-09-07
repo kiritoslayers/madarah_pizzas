@@ -50,23 +50,21 @@ function fnProgressBarLoading() {
 
 function beforeSend(data) {
     NProgress.start()
-    console.log(data)
 }
 
 function afterSend(data) {
     NProgress.done()
-    console.log(data)
 }
 
-function postSuccess(data){
-    if(data == 'ok') {
-        toastr.success('Operação concuída com sucesso');
-        NProgress.done();
-        closeModal()
-    }
+function postSuccess(url){
+    toastr.success('Operação concuída com sucesso');
+    NProgress.done();
+    closeModal();
+    window.location.href = url;
 }
 
 function postError(data){
+    console.log(data)
     console.error(data)
     toastr.error('Verifique os campos ou contate a equipe de desenvolvimento');
     toastr.error('Ocorreu um problema no envio do formulário');
@@ -75,13 +73,15 @@ function postError(data){
 
 function postForm(event){
     event.preventDefault();
-    console.log(event)
-    let url = `/${controller}/${action}/`
-    // $.ajax({
-    //     type: 'POST',
-    //     data: data,
-    //     success: postSuccess,
-    //     error: postError,
-
+    let url = `${event.currentTarget.form.action}`;
+    // $(event.target.form).find('.decimal').each(function(){
+    //     let newValue = $(this).val().replace
     // })
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: $(event.target.form).serialize(),
+        success: postSuccess,
+        error: postError,
+    });
 }
