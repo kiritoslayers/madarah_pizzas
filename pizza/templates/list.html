@@ -20,7 +20,7 @@
                         <p class="card-text h4 mb-1 mt-auto">R$ {{pizza['valor']}}</p>
                         <p class="d-flex justify-content-between mt-1">
                             <a href="#" class="btn btn-dark col-6 mr-1">Excluir</a>
-                            <a href="#" class="btn btn-primary col-6 ml-1">Editar</a>
+                            <button onclick="carregaModal('pizza', `edicao/{{pizza['id_pizza']}}`)" class="btn btn-primary col-6 ml-1">Editar</button>
                         </p>
                     </div>
                 </div>

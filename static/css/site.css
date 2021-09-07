@@ -555,9 +555,56 @@ input.carrinho__item-qtd--text {
 .btn-check:active+.btn-primary:focus, .btn-check:checked+.btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show>.btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgb(49 132 253 / 50%);
 }
+
 .btn-check:active+.btn-dark:focus, .btn-check:checked+.btn-dark:focus, .btn-dark.active:focus, .btn-dark:active:focus, .show>.btn-dark.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgb(66 70 73 / 50%);
 }
+
 .btn-check:focus+.btn-dark, .btn-dark:focus {
     box-shadow: 0 0 0 0.2rem rgb(66 70 73 / 50%);
+}
+
+.modal-dialog {
+    max-width: 850px;
+    width: 90%;
+    margin: 0 auto;
+    transform: translateY(-100%);
+    transition: .5s;
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(-60%);
+    top: 50%;
+}
+
+.modal {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.img-pizza {
+    width: 100%;
+    height: 120%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.modal-backdrop.show {}
+
+#toast-container>div {
+    opacity: 1;
+}
+
+#toast-container>div:hover {
+    -webkit-box-shadow: 0 0 12px #00000054;
+    box-shadow: 0 0 12px #00000054;
+    border: none;
 }
