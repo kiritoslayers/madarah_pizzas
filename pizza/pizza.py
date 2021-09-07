@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, redirect
 import flask
 import psycopg2
 import psycopg2.extras
@@ -50,39 +50,22 @@ def edicao_pizza(id):
             cursor.execute(sql, (sabor, descricao, valor, url_foto, id_pizza))
             cursor.close()
             connection.commit()
-    else:
+    return render_template('edicao.html')
+
+
+
+@pizzaBP.route('/delete_pizza/<id>', methods=['POST', 'GET'])
+def delete_pizza(id):
+    if flask.request.method == 'POST':
+        id_pizza = int(request.form['id'])
+        connection = psycopg2.connect(POSTGRESQL_URI)
         with connection.cursor() as cursor:
-            sql = """SELECT * FROM madarah.tb_pizza WHERE id_pizza = (%s)"""
-            cursor.execute(sql, (id))
-            pizza = tuple_to_dict(cursor.description, cursor.fetchall())
-        return render_template('edicao.html', pizza=pizza)
+            sql = """delete from madarah.tb_pizza where id_pizza = (%s)"""
+            cursor.execute(sql, (id_pizza))
+            cursor.fetchall()
+    return render_template('delete_pizza.html')
+            
     
-    return 'ok'
- 
- 
-# @pizzaBP.route('/delete_pizza/<int:id>', methods=['POST', 'GET'])
-# def delete_pizza(id):
-#     id_pizza = flask.request.args.get('id')
-#     connection = psycopg2.connect(POSTGRESQL_URI)
-#     with connection.cursor() as cursor:
-#         sql = """select * from madarah.tb_pizza WHERE id_pizza = (%s)"""
-#         cursor.execute(sql, (id))
-#         pizza = cursor.fetchall()
-#     return render_template('delete_pizza.html')
-
-def tuple_to_dict(description, row):
-    if row is None:
-        return None
-    d = {}
-    for i in range(0, len(row[0])):
-        value = row[0][i]
-        key = description[i][0]
-        try:
-            d[key] = value
-        except NameError:
-            print("Variable x is not defined")
-    return d
-
 
 def row_to_dict(description, row):
     if row is None:

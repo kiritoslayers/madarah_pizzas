@@ -1,9 +1,7 @@
-from flask import Flask, render_template, Blueprint, request
+from flask import Flask, render_template, Blueprint
 from pizza.pizza import pizzaBP
-import flask
 import psycopg2
 import psycopg2.extras
-
 
 
 app = Flask(__name__)
@@ -14,18 +12,6 @@ pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folde
 
 connection = psycopg2.connect(POSTGRESQL_URI)
 
-@app.route('/')
-def index():
-    with connection.cursor() as cursor:
-        sql = """SELECT sabor, descricao, valor, url_foto from madarah.tb_pizza order by id_pizza"""
-        cursor.execute(sql)
-        lista = rows_to_dict(cursor.description, cursor.fetchall())
-    return render_template('index.html', pizzas=lista)
-
-@app.route('/meu-carrinho')
-def carrinho():
-    return render_template('carrinho.html')
-
 
 def row_to_dict(description, row):
     if row is None: return None
@@ -34,12 +20,29 @@ def row_to_dict(description, row):
         d[description[i][0]] = row[i]
     return d
 
+
 # Converte uma lista de linhas em um lista de dicionários.
 def rows_to_dict(description, rows):
     result = []
     for row in rows:
         result.append(row_to_dict(description, row))
     return result
+
+
+@app.route('/')
+def index():
+    with connection.cursor() as cursor:
+        sql = """SELECT sabor, descricao, valor, url_foto from madarah.tb_pizza order by id_pizza"""
+        cursor.execute(sql)
+        lista = rows_to_dict(cursor.description, cursor.fetchall())
+    return render_template('index.html', pizzas=lista)
+
+
+
+@app.route('/meu-carrinho')
+def carrinho():
+    return render_template('carrinho.html')
+
 
 
 if __name__ == "__main__":
