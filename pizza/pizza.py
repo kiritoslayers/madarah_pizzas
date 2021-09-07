@@ -1,7 +1,10 @@
+from functions.functions import rows_to_dict, tuple_to_dict
 from flask import Blueprint, render_template, request, redirect
 import flask
 import psycopg2
 import psycopg2.extras
+from functions import *
+
 
 
 POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg"
@@ -50,7 +53,14 @@ def edicao_pizza(id):
             cursor.execute(sql, (sabor, descricao, valor, url_foto, id_pizza))
             cursor.close()
             connection.commit()
-    return render_template('edicao.html')
+    else:
+        with connection.cursor() as cursor:
+            sql = """SELECT * FROM madarah.tb_pizza WHERE id_pizza = (%s)"""
+            cursor.execute(sql, (id))
+            pizza = tuple_to_dict(cursor.description, cursor.fetchall())
+        return render_template('edicao.html', pizza=pizza)
+    
+    return 'ok'
 
 
 
@@ -67,24 +77,3 @@ def delete_pizza(id):
             
     
 
-def row_to_dict(description, row):
-    if row is None:
-        return None
-    d = {}
-    for i in range(0, len(row)):
-        value = row[i]
-        key = description[i][0]
-        try:
-            d[key] = value
-        except NameError:
-            print("Variable x is not defined")
-    return d
-
-# Converte uma lista de linhas em um lista de dicionários.
-
-
-def rows_to_dict(description, rows):
-    result = []
-    for row in rows:
-        result.append(row_to_dict(description, row))
-    return result

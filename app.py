@@ -1,7 +1,9 @@
+from functions.functions import rows_to_dict, tuple_to_dict
 from flask import Flask, render_template, Blueprint
 from pizza.pizza import pizzaBP
 import psycopg2
 import psycopg2.extras
+from functions import *
 
 
 app = Flask(__name__)
@@ -11,22 +13,6 @@ POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02
 pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')
 
 connection = psycopg2.connect(POSTGRESQL_URI)
-
-
-def row_to_dict(description, row):
-    if row is None: return None
-    d = {}
-    for i in range(0, len(row)):
-        d[description[i][0]] = row[i]
-    return d
-
-
-# Converte uma lista de linhas em um lista de dicionários.
-def rows_to_dict(description, rows):
-    result = []
-    for row in rows:
-        result.append(row_to_dict(description, row))
-    return result
 
 
 @app.route('/')
