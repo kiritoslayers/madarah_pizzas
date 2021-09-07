@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 import flask
 import psycopg2
 import psycopg2.extras
@@ -55,16 +55,17 @@ def edicao_pizza():
 
 
 
-# @pizzaBP.route('/delete_pizza/<int:id>', methods=['POST', 'GET'])
-# def delete_pizza(id):
-#     id_pizza = flask.request.args.get('id')
-#     connection = psycopg2.connect(POSTGRESQL_URI)
-#     with connection.cursor() as cursor:
-#         sql = """select * from madarah.tb_pizza WHERE id_pizza = (%s)"""
-#         cursor.execute(sql, (id))
-#         pizza = cursor.fetchall()
-#     return render_template('delete_pizza.html')
-        
+@pizzaBP.route('/delete_pizza/<id>', methods=['POST', 'GET'])
+def delete_pizza(id):
+    if flask.request.method == 'POST':
+        id_pizza = int(request.form['id'])
+        connection = psycopg2.connect(POSTGRESQL_URI)
+        with connection.cursor() as cursor:
+            sql = """delete from madarah.tb_pizza where id_pizza = (%s)"""
+            cursor.execute(sql, (id_pizza))
+            cursor.fetchall()
+    return render_template('delete_pizza.html')
+            
     
 
 def row_to_dict(description, row):
