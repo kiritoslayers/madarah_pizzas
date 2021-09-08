@@ -37,6 +37,7 @@ function closeModal(modal){
     modal = modal == undefined ? $('#modal') : modal;
     $(modal).modal('hide')
     $(modal).find('.modal-content').html('')
+    $(modal).find('.modal-dialog').removeAttr('style')
     
 }
 
@@ -71,17 +72,25 @@ function postError(data){
     NProgress.done();
 }
 
+// function postForm(event){
+//     event.preventDefault();
+//     let url = `${event.currentTarget.form.action}`;
+//     // $(event.target.form).find('.decimal').each(function(){
+//     //     let newValue = $(this).val().replace
+//     // })
+//     $.ajax({
+//         type: 'POST',
+//         url: url,
+//         data: $(event.target.form).serialize(),
+//         success: postSuccess,
+//         error: postError,
+//     });
+// }
+
 function postForm(event){
     event.preventDefault();
     let url = `${event.currentTarget.form.action}`;
-    // $(event.target.form).find('.decimal').each(function(){
-    //     let newValue = $(this).val().replace
-    // })
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: $(event.target.form).serialize(),
-        success: postSuccess,
-        error: postError,
-    });
+    let form = $(event.currentTarget.form)
+    form.validate();
+    let valid = form.valid();
 }

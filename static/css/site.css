@@ -1223,3 +1223,7 @@ input.carrinho__item-qtd--text {
     height: auto;
     width: 100%;
 }
+label.error {
+    color: red;
+    margin: 6px 0px 0px 5px;
+}
