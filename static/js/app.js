@@ -32,10 +32,10 @@ $(window).on('load', function () {
         complete: afterSend,
     });
 
-    // $('body').on('click', '.btn-submit', function(event){
-    //     event.preventDefault();
-    //     postForm(event)
+    $('body').on('click', '.btn-submit', function(event){
+        event.preventDefault();
+        postForm(event)
 
-    // })
+    })
 })
 fnProgressBarLoading()

@@ -77,11 +77,11 @@ function postForm(event){
     event.preventDefault();
     console.log(event)
     let url = `/${controller}/${action}/`
-    // $.ajax({
-    //     type: 'POST',
-    //     data: data,
-    //     success: postSuccess,
-    //     error: postError,
+    $.ajax({
+        type: 'POST',
+        data: data,
+        success: postSuccess,
+        error: postError,
 
-    // })
+    })
 }

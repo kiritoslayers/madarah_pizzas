@@ -1,39 +1,52 @@
-<div class="modal-body">
-    <form method="POST" action="/delete_pizza">
-
-        <div class="form-row">
-            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
-                <label for="id_pizza">Id_pizza </label>
-                <input class="form-control" id="id_pizza" name="id_pizza">
-                <button type="submit"> Deletar</button>
-            </div>
-
-
-
-
-
-
-
-
-            <!-- <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
-                <label for="valor">Valor<small>(R$)</small> </label>
-                <input class="form-control" id="valor" name="valor">
-            </div>
+<script>
+    $('#valor').mask('000.000.000.000.000,00', {reverse: true})
+</script>
+<div class="modal-header"> 
+        <div>
+            <h5 class="modal-title">Excluir</h5>
+            <p>Tem certeza que deseja excluir a pizza abaixo? </p>
+            <p>A operação não poderá ser desfeita.</p>
         </div>
-        <div class="form-row"> 
-            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
-                <label for="url_foto">URL Foto: </label>
-                <input class="form-control" id="url_foto" name="url_foto">
+        <button type="button" class="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="delete_pizza" method="POST" action="/pizza/delete/{{pizza['id_pizza']}}">
+            <input type="hidden" name="id_pizza" id="id_pizza" value="{{pizza['id_pizza']}}">
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12 mb-0">
+                    <label for="sabor"><strong>Sabor: </strong></label>
+                    <span>{{pizza['sabor']}}</span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12 mb-0">
+                    <label for="valor"><strong>Valor<small>(R$)</small>:</strong> </label>
+                    <span>{{pizza['valor']}}</span>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-0">
+                    <label for="descricao"> <strong>Descrição:</strong> </label>
+                    <span>{{pizza['descricao']}}</span>
+                </div>
             </div>
-            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
-                <label for="descricao"> Descrição: </label>
-                <textarea class="form-control" id="descricao" name="descricao" style="resize: vertical;"></textarea>
+            <div class="form-row"> 
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-0" style="word-break: break-all;">
+                    <label for="url_foto"><strong>URL Foto: </strong></label>
+                    <a href="{{pizza['url_foto']}}">{{pizza['url_foto']}}</a>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-0">
+                   <div class="img-pizza">
+                       <img src="{{pizza['url_foto']}}" alt="" style="max-width: 110px;">
+                   </div>
+                </div>
             </div>
-        </div>
 
-        <div class="modal-footer d-flex justify-content-between p-0">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Salvar</button>
-        </div> -->
-    </form>
-</div> 
+            <div class="modal-footer d-flex justify-content-between p-0">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn btn-submit btn-primary">Excluir</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
