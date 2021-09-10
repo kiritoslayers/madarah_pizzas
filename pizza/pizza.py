@@ -58,7 +58,8 @@ def edicao_pizza(id):
         with connection.cursor() as cursor:
             sql = "SELECT * FROM madarah.tb_pizza WHERE id_pizza = " + id
             cursor.execute(sql)
-            pizza = tuple_to_dict(cursor.description, cursor.fetchone())
+            oi = cursor.fetchone()
+            pizza = tuple_to_dict(cursor.description, oi)
         return render_template('edicao.html', pizza=pizza)
     
 
@@ -69,14 +70,15 @@ def delete_pizza(id):
     connection = psycopg2.connect(POSTGRESQL_URI)
     if flask.request.method == 'POST':
         with connection.cursor() as cursor:
-            sql = """delete from madarah.tb_pizza where id_pizza = (%s)"""
-            cursor.execute(sql, (id))
+            sql = "delete from madarah.tb_pizza where id_pizza = " + id
+            cursor.execute(sql)
             connection.commit()
             cursor.close()
         return '/pizzas'
     else:
         with connection.cursor() as cursor:
-            sql = "delete from madarah.tb_pizza where id_pizza = " + id
+            sql = "select * from madarah.tb_pizza where id_pizza = " + id
             cursor.execute(sql)
-            pizza = tuple_to_dict(cursor.description, cursor.fetchone())
+            oi = cursor.fetchone()
+            pizza = tuple_to_dict(cursor.description, oi)
         return render_template('delete.html', pizza=pizza)

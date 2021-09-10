@@ -24,8 +24,8 @@ def tuple_to_dict(description, row):
     if row is None or row == []:
         return None
     d = {}
-    for i in range(0, len(row[0])):
-        value = row[0][i]
+    for i in range(0, len(row)):
+        value = row[i]
         key = description[i][0]
         try:
             d[key] = value
