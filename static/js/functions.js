@@ -43,18 +43,33 @@ function closeModal(modal){
 
 function fnProgressBarLoading() {
     NProgress.start();
+    $('.loading').css({
+        'opacity': '1',
+        'visibility': 'visible'
+    })
     window.addEventListener("load", function (event) {
         NProgress.done();
+        $('.loading').css({
+            'opacity': '0',
+            'visibility': 'hidden'
+        })
     });
 }
 
 
 function beforeSend(data) {
     NProgress.start()
+    $('.loading').css({
+        'opacity': '1',
+        'visibility': 'visible'
+    });
 }
-
 function afterSend(data) {
     NProgress.done()
+    $('.loading').css({
+        'opacity': '0',
+        'visibility': 'hidden'
+    });
 }
 
 function postSuccess(url){
@@ -62,6 +77,10 @@ function postSuccess(url){
     NProgress.done();
     closeModal();
     window.location.href = url;
+    $('.loading').css({
+        'opacity': '1',
+        'visibility': 'hidden'
+    })
 }
 
 function postError(data){
@@ -70,6 +89,10 @@ function postError(data){
     toastr.error('Verifique os campos ou contate a equipe de desenvolvimento');
     toastr.error('Ocorreu um problema no envio do formulário');
     NProgress.done();
+    $('.loading').css({
+        'opacity': '1',
+        'visibility': 'hidden'
+    })
 }
 
 // function postForm(event){
@@ -89,11 +112,13 @@ function postError(data){
 
 function postForm(event){
     event.preventDefault();
-    console.log(event)
-    let url = `/${controller}/${action}/`
+    let url = event.target.form.action;
+    $('.loading').css({
+        'opacity': '1',
+        'visibility': 'visible'
+    })
     $.ajax({
         type: 'POST',
-        data: data,
         success: postSuccess,
         error: postError,
 
