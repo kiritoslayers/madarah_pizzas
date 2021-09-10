@@ -84,7 +84,6 @@ function postSuccess(url){
 }
 
 function postError(data){
-    console.log(data)
     console.error(data)
     toastr.error('Verifique os campos ou contate a equipe de desenvolvimento');
     toastr.error('Ocorreu um problema no envio do formulário');
@@ -112,15 +111,15 @@ function postError(data){
 
 function postForm(event){
     event.preventDefault();
-    let url = event.target.form.action;
     $('.loading').css({
         'opacity': '1',
         'visibility': 'visible'
     })
+    let url = event.target.form.action;
     $.ajax({
         type: 'POST',
+        url: url,
         success: postSuccess,
         error: postError,
-
-    })
+    });
 }
