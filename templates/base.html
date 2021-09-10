@@ -19,13 +19,14 @@
     <link rel="stylesheet" href="./../static/css/site.css">
     <link rel="stylesheet" href="./../static/css/responsive.css">
 
-    <script src="./../static/libs/jquery/jquery.min.js"></script>
-    <script src="./../static/libs/jquery/jquery.validate.min.js"></script>
-    <script src="./../static/libs/jquery/jquery.validate.unobtrusive.min.js"></script>
-    <script src="./../static/libs/jquery/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="./../static/libs/jquery/jquery.validate-vsdoc.js"></script>
-    <script src="./../static/libs/mask/jquery.mask.js"></script>
-    <script src="./../static/libs/jquery-ui/jquery-ui.js"></script>
+    <script src="./../static/libs/jquery/jquery-3.5.1.js"></script>
+    <!-- <script src="./../static/libs/jquery-ui/jquery-ui.js"></script> -->
+    <!-- <script src="./../static/libs/jquery-unobtrusive/jquery.unobtrusive-ajax.js"></script> -->
+    <script src="./../static/libs/jquery-validate/jquery.validate.js"></script>
+    <!-- <script src="./../static/libs/jquery-unobtrusive/jquery.validate.unobtrusive.js"></script> -->
+    <script src="./../static/libs/jquery/jquery.mask.js"></script>
+    <!-- <script src="./../static/libs/modernizer/modernizr-2.8.3.js"></script> -->
+
     <script src="./../static/libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="./../static/libs/nprogress/nprogress.js"></script>
     <script src="./../static/libs/toastr/toastr.min.js"></script>
@@ -53,11 +54,7 @@
                 <a class="nav-item nav-link">Cardápio</a>
                 <a class="nav-item nav-link" href="/pizzas">Gerenciar Cardápio</a>
                 <a class="nav-item nav-link">Pedidos</a>
-                <a class="nav-item nav-link">Login</a>
-                <!-- <a class="nav-item nav-link" onclick="toggleCarrinho()">
-                    <span class="mr-2">Carrinho</span class="mr-1">
-                        <i class="fas fa-shopping-basket"></i>
-                </a> -->
+                <a class="nav-item nav-link" onclick="carregaModal('account', 'register')">Login</a>
                 <div class="nav-item dropdown">
                     <a class="nav-link nav-item dropdown-toggle noafter" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">

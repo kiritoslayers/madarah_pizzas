@@ -7,9 +7,8 @@ $(window).on('load', function () {
         dots: true,
         arrows: true,
     })
-    $('body').on('click', '.close', () => {
-        $('#modal').modal('hide')
-
+    $('body').on('click', '.close', function() {
+        closeModal($(this).parents('.modal'))
     })
     toastr.options = {
         "closeButton": true,
@@ -39,3 +38,11 @@ $(window).on('load', function () {
     })
 })
 fnProgressBarLoading()
+
+function oi(el){
+    console.log($(el))
+    console.log($(el).val())
+    console.log($(el).validator)
+    console.log($(el).parents('form'))
+
+}

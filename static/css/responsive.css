@@ -65,4 +65,10 @@
     .dropdown-item, a:not([href]) {
         color: #fff;
     }
+    .img-pizza img {
+        max-height: 100px;
+        width: auto;
+        margin: auto;
+        display: block;
+    }
 }

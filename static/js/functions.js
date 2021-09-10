@@ -37,6 +37,7 @@ function closeModal(modal){
     modal = modal == undefined ? $('#modal') : modal;
     $(modal).modal('hide')
     $(modal).find('.modal-content').html('')
+    $(modal).find('.modal-dialog').removeAttr('style')
     
 }
 
@@ -50,28 +51,41 @@ function fnProgressBarLoading() {
 
 function beforeSend(data) {
     NProgress.start()
-    console.log(data)
 }
 
 function afterSend(data) {
     NProgress.done()
-    console.log(data)
 }
 
-function postSuccess(data){
-    if(data == 'ok') {
-        toastr.success('Operação concuída com sucesso');
-        NProgress.done();
-        closeModal()
-    }
+function postSuccess(url){
+    toastr.success('Operação concuída com sucesso');
+    NProgress.done();
+    closeModal();
+    window.location.href = url;
 }
 
 function postError(data){
+    console.log(data)
     console.error(data)
     toastr.error('Verifique os campos ou contate a equipe de desenvolvimento');
     toastr.error('Ocorreu um problema no envio do formulário');
     NProgress.done();
 }
+
+// function postForm(event){
+//     event.preventDefault();
+//     let url = `${event.currentTarget.form.action}`;
+//     // $(event.target.form).find('.decimal').each(function(){
+//     //     let newValue = $(this).val().replace
+//     // })
+//     $.ajax({
+//         type: 'POST',
+//         url: url,
+//         data: $(event.target.form).serialize(),
+//         success: postSuccess,
+//         error: postError,
+//     });
+// }
 
 function postForm(event){
     event.preventDefault();

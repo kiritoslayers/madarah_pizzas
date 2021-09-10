@@ -10,7 +10,6 @@ from flask_admin import Admin
 
 
 
-
 app = Flask(__name__)
 app.config['FLASK_ADMIN_SWATCH'] = 'united'
 admin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')
@@ -28,15 +27,12 @@ POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02
 
 connection = psycopg2.connect(POSTGRESQL_URI)
 
-
 @app.route('/')
 def index():
     with connection.cursor() as cursor:
-        sql = """SELECT sabor, descricao, valor, url_foto from madarah.tb_pizza order by id_pizza"""
-        cursor.execute(sql)
+        cursor.execute('''SELECT sabor, descricao, valor, url_foto from madarah.tb_pizza order by id_pizza''')
         lista = rows_to_dict(cursor.description, cursor.fetchall())
     return render_template('index.html', pizzas=lista)
-
 
 
 if __name__ == "__main__":
