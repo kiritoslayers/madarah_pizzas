@@ -26,7 +26,11 @@ function carregaModal(controller, acctions){
         success: function(data){
             $('#modalConteudo').html(data)
             $('#modal').modal('show')
-            // NProgress.done();
+        },
+        error: function(data) {
+            console.error(data)
+            toastr.error('Contate a equipe de desenvolvimento')
+            toastr.error('Houve um erro na requisição')
         }
     })
 
@@ -116,9 +120,11 @@ function postForm(event){
         'visibility': 'visible'
     })
     let url = event.target.form.action;
+    let data
     $.ajax({
         type: 'POST',
         url: url,
+        data: $(event.target.form).serialize(),
         success: postSuccess,
         error: postError,
     });
