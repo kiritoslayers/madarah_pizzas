@@ -56,9 +56,9 @@ def edicao_pizza(id):
         return '/pizzas'
     else:
         with connection.cursor() as cursor:
-            sql = """SELECT * FROM madarah.tb_pizza WHERE id_pizza = (%s)"""
-            cursor.execute(sql, (id))
-            pizza = tuple_to_dict(cursor.description, cursor.fetchall())
+            sql = "SELECT * FROM madarah.tb_pizza WHERE id_pizza = " + id
+            cursor.execute(sql)
+            pizza = tuple_to_dict(cursor.description, cursor.fetchone())
         return render_template('edicao.html', pizza=pizza)
     
 
@@ -76,7 +76,7 @@ def delete_pizza(id):
         return '/pizzas'
     else:
         with connection.cursor() as cursor:
-            sql = """SELECT * FROM madarah.tb_pizza WHERE id_pizza = (%s)"""
-            cursor.execute(sql, (id))
-            pizza = tuple_to_dict(cursor.description, cursor.fetchall())
+            sql = "delete from madarah.tb_pizza where id_pizza = " + id
+            cursor.execute(sql)
+            pizza = tuple_to_dict(cursor.description, cursor.fetchone())
         return render_template('delete.html', pizza=pizza)

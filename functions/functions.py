@@ -21,7 +21,7 @@ def rows_to_dict(description, rows):
 
 
 def tuple_to_dict(description, row):
-    if row is None:
+    if row is None or row == []:
         return None
     d = {}
     for i in range(0, len(row[0])):
