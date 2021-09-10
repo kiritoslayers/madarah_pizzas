@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_login import LoginManager, login_manager, login_user
 from pizza.pizza import pizzaBP
 from login.login import loginBP
+from usuario.usuario import userBP
 import psycopg2
 import psycopg2.extras
 from functions import *
@@ -17,6 +18,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 app.register_blueprint(pizzaBP)
+app.register_blueprint(userBP)
 app.register_blueprint(loginBP)
 
 

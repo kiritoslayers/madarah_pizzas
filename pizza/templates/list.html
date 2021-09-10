@@ -7,6 +7,13 @@
             <h3>Cardápio</h3>
             <button class="btn btn-info" onclick="carregaModal('pizza', 'cadastro')">Adicionar</button>
         </div>
+        {% if pizzas|length == 0 %}
+        <p class="col-lg-12 py-3">
+            Nenhuma pizza cadastrada
+        </p>
+        {% endif %}
+
+        {% if pizzas|length > 0 %}
         <div class="list__content d-flex justify-content-between flex-wrap align-items-stretch">
             {% for pizza in pizzas %}
             <div class="col-lg-3 col-md-3 col-sm-6 col-12 my-4">
@@ -24,10 +31,10 @@
                         </p>
                     </div>
                 </div>
-
             </div>
             {% endfor %}
         </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
