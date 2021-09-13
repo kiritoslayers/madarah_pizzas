@@ -16,10 +16,7 @@ function toggleCarrinho(){
 
 
 function carregaModal(controller, acctions){
-    // NProgress.start();
     let url = `/${controller}/${acctions}`;
-    
-    // requisição feita em js
     $.ajax({
         method: 'GET',
         url: url,
@@ -32,7 +29,7 @@ function carregaModal(controller, acctions){
             toastr.error('Contate a equipe de desenvolvimento')
             toastr.error('Houve um erro na requisição')
         }
-    })
+    });
 
 }
 
@@ -69,7 +66,7 @@ function beforeSend(data) {
     });
 }
 function afterSend(data) {
-    NProgress.done()
+    NProgress.done();
     $('.loading').css({
         'opacity': '0',
         'visibility': 'hidden'
@@ -82,7 +79,7 @@ function postSuccess(url){
     closeModal();
     window.location.href = url;
     $('.loading').css({
-        'opacity': '1',
+        'opacity': '0',
         'visibility': 'hidden'
     })
 }
@@ -93,7 +90,7 @@ function postError(data){
     toastr.error('Ocorreu um problema no envio do formulário');
     NProgress.done();
     $('.loading').css({
-        'opacity': '1',
+        'opacity': '0',
         'visibility': 'hidden'
     })
 }
@@ -120,7 +117,6 @@ function postForm(event){
         'visibility': 'visible'
     })
     let url = event.target.form.action;
-    let data
     $.ajax({
         type: 'POST',
         url: url,

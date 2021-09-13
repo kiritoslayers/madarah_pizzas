@@ -9,7 +9,8 @@ $(window).on('load', function () {
     })
     $('body').on('click', '.close', function() {
         closeModal($(this).parents('.modal'))
-    })
+    });
+
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -26,6 +27,7 @@ $(window).on('load', function () {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
+    
     $.ajaxSetup({
         beforeSend: beforeSend,
         complete: afterSend,
