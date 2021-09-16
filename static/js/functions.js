@@ -9,12 +9,6 @@ function toggleMenuMobile() {
     }
 }
 
-function toggleCarrinho(){
-    $('.carrinho').toggleClass('active')
-    $('.btn-carrinho').toggleClass('active')
-}
-
-
 function carregaModal(controller, acctions){
     let url = `/${controller}/${acctions}`;
     $.ajax({
@@ -95,20 +89,6 @@ function postError(data){
     })
 }
 
-// function postForm(event){
-//     event.preventDefault();
-//     let url = `${event.currentTarget.form.action}`;
-//     // $(event.target.form).find('.decimal').each(function(){
-//     //     let newValue = $(this).val().replace
-//     // })
-//     $.ajax({
-//         type: 'POST',
-//         url: url,
-//         data: $(event.target.form).serialize(),
-//         success: postSuccess,
-//         error: postError,
-//     });
-// }
 
 function postForm(event){
     event.preventDefault();
@@ -124,4 +104,89 @@ function postForm(event){
         success: postSuccess,
         error: postError,
     });
+}
+
+function carregaCarrinho(){
+    NProgress.start();
+    return $.ajax({
+        type: 'GET',
+        url: '/carrinho/aside',
+        success: function(data){
+            $('#carrinho').html(data)
+            NProgress.done();
+        }
+    })
+}
+
+function toggleCarrinho(){
+    $('.carrinho').toggleClass('active')
+    $('.btn-carrinho').toggleClass('active')
+}
+
+
+function plus(el){
+    let input = $(el).siblings('.carrinho__item-qtd--text');
+    let value = parseInt($(input).val()) + 1;
+    if(value > 10) {
+        $(el).attr('disabled', true)
+        return;
+    } else {
+        $(el).siblings('.minus').attr('disabled', false)
+        $(input).val(value);
+        $(input).trigger("change");
+        if(value == 10) {
+            $(el).attr('disabled', true);
+        }
+    }
+}
+
+function minus(el){
+    let input = $(el).siblings('.carrinho__item-qtd--text');
+    let value = parseInt($(input).val()) - 1;
+    if(value < 1) {
+        $(el).attr('disabled', true);
+        return;
+    } else {
+        $(el).siblings('.plus').attr('disabled', false)
+        $(input).val(value);
+        $(input).trigger("change");
+        if(value == 1) {
+            $(el).attr('disabled', true);
+        }
+    }
+}
+
+function value_change(el){
+    let value = parseInt($(el).val());
+    calcula_total();
+    // $.ajax({
+    //     type: 'POST',
+    //     url: '',
+    //     data: value,
+    //     success: function(data){}, 
+    //     error: function(data){} 
+    // })
+}
+
+function remove_item(el, id_item) {
+    $(el).parents('.carrinho__item').remove()
+    // $.ajax({
+    //     type: 'POST',
+    //     url: '/' + id_item,
+    //     success: function(data) {},
+    //     error: function(data) {}
+    // })
+}
+
+
+function calcula_total(){
+    let total = 0;
+    $('.carrinho').find('.carrinho__item').each(function(){
+        var qtd = parseInt($(this).find('.carrinho__item-qtd--text').val());
+        var valor = parseFloat($(this).find('#valor').html());
+        total += valor * qtd;
+    })
+    total = total.toFixed(2);
+    $('#valorTotal').html(total)
+    return total;
 }

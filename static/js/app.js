@@ -38,13 +38,7 @@ $(window).on('load', function () {
         postForm(event)
 
     })
+
+    carregaCarrinho()
 })
-fnProgressBarLoading()
-
-function oi(el){
-    console.log($(el))
-    console.log($(el).val())
-    console.log($(el).validator)
-    console.log($(el).parents('form'))
-
-}
+fnProgressBarLoading();

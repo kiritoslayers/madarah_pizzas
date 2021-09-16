@@ -1024,7 +1024,8 @@ button.btn.btn-info {}
 }
 
 .carrinho__item-qtd:hover {
-    background: #0e0d0d52;
+    background: #03236d;
+    color: #fff;
 }
 
 .carrinho__item-total {
@@ -1254,4 +1255,7 @@ label.error {
 div#nprogress {
     z-index: 999999;
     position: fixed;
+}
+.btn-check:focus+.btn, .btn:focus {
+    box-shadow: 0 0 0 3px rgb(13 110 253 / 25%);
 }

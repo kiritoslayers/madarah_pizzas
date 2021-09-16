@@ -78,10 +78,9 @@
             </nav>
         </div>
     </header>
-    <button class="btn-carrinho" type="button" title="Carrinho" onclick="toggleCarrinho()">
-        <span><i class="fas fa-shopping-basket"></i></span>
-        <span><i class="fas fa-times"></i></span>
-    </button>
+    <div id="carrinho">
+       
+    </div>
     <main class="main">
         {% block conteudo %}{% endblock %}
         <div class="modal" tabindex="-1" role="dialog" id="modal">
@@ -92,28 +91,6 @@
         </div>
 
     </main>
-    <aside class="carrinho">
-        <div class="carrinho__item">
-            <div class="carrinho__item-img"
-                style="background-image: url(https://blog.duogourmet.com.br/wp-content/uploads/2019/07/41-Duo-Gourmet-pizza.jpg)">
-            </div>
-            <div class="carrinho__item-text">
-                <h2>Pizza Calabreza</h2>
-                <p>Lorem ipsum...</p>
-                <p>R$ 50,00</p>
-                <p>
-                    <button class="carrinho__item-qtd">-</button>
-                    <input class="carrinho__item-qtd--text" value="1" min="0" onchange="pizza_QtdChange(this, valor)">
-                    <button class="carrinho__item-qtd">+</button>
-                </p>
-                <button class="carrinho__item-trash"><i class="fas fa-trash-alt"></i></button>
-            </div>
-        </div>
-        <div class="carrinho__item-total">
-            <span>Total: R$ <span id="valorTotal" class="fw-bold">00,00</span></span>
-            <button>Finalizar</button>
-        </div>
-    </aside>
 
     <div class="loading">
         <img src="./../static/img/loading.gif" alt="">
