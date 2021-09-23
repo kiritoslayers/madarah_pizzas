@@ -9,7 +9,7 @@ madarah_pizzas é a proposta de um projeto sugerido no curso de Análise e Desen
 ## 🔖 Índice
 - [Tecnologias](#-Tecnologias)
 - [Serviçõs Internos](#-Serviçõs-Internos)
-- [Run Application](#-Run Application)
+- [Run Application](#-Run-Application)
 
 
 ## 🚀 Tecnologias
