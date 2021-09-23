@@ -9,15 +9,17 @@ madarah_pizzas é a proposta de um projeto sugerido no curso de Análise e Desen
 ## 🔖 Índice
 - [Tecnologias](#-Tecnologias)
 - [Serviçõs Internos](#-Serviçõs-Internos)
+- [Run Application](#-Run Application)
+
 
 ## 🚀 Tecnologias
-
 
 Tecnologias utilizadas no projeto.
 
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 - [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
 - [Why Blueprints](https://flask.palletsprojects.com/en/2.0.x/blueprints/)
+
 
 ## 🔗 Serviçõs Internos
 
