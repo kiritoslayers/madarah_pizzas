@@ -1,6 +1,6 @@
 <h1 align="center">Madarah 2.0</h1>
 <h3 align="center">
-  <img src="https://ibb.co/LktS1JL"height="290" width="290">
+  <img src="<img src="https://i.ibb.co/Gx27RtK/MADARA-fundo-removebg.png" alt="MADARA-fundo-removebg" border="0">"height="290" width="290">
 </h3>
 
 ## Descrição
