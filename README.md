@@ -40,6 +40,3 @@ python app.py
 ```
 
 Desenvolvido com muito ☕ por Noemi Cavalcanti, Fabio Moraes, Fernando Silva, Thiago Bortoleto, Vitor Augusto e Willian Costa.
-<h3>
-<img align="center" src="https://github-readme-stats.vercel.app/api/<CARD_TYPE>/?username=<USERNAME>&theme=<THEME_NAME>" />
-</h3>
