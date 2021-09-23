@@ -3,10 +3,6 @@
   <img src="https://i.ibb.co/YBQBbRD/09-removebg-preview.png"height="300" width="300">
 </h3>
 
-##About
-
-test
-
 ## Descrição
 madarah_pizzas é a proposta de um projeto sugerido no curso de Análise e Desenvolvimento de Sistema por uma amiga em comum do grupo que ganhou espaço agora no curso de Sistemas de Informação na matéria de, Desenvolvimento de Sistemas de Informação, a proposta apesar de simples visa entregar uma solução eficaz para o dono de uma pizzaria que necessita ter um controle operacional de seu estabelecimento centralizado em um único sistema e ao mesmo tempo oferecer praticidade aos seus clientes na hora de realizar seus pedidos. 
 
@@ -44,5 +40,6 @@ python app.py
 ```
 
 Desenvolvido com muito ☕ por Noemi Cavalcanti, Fabio Moraes, Fernando Silva, Thiago Bortoleto, Vitor Augusto e Willian Costa.
+<h3>
 <img align="center" src="https://github-readme-stats.vercel.app/api/<CARD_TYPE>/?username=<USERNAME>&theme=<THEME_NAME>" />
-
+</h3>
