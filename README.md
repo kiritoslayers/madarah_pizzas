@@ -1,6 +1,6 @@
 <h1 align="center">Madarah 2.0</h1>
 <h3 align="center">
-  <img src="https://i.ibb.co/YBQBbRD/09-removebg-preview.png"height="299" width="299">
+  <img src="https://i.ibb.co/YBQBbRD/09-removebg-preview.png"height="300" width="300">
 </h3>
 
 ## Descrição
