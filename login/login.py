@@ -13,15 +13,17 @@ def connect():
 
 @loginBP.route('/login', methods=['GET', 'POST'])
 def login():
-    # if flask.request.method == 'POST':
-    #     users = request.form['usuario']
-    #     # senha = request.form['senha']
-    #     connection = connect()
-    #     with connection.cursor() as cursor:
-    #         sql = """select * from madarah.tb_usuario where id_usuario = (%s)"""
-    #         cursor.execute(sql, (users))
-    #         account = cursor.fetchone()
+    if flask.request.method == 'POST':
+        email = flask.request.form['email']
+        senha = flask.request.form['senha']
+        connection = connect()
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT * FROM accounts WHERE email = %s AND senha = %s', (email, senha))
+            cursor.fetchone()
+            cursor.close()
+        return '/login'
         
+
     return(render_template('login.html'))
     
    
