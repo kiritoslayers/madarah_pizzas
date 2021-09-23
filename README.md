@@ -6,7 +6,6 @@ madarah_pizzas é a proposta de um projeto sugerido no curso de Análise e Desen
 ## 🔖 Índice
 - [Tecnologias](#-Tecnologias)
 - [Serviçõs Internos](#-Serviçõs-Internos)
-- [Variáveis Locais](#-Variáveis-Locais)
 
 ## 🚀 Tecnologias
 
@@ -32,4 +31,4 @@ Como executar o service.
 python app.py
 ```
 
-Desenvolvido por Noemi Cavalcanti, Fabio Moraes, Fernando Silva, Thiago Bortoleto, Vitor Augusto e Willian Costa
+Desenvolvido com ❤️ por Noemi Cavalcanti, Fabio Moraes, Fernando Silva, Thiago Bortoleto, Vitor Augusto e Willian Costa.
