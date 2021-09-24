@@ -1,19 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>edicao Pizza</title>
-</head>
-<body>
-    <form method="POST" action="/editar_pizza">
-        <input name="id" type="number" placeholder="id">
-        <input name="sabor" type="text" placeholder="sabor da pizza">
-        <input name="descricao" type="text" placeholder="descrição">
-        <input name="valor" type="text" placeholder="valor">
-        <input name="url_foto" type="text" placeholder="URL_foto">
-        <input name="button" type="submit">
-    </form>
-</body>
-</html>
+<script>
+    $('#valor').mask('000.000.000.000.000,00', {reverse: true})
+</script>
+<div class="modal-header"> 
+        <h5 class="modal-title">Editar</h5>
+        <button type="button" class="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="editar_pizza" method="POST" action="/pizza/edicao/{{pizza['id_pizza']}}">
+            <input type="hidden" name="id_pizza" id="id_pizza" value="{{pizza['id_pizza']}}">
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+                    <label for="sabor">Sabor: </label>
+                    <input class="form-control" id="sabor" name="sabor" value="{{pizza['sabor']}}" required>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+                    <label for="valor">Valor<small>(R$)</small> </label>
+                    <input class="form-control decimal" id="valor" name="valor" value="{{pizza['valor']}}" required>
+                </div>
+            </div>
+            <div class="form-row"> 
+                <div class="form-group col-lg-10 col-md-8 col-sm-12 col-12">
+                    <label for="url_foto">URL Foto: </label>
+                    <input type="url" class="form-control" id="url_foto" name="url_foto" value="{{pizza['url_foto']}}" required>
+                </div>
+                <div class="form-group col-lg-2 col-md-4 col-sm-12 col-12">
+                   <div class="img-pizza">
+                       <img src="{{pizza['url_foto']}}" alt="">
+                   </div>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
+                    <label for="descricao"> Descrição: </label>
+                    <textarea class="form-control" id="descricao" name="descricao" required style="resize: vertical;">{{pizza['descricao']}}</textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between p-0">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn btn-submit btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
