@@ -15,6 +15,11 @@ def login():
     return render_template('login.html')
 
 
+@userBP.route('/account/logout', methods=['POST'])
+def logout():
+    return render_template('logout.html')
+
+
 @userBP.route('/account/register', methods=['GET', 'POST'])
 def register():
     return render_template('register.html')

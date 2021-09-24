@@ -1,0 +1,1 @@
+# SMTP feito seguinto o tutorial https://www.youtube.com/watch?v=umvzsQLZYD4&t=820s
