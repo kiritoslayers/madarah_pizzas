@@ -1,0 +1,27 @@
+<button class="btn-carrinho" type="button" title="Carrinho" onclick="toggleCarrinho()">
+    <span><i class="fas fa-shopping-basket"></i></span>
+    <span><i class="fas fa-times"></i></span>
+</button>
+<aside class="carrinho">
+    <div class="carrinho__item">
+        <div class="carrinho__item-img"
+            style="background-image: url(https://blog.duogourmet.com.br/wp-content/uploads/2019/07/41-Duo-Gourmet-pizza.jpg)">
+        </div>
+        <div class="carrinho__item-text">
+            <h2>Pizza Calabreza</h2>
+            <p>Lorem ipsum...</p>
+            <p>R$ <span id="valor">50,00</span></p>
+            <p>
+                <button class="btn carrinho__item-qtd minus" onclick="minus(this)">-</button>
+                <input class="carrinho__item-qtd--text" value="1" min="0"
+                    onchange="value_change(this)">
+                <button class="btn carrinho__item-qtd plus" onclick="plus(this)">+</button>
+            </p>
+            <button class="carrinho__item-trash" onclick="remove_item(this, 15)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </div>
+    <div class="carrinho__item-total">
+        <span>Total: R$ <span id="valorTotal" class="fw-bold">00,00</span></span>
+        <button>Finalizar</button>
+    </div>
+</aside>

@@ -44,22 +44,24 @@
     </div>
 </section>
 <section class="cardapio py-5 px-5">
+   <div class="wrapper">
     <h3 class="text-center">Conheça nosso cardápio</h3>
-    <div class="cardapio__list d-flex justify-content-center flex-wrap w-90 m-auto">
+    <div class="cardapio__list d-flex justify-content-center flex-wrap">
         {% for pizza in pizzas %}
-            <div class="card col-lg-2 col-md-3 col-sm-6 col-12 p-0 m-4">
+            <div class="card col-lg-3 col-md-3 col-sm-6 col-12 p-0 my-4 mx-3">
                 <div class="card-img-top">
                     <img src="{{pizza['url_foto']}}" alt="Pizza {{pizza['sabor']}}">
                 </div>
                 <div class="card-body d-flex flex-column ">
-                    <h5 class="card-title">{{pizza['sabor']}}</h5>
-                    <p class="card-text">{{pizza['descricao']}}</p>
-                    <p class="card-text mb-2">R${{pizza['valor']}}</p>
-                    <a href="#" class="btn btn-dark mt-auto">Pedir</a>
+                    <h4 class="card-title mb-1 lh-1">{{pizza['sabor']}}</h4>
+                    <p class="card-text mb-1">{{pizza['descricao']}}</p>
+                    <p class="card-text h4 mb-1 mt-auto">R$  {{pizza['valor']}}</p>
+                    <a href="#" class="btn btn-dark mt-1">Pedir</a>
                 </div>
             </div>
           {% endfor %}
     </div>
+   </div>
 </section>
 
 {% endblock %}

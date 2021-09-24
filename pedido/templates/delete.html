@@ -1,0 +1,41 @@
+<script>
+    $('#valor').mask('000.000.000.000.000,00', {reverse: true})
+</script>
+<div class="modal-header"> 
+        <div>
+            <h5 class="modal-title">Excluir</h5>
+            <p>Tem certeza que deseja excluir o pedido abaixo?</p>
+            <p>A operação não poderá ser desfeita.</p>
+        </div>
+        <button type="button" class="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="delete_pedido" method="POST" action="/pedido/delete/{{pedido['id_pedido']}}">
+            <input type="hidden" name="id_pedido" id="id_pedido" value="{{pedido['id_pedido']}}">
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12 mb-0">
+                    <label for="nome"><strong>Nome: </strong></label>
+                    <span>{{pedido['nome']}}</span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12 mb-0">
+                    <label for="endereco"><strong>Endereço: </strong></label>
+                    <span>{{pedido['endereco']}}</span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12 mb-0">
+                    <label for="telefone1"><strong>Telefone 1: </strong></label>
+                    <span>{{pedido['telefone1']}}</span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12 mb-0">
+                    <label for="telefone2"><strong>Telefone 2: </strong></label>
+                    <span>{{pedido['telefone2']}}</span>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between p-0">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn btn-submit btn-primary">Excluir</button>
+            </div>
+        </form>
+    </div>
