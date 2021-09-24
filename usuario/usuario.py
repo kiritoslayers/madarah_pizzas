@@ -14,7 +14,7 @@ connection = psycopg2.connect(POSTGRESQL_URI)
 def login():
     return render_template('login.html')
 
-    
+
 @userBP.route('/account/register', methods=['GET', 'POST'])
 def register():
     return render_template('register.html')

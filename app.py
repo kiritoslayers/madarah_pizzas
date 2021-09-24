@@ -12,7 +12,6 @@ from functions import *
 from flask_admin import Admin
 
 
-
 app = Flask(__name__)
 app.config['FLASK_ADMIN_SWATCH'] = 'united'
 admin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')
@@ -25,12 +24,11 @@ app.register_blueprint(loginBP)
 app.register_blueprint(carrinhoBP)
 app.register_blueprint(registrarBP)
 
-
 POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg"
 
 
-
 connection = psycopg2.connect(POSTGRESQL_URI)
+
 
 @app.route('/')
 def index():

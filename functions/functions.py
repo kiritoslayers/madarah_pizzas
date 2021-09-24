@@ -11,13 +11,13 @@ def row_to_dict(description, row):
             print("Variable x is not defined")
     return d
 
+
 # Converte uma lista de linhas em um lista de dicionários.
 def rows_to_dict(description, rows):
     result = []
     for row in rows:
         result.append(row_to_dict(description, row))
     return result
-
 
 
 def tuple_to_dict(description, row):
@@ -32,6 +32,3 @@ def tuple_to_dict(description, row):
         except NameError:
             print("Variable x is not defined")
     return d
-
-
-

@@ -18,7 +18,6 @@ def list():
     return render_template("list.html", pizzas=lista)
 
 
-
 @pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])
 def cadastro_pizza():
     if flask.request.method == 'POST':
@@ -61,8 +60,6 @@ def edicao_pizza(id):
             oi = cursor.fetchone()
             pizza = tuple_to_dict(cursor.description, oi)
         return render_template('edicao.html', pizza=pizza)
-    
-
 
 
 @pizzaBP.route('/pizza/delete/<id>', methods=['GET', 'POST'])
