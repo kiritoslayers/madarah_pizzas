@@ -16,8 +16,8 @@ def login():
 
 
 @userBP.route('/account/logout', methods=['POST'])
-def login():
-    return render_template('login.html')
+def logout():
+    return render_template('logout.html')
 
 
 @userBP.route('/account/register', methods=['GET', 'POST'])
