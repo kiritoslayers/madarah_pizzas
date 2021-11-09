@@ -51,10 +51,17 @@
                 </button>
             </div>
             <nav class="navbar-nav">
-                <a class="nav-item nav-link">Cardápio</a>
+                <a class="nav-item nav-link" href="/cardapio">Cardápio</a>
+                {% if auth %}
+                {% if auth['role'] == 'admin' %}
                 <a class="nav-item nav-link" href="/pizzas">Gerenciar Cardápio</a>
-                <a class="nav-item nav-link">Pedidos</a>
-                <a class="nav-item nav-link" onclick="carregaModal('account', 'login')">Login</a>
+                <a class="nav-item nav-link" href="/pedidos">Pedidos</a>
+                {% endif %}
+                {% if auth['role'] == 'cliente' %}
+                <a class="nav-item nav-link" href="/meus-pedidos">Meus pedidos</a>
+                {% endif %}
+
+                <a class="nav-item nav-link" disabled>{{auth['name']}}</a>
                 <div class="nav-item dropdown">
                     <a class="nav-link nav-item dropdown-toggle noafter" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,19 +69,27 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item">
+                            <a class="dropdown-item" href="/profile">
                                 <span>Perfil</span>
                                 <i class="fas fa-user"></i>
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item">
+                            <a class="dropdown-item" href="/logout">
                                 <span>Sair</span>
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
+                {% endif %}
+
+
+                {% if not(auth) %}
+                <!-- <a class="nav-item nav-link" onclick="carregaModal('account', 'login')">Login</a> -->
+                <a class="nav-item nav-link" href="/login">Login</a>
+                {% endif %}
+
             </nav>
         </div>
     </header>

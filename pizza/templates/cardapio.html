@@ -5,6 +5,7 @@
     <div class="wrapper">
         <div class="list__header d-flex justify-content-between align-items-center col-lg-12">
             <h3>Cardápio</h3>
+            <button class="btn btn-info" onclick="carregaModal('pizza', 'cadastro')">Adicionar</button>
         </div>
         {% if pizzas|length == 0 %}
         <p class="col-lg-12 py-3">
@@ -24,10 +25,6 @@
                         <h4 class="card-title mb-1 lh-1">{{pizza['sabor']}}</h4>
                         <p class="card-text mb-1">{{pizza['descricao']}}</p>
                         <p class="card-text h4 mb-1 mt-auto">R$ {{pizza['valor']}}</p>
-                        <p class="d-flex justify-content-between mt-1">
-                            <button onclick="carregaModal('pizza', `delete/{{pizza['id_pizza']}}`)" class="btn btn-dark col-6 mr-1">Excluir</button>
-                            <button onclick="carregaModal('pizza', `edicao/{{pizza['id_pizza']}}`)" class="btn btn-primary col-6 ml-1">Editar</button>
-                        </p>
                     </div>
                 </div>
             </div>

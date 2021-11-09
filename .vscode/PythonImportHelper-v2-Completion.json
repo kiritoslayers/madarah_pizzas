@@ -1,0 +1,840 @@
+[
+    {
+        "label": "rows_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "tuple_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "rows_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "tuple_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "row_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "rows_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "tuple_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "flask",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "flask",
+        "description": "flask",
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "abort",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2",
+        "description": "psycopg2",
+        "detail": "psycopg2",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2.extras",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2.extras",
+        "description": "psycopg2.extras",
+        "detail": "psycopg2.extras",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "functions",
+        "description": "functions",
+        "isExtraImport": true,
+        "detail": "functions",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "functions",
+        "description": "functions",
+        "isExtraImport": true,
+        "detail": "functions",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "functions",
+        "description": "functions",
+        "isExtraImport": true,
+        "detail": "functions",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Null",
+        "importPath": "pyasn1.type.univ",
+        "description": "pyasn1.type.univ",
+        "isExtraImport": true,
+        "detail": "pyasn1.type.univ",
+        "documentation": {}
+    },
+    {
+        "label": "LoginManager",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "pizzaBP",
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "isExtraImport": true,
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "carrinhoBP",
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "isExtraImport": true,
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "Admin",
+        "importPath": "flask_admin",
+        "description": "flask_admin",
+        "isExtraImport": true,
+        "detail": "flask_admin",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "pathlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "auth",
+        "importPath": "google",
+        "description": "google",
+        "isExtraImport": true,
+        "detail": "google",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "id_token",
+        "importPath": "google.oauth2",
+        "description": "google.oauth2",
+        "isExtraImport": true,
+        "detail": "google.oauth2",
+        "documentation": {}
+    },
+    {
+        "label": "Flow",
+        "importPath": "google_auth_oauthlib.flow",
+        "description": "google_auth_oauthlib.flow",
+        "isExtraImport": true,
+        "detail": "google_auth_oauthlib.flow",
+        "documentation": {}
+    },
+    {
+        "label": "cachecontrol",
+        "importPath": "pip._vendor",
+        "description": "pip._vendor",
+        "isExtraImport": true,
+        "detail": "pip._vendor",
+        "documentation": {}
+    },
+    {
+        "label": "google.auth.transport.requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "google.auth.transport.requests",
+        "description": "google.auth.transport.requests",
+        "detail": "google.auth.transport.requests",
+        "documentation": {}
+    },
+    {
+        "label": "smtplib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "smtplib",
+        "description": "smtplib",
+        "detail": "smtplib",
+        "documentation": {}
+    },
+    {
+        "label": "MIMEMultipart",
+        "importPath": "email.mime.multipart",
+        "description": "email.mime.multipart",
+        "isExtraImport": true,
+        "detail": "email.mime.multipart",
+        "documentation": {}
+    },
+    {
+        "label": "MIMEText",
+        "importPath": "email.mime.text",
+        "description": "email.mime.text",
+        "isExtraImport": true,
+        "detail": "email.mime.text",
+        "documentation": {}
+    },
+    {
+        "label": "list_aside",
+        "kind": 2,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "def list_aside():\n    return render_template(\"aside.html\")\n@carrinhoBP.route('/carrinho/pedir/<id>/', methods=['POST'])\ndef adicionar(id, qtd):\n    return 'ok'\n@carrinhoBP.route('/carrinho/set_quantidade/<id>/<qtd>', methods=['POST'])\ndef set_quantidade(id, qtd):\n    return 'ok'",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "adicionar",
+        "kind": 2,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "def adicionar(id, qtd):\n    return 'ok'\n@carrinhoBP.route('/carrinho/set_quantidade/<id>/<qtd>', methods=['POST'])\ndef set_quantidade(id, qtd):\n    return 'ok'",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "set_quantidade",
+        "kind": 2,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "def set_quantidade(id, qtd):\n    return 'ok'",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "POSTGRESQL_URI",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\ncarrinhoBP = Blueprint('carrinho', __name__, template_folder='templates', static_folder='static')\n@carrinhoBP.route('/carrinho/aside', methods=['GET'])\ndef list_aside():\n    return render_template(\"aside.html\")\n@carrinhoBP.route('/carrinho/pedir/<id>/', methods=['POST'])\ndef adicionar(id, qtd):\n    return 'ok'\n@carrinhoBP.route('/carrinho/set_quantidade/<id>/<qtd>', methods=['POST'])\ndef set_quantidade(id, qtd):",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "carrinhoBP",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "carrinhoBP = Blueprint('carrinho', __name__, template_folder='templates', static_folder='static')\n@carrinhoBP.route('/carrinho/aside', methods=['GET'])\ndef list_aside():\n    return render_template(\"aside.html\")\n@carrinhoBP.route('/carrinho/pedir/<id>/', methods=['POST'])\ndef adicionar(id, qtd):\n    return 'ok'\n@carrinhoBP.route('/carrinho/set_quantidade/<id>/<qtd>', methods=['POST'])\ndef set_quantidade(id, qtd):\n    return 'ok'",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "cadastro_cliente",
+        "kind": 2,
+        "importPath": "cliente.cliente",
+        "description": "cliente.cliente",
+        "peekOfCode": "def cadastro_cliente():\n    if flask.request.method == 'POST':\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        with connection.cursor() as cursor:\n            sql = \"\"\"insert into madarah.tb_cliente (id_cliente_usuario, nome, endereco, telefone1, telefone2) VALUES (%s, %s, %s, %s, %s)\"\"\"",
+        "detail": "cliente.cliente",
+        "documentation": {}
+    },
+    {
+        "label": "edicao_cliente",
+        "kind": 2,
+        "importPath": "cliente.cliente",
+        "description": "cliente.cliente",
+        "peekOfCode": "def edicao_cliente(id_cliente_usuario):\n    if flask.request.method == 'POST':\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        with connection.cursor() as cursor:\n            sql = \"\"\"update madarah.tb_cliente SET nome = (%s), endereco = (%s), telefone1 = (%s), telefone2 = (%s) WHERE id_cliente_usuario = (%s)\"\"\"",
+        "detail": "cliente.cliente",
+        "documentation": {}
+    },
+    {
+        "label": "list_clientes",
+        "kind": 2,
+        "importPath": "cliente.cliente",
+        "description": "cliente.cliente",
+        "peekOfCode": "def list_clientes():\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"select * from madarah.tb_cliente order by nome\"\"\"\n        cursor.execute(sql)\n        lista = cursor.fetchall()\n    return render_template(\"list_clientes.html\", clientes=lista)\n@clienteBP.route('/delete_cliente/<int:cpf>', methods=['POST', 'GET'])\ndef delete_cliente(cpf):\n    connection = psycopg2.connect(POSTGRESQL_URI)    ",
+        "detail": "cliente.cliente",
+        "documentation": {}
+    },
+    {
+        "label": "delete_cliente",
+        "kind": 2,
+        "importPath": "cliente.cliente",
+        "description": "cliente.cliente",
+        "peekOfCode": "def delete_cliente(cpf):\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"delete madarah.tb_pedido where cpf = (%s)\"\"\"\n        cursor.execute(sql, cpf)\n        lista = cursor.fetchall()\n    return render_template('delete_cliente.html')",
+        "detail": "cliente.cliente",
+        "documentation": {}
+    },
+    {
+        "label": "POSTGRESQL_URI",
+        "kind": 5,
+        "importPath": "cliente.cliente",
+        "description": "cliente.cliente",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nclienteBP = Blueprint('cliente', __name__, template_folder='templates', static_folder='static')\n@clienteBP.route('/cadastro_cliente', methods=['GET', 'POST'])\ndef cadastro_cliente():\n    if flask.request.method == 'POST':\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])",
+        "detail": "cliente.cliente",
+        "documentation": {}
+    },
+    {
+        "label": "clienteBP",
+        "kind": 5,
+        "importPath": "cliente.cliente",
+        "description": "cliente.cliente",
+        "peekOfCode": "clienteBP = Blueprint('cliente', __name__, template_folder='templates', static_folder='static')\n@clienteBP.route('/cadastro_cliente', methods=['GET', 'POST'])\ndef cadastro_cliente():\n    if flask.request.method == 'POST':\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])\n        connection = psycopg2.connect(POSTGRESQL_URI)",
+        "detail": "cliente.cliente",
+        "documentation": {}
+    },
+    {
+        "label": "row_to_dict",
+        "kind": 2,
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "peekOfCode": "def row_to_dict(description, row):\n    if row is None:\n        return None\n    d = {}\n    for i in range(0, len(row)):\n        value = row[i]\n        key = description[i][0]\n        try:\n            d[key] = value\n        except NameError:",
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "rows_to_dict",
+        "kind": 2,
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "peekOfCode": "def rows_to_dict(description, rows):\n    result = []\n    for row in rows:\n        result.append(row_to_dict(description, row))\n    return result\ndef tuple_to_dict(description, row):\n    if row is None or row == []:\n        return None\n    d = {}\n    for i in range(0, len(row)):",
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "tuple_to_dict",
+        "kind": 2,
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "peekOfCode": "def tuple_to_dict(description, row):\n    if row is None or row == []:\n        return None\n    d = {}\n    for i in range(0, len(row)):\n        value = row[i]\n        key = description[i][0]\n        try:\n            d[key] = value\n        except NameError:",
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "cadastro_pedido",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def cadastro_pedido():\n    if flask.request.method == 'POST':\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])\n        with connection.cursor() as cursor:\n            sql = \"\"\"insert into madarah.tb_pedido (id_cliente_usuario, nome, endereco, telefone1, telefone2) VALUES (%s, %s, %s, %s, %s)\"\"\"",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "edicao_pedido",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def edicao_pedido():\n    if flask.request.method == 'POST':\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        with connection.cursor() as cursor:\n            sql = \"\"\"update madarah.tb_pedido SET nome = (%s), endereco = (%s), telefone1 = (%s), telefone2 = (%s) WHERE id_cliente_usuario = (%s)\"\"\"",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "list_pedidos",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def list_pedidos():\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"select * from madarah.tb_pedido order by id\"\"\"\n        cursor.execute(sql)\n        lista = cursor.fetchall()\n    return render_template(\"list_pedidos.html\", pedidos=lista)\n@pedidoBP.route('/delete_pedido/<int:id>', methods=['POST', 'GET'])\ndef delete_pedido(id):\n    connection = psycopg2.connect(POSTGRESQL_URI)    ",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "delete_pedido",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def delete_pedido(id):\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"delete madarah.tb_pedido where id = (%s)\"\"\"\n        cursor.execute(sql, id)\n        lista = cursor.fetchall()\n    return render_template('delete_pedido.html')",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "POSTGRESQL_URI",
+        "kind": 5,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npedidoBP = Blueprint('pedido', __name__, template_folder='templates', static_folder='static')\n@pedidoBP.route('/cadastro_pedido', methods=['GET', 'POST'])\ndef cadastro_pedido():\n    if flask.request.method == 'POST':\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "pedidoBP",
+        "kind": 5,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "pedidoBP = Blueprint('pedido', __name__, template_folder='templates', static_folder='static')\n@pedidoBP.route('/cadastro_pedido', methods=['GET', 'POST'])\ndef cadastro_pedido():\n    if flask.request.method == 'POST':\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "cardapio",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"select * from madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)\n@pizzaBP.route('/pizzas', methods=['GET'])\ndef list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "list",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"select * from madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"list.html\", pizzas=lista)\n@pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])\ndef cadastro_pizza():\n    if flask.request.method == 'POST':",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "cadastro_pizza",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def cadastro_pizza():\n    if flask.request.method == 'POST':\n        sabor = str(request.form['sabor']),\n        descricao = str(request.form['descricao']),\n        valor = request.form['valor'].replace('.', ',').replace(',', '.')\n        valor = float(valor)\n        url_foto = str(request.form['url_foto'])\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        with connection.cursor() as cursor:\n            sql = \"\"\"insert into madarah.tb_pizza (sabor, descricao, valor, url_foto) VALUES (%s, %s, %s, %s)\"\"\"",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "edicao_pizza",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def edicao_pizza(id):\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    if flask.request.method == 'POST':\n        id_pizza = int(request.form['id_pizza'])\n        sabor = str(request.form['sabor']),\n        descricao = str(request.form['descricao']),\n        valor = request.form['valor'].replace('.', ',').replace(',', '.')\n        valor = float(valor)\n        url_foto = str(request.form['url_foto'])\n        with connection.cursor() as cursor:",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "delete_pizza",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def delete_pizza(id):\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    if flask.request.method == 'POST':\n        with connection.cursor() as cursor:\n            sql = \"delete from madarah.tb_pizza where id_pizza = \" + id\n            cursor.execute(sql)\n            connection.commit()\n            cursor.close()\n        return '/pizzas'\n    else:",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "POSTGRESQL_URI",
+        "kind": 5,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"select * from madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "pizzaBP",
+        "kind": 5,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"select * from madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)\n@pizzaBP.route('/pizzas', methods=['GET'])",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "connection",
+        "kind": 5,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"select * from madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)\n@pizzaBP.route('/pizzas', methods=['GET'])\ndef list():",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "login_is_required",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login_is_required(function):\n    def wrapper(*args, **kwargs):\n        if \"google_id\" not in session:\n            return abort(401)  # Authorization required\n        else:\n            return function()\n    return wrapper\n@app.route('/')\ndef index():\n    with connection.cursor() as cursor:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    with connection.cursor() as cursor:\n        cursor.execute('''SELECT sabor, descricao, valor, url_foto from madarah.tb_pizza order by id_pizza''')\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    authenticate =  session if 'google_id' in session else False\n    return render_template('index.html', pizzas=lista, auth=authenticate)\n@app.route(\"/login\")\ndef login():\n    authorization_url, state = flow.authorization_url()\n    session[\"state\"] = state",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login():\n    authorization_url, state = flow.authorization_url()\n    session[\"state\"] = state\n    return redirect(authorization_url)\n@app.route(\"/callback\")\ndef callback():\n    flow.fetch_token(authorization_response=request.url)\n    if not session[\"state\"] == request.args[\"state\"]:\n        abort(500)  # State does not match!\n    credentials = flow.credentials",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "callback",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def callback():\n    flow.fetch_token(authorization_response=request.url)\n    if not session[\"state\"] == request.args[\"state\"]:\n        abort(500)  # State does not match!\n    credentials = flow.credentials\n    request_session = requests.session()\n    cached_session = cachecontrol.CacheControl(request_session)\n    token_request = google.auth.transport.requests.Request(session=cached_session)\n    id_info = id_token.verify_oauth2_token(\n        id_token=credentials._id_token,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def logout():\n    sendEmail(session['name'],session['email'], 'logout')\n    session.clear()\n    return redirect(\"/\")\n@app.route(\"/profile\")\n@login_is_required\ndef protected_area():\n    name = session['name']\n    authenticate =  session['name'] if 'google_id' in session else False\n    return render_template('/', name=name, auth=authenticate)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "protected_area",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def protected_area():\n    name = session['name']\n    authenticate =  session['name'] if 'google_id' in session else False\n    return render_template('/', name=name, auth=authenticate)\ndef sendEmail(nome, email, acao):\n    host = 'smtp.gmail.com'\n    port = '587'\n    login = 'madarah.impacta@gmail.com'\n    senha = 'cadomeew'\n    server = smtplib.SMTP(host, port)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "sendEmail",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def sendEmail(nome, email, acao):\n    host = 'smtp.gmail.com'\n    port = '587'\n    login = 'madarah.impacta@gmail.com'\n    senha = 'cadomeew'\n    server = smtplib.SMTP(host, port)\n    server.ehlo()\n    server.starttls()\n    server.login(login, senha)\n    body = f'Você fez {acao} com {nome} - {email}'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__, template_folder='templates', static_folder='static')\napp.secret_key = \"CodeSpecialist.com\"\nos.environ[\"OAUTHLIB_INSECURE_TRANSPORT\"] = \"1\"\nGOOGLE_CLIENT_ID = \"255715985919-6rjumhu5881vldgqdkjh7i558o7h3cso.apps.googleusercontent.com\"\nclient_secrets_file = os.path.join(pathlib.Path(__file__).parent, \"client_secret.json\")\nflow = Flow.from_client_secrets_file(\n    client_secrets_file=client_secrets_file,\n    scopes=[\"https://www.googleapis.com/auth/userinfo.profile\", \"https://www.googleapis.com/auth/userinfo.email\", \"openid\"],\n    redirect_uri=\"http://127.0.0.1:5000/callback\"\n)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.secret_key = \"CodeSpecialist.com\"\nos.environ[\"OAUTHLIB_INSECURE_TRANSPORT\"] = \"1\"\nGOOGLE_CLIENT_ID = \"255715985919-6rjumhu5881vldgqdkjh7i558o7h3cso.apps.googleusercontent.com\"\nclient_secrets_file = os.path.join(pathlib.Path(__file__).parent, \"client_secret.json\")\nflow = Flow.from_client_secrets_file(\n    client_secrets_file=client_secrets_file,\n    scopes=[\"https://www.googleapis.com/auth/userinfo.profile\", \"https://www.googleapis.com/auth/userinfo.email\", \"openid\"],\n    redirect_uri=\"http://127.0.0.1:5000/callback\"\n)\napp.config['FLASK_ADMIN_SWATCH'] = 'united'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"OAUTHLIB_INSECURE_TRANSPORT\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "os.environ[\"OAUTHLIB_INSECURE_TRANSPORT\"] = \"1\"\nGOOGLE_CLIENT_ID = \"255715985919-6rjumhu5881vldgqdkjh7i558o7h3cso.apps.googleusercontent.com\"\nclient_secrets_file = os.path.join(pathlib.Path(__file__).parent, \"client_secret.json\")\nflow = Flow.from_client_secrets_file(\n    client_secrets_file=client_secrets_file,\n    scopes=[\"https://www.googleapis.com/auth/userinfo.profile\", \"https://www.googleapis.com/auth/userinfo.email\", \"openid\"],\n    redirect_uri=\"http://127.0.0.1:5000/callback\"\n)\napp.config['FLASK_ADMIN_SWATCH'] = 'united'\nadmin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "GOOGLE_CLIENT_ID",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "GOOGLE_CLIENT_ID = \"255715985919-6rjumhu5881vldgqdkjh7i558o7h3cso.apps.googleusercontent.com\"\nclient_secrets_file = os.path.join(pathlib.Path(__file__).parent, \"client_secret.json\")\nflow = Flow.from_client_secrets_file(\n    client_secrets_file=client_secrets_file,\n    scopes=[\"https://www.googleapis.com/auth/userinfo.profile\", \"https://www.googleapis.com/auth/userinfo.email\", \"openid\"],\n    redirect_uri=\"http://127.0.0.1:5000/callback\"\n)\napp.config['FLASK_ADMIN_SWATCH'] = 'united'\nadmin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')\nlogin_manager = LoginManager()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "client_secrets_file",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "client_secrets_file = os.path.join(pathlib.Path(__file__).parent, \"client_secret.json\")\nflow = Flow.from_client_secrets_file(\n    client_secrets_file=client_secrets_file,\n    scopes=[\"https://www.googleapis.com/auth/userinfo.profile\", \"https://www.googleapis.com/auth/userinfo.email\", \"openid\"],\n    redirect_uri=\"http://127.0.0.1:5000/callback\"\n)\napp.config['FLASK_ADMIN_SWATCH'] = 'united'\nadmin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "flow",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "flow = Flow.from_client_secrets_file(\n    client_secrets_file=client_secrets_file,\n    scopes=[\"https://www.googleapis.com/auth/userinfo.profile\", \"https://www.googleapis.com/auth/userinfo.email\", \"openid\"],\n    redirect_uri=\"http://127.0.0.1:5000/callback\"\n)\napp.config['FLASK_ADMIN_SWATCH'] = 'united'\nadmin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)\napp.register_blueprint(pizzaBP)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['FLASK_ADMIN_SWATCH']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['FLASK_ADMIN_SWATCH'] = 'united'\nadmin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)\napp.register_blueprint(pizzaBP)\napp.register_blueprint(carrinhoBP)\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\ndef login_is_required(function):\n    def wrapper(*args, **kwargs):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "admin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)\napp.register_blueprint(pizzaBP)\napp.register_blueprint(carrinhoBP)\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\ndef login_is_required(function):\n    def wrapper(*args, **kwargs):\n        if \"google_id\" not in session:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "login_manager = LoginManager()\nlogin_manager.init_app(app)\napp.register_blueprint(pizzaBP)\napp.register_blueprint(carrinhoBP)\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\ndef login_is_required(function):\n    def wrapper(*args, **kwargs):\n        if \"google_id\" not in session:\n            return abort(401)  # Authorization required",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "POSTGRESQL_URI",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\ndef login_is_required(function):\n    def wrapper(*args, **kwargs):\n        if \"google_id\" not in session:\n            return abort(401)  # Authorization required\n        else:\n            return function()\n    return wrapper\n@app.route('/')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "connection",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\ndef login_is_required(function):\n    def wrapper(*args, **kwargs):\n        if \"google_id\" not in session:\n            return abort(401)  # Authorization required\n        else:\n            return function()\n    return wrapper\n@app.route('/')\ndef index():",
+        "detail": "app",
+        "documentation": {}
+    }
+]

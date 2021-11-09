@@ -13,6 +13,11 @@ def list_aside():
     return render_template("aside.html")
 
 
+@carrinhoBP.route('/carrinho/pedir/<id>/', methods=['POST'])
+def adicionar(id, qtd):
+    return 'ok'
+
+
 @carrinhoBP.route('/carrinho/set_quantidade/<id>/<qtd>', methods=['POST'])
 def set_quantidade(id, qtd):
     return 'ok'

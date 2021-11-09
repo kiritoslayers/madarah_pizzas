@@ -190,3 +190,7 @@ function calcula_total(){
     $('#valorTotal').html(total)
     return total;
 }
+
+function adicionar_carrinho(id){
+    console.log(id)
+}

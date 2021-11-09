@@ -46,7 +46,7 @@
 <section class="cardapio py-5 px-5">
    <div class="wrapper">
     <h3 class="text-center">Conheça nosso cardápio</h3>
-    <div class="cardapio__list d-flex justify-content-center flex-wrap">
+    <div class="cardapio__list d-flex justify-content-start flex-wrap">
         {% for pizza in pizzas %}
             <div class="card col-lg-3 col-md-3 col-sm-6 col-12 p-0 my-4 mx-3">
                 <div class="card-img-top">
@@ -56,7 +56,7 @@
                     <h4 class="card-title mb-1 lh-1">{{pizza['sabor']}}</h4>
                     <p class="card-text mb-1">{{pizza['descricao']}}</p>
                     <p class="card-text h4 mb-1 mt-auto">R$  {{pizza['valor']}}</p>
-                    <a href="#" class="btn btn-dark mt-1">Pedir</a>
+                    <a class="btn btn-dark mt-1" onclick="adicionar_carrinho($event)" data-id="{{pizza['id']}}">Pedir</a>
                 </div>
             </div>
           {% endfor %}
