@@ -667,7 +667,7 @@
         "kind": 5,
         "importPath": "carrinho.carrinho",
         "description": "carrinho.carrinho",
-        "peekOfCode": "headers['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n})",
+        "peekOfCode": "headers['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n}, headers=headers)",
         "detail": "carrinho.carrinho",
         "documentation": {}
     },
@@ -676,7 +676,7 @@
         "kind": 5,
         "importPath": "carrinho.carrinho",
         "description": "carrinho.carrinho",
-        "peekOfCode": "headers['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n})\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])",
+        "peekOfCode": "headers['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n}, headers=headers)\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])",
         "detail": "carrinho.carrinho",
         "documentation": {}
     },
@@ -685,7 +685,7 @@
         "kind": 5,
         "importPath": "carrinho.carrinho",
         "description": "carrinho.carrinho",
-        "peekOfCode": "r = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n})\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])\ndef list_aside(id_cliente):\n    with connection.cursor() as cursor:",
+        "peekOfCode": "r = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n}, headers=headers)\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])\ndef list_aside(id_cliente):\n    with connection.cursor() as cursor:",
         "detail": "carrinho.carrinho",
         "documentation": {}
     },

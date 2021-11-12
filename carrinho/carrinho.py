@@ -28,6 +28,7 @@ headers['Accept'] = "appplication/json"
 headers['Content-Type'] = "appplication/json"
 # r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )
 
+
 r = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={
     "name": 'Madarah pizzas',
     "description": 'Delivery de pizzas',
@@ -35,7 +36,7 @@ r = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={
     "redirect_uri": 'http://127.0.0.1:5000/',
     "logo": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'
 
-})
+}, headers=headers)
 
 @carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])
 def list_aside(id_cliente):
