@@ -216,3 +216,16 @@ function set_quantidade(el) {
         }
     })
 }
+
+function finalizar(){
+    return $.ajax({
+        type: 'POST',
+        url: '/carrinho/finalizar',
+        success: function(response){
+        
+        },
+        error: function(response){
+        
+        }
+    })
+}

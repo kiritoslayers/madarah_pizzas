@@ -26,52 +26,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pagseguro import PagSeguro
 
-config = {'sandbox': True}
-pg = PagSeguro(email="madarah.impacta@gmail.com", token="45B4AE1FB8684648B476ACA83627DA1D", config=config)
-
-# Comprador
-pg.sender = {
-    "name": "Noemi Cavalcanti",
-    "area_code": 11,
-    "phone": 953463376,
-    "email": "calmeida.no@gmail.com",
-}
-# Endereço de entrega
-pg.shipping = {
-    "type": pg.SEDEX,
-    "street": "Av Brig Faria Lima",
-    "number": 1234,
-    "complement": "5 andar",
-    "district": "Jardim Paulistano",
-    "postal_code": "06650030",
-    "city": "Sao Paulo",
-    "state": "SP",
-    "country": "BRA", # Default: 'BRA',
-    "cost": "15.26"
-}
-
-# TYPE 
-# Número	Descrição	     Type
-#   1	      PAC	        pg.PAC
-#   2	     SEDEX	        pg.SEDEX
-#   3	Nao especificado	pg.NONE
-
-pg.reference_prefix = "CODE"
-
-pg.extra_amount = 12.70 # Taxa adicional ou desconto
-
-# itens do carrinho
-pg.items = [
-    {"id": "0001", "description": "Produto 1", "amount": 1.0, "quantity": 1, "weight": 200},
-    {"id": "0002", "description": "Produto 2", "amount": 1.0, "quantity": 1, "weight": 1000}
-]
-
-pg.redirect_url = "http://meusite.com/obrigado" #redirecionamento apos completar a compra
-pg.notification_url = "http://meusite.com/notification" # url de notificação
-
-response = pg.checkout() #botão de salvar
-# return redirect(response.payment_url) ## Redirecionamento para o pagamento
-
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.secret_key = "CodeSpecialist.com"
