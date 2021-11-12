@@ -1,5 +1,14 @@
 [
     {
+        "label": "cliente",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cliente",
+        "description": "cliente",
+        "detail": "cliente",
+        "documentation": {}
+    },
+    {
         "label": "row_to_dict",
         "importPath": "functions.functions",
         "description": "functions.functions",
@@ -9,6 +18,14 @@
     },
     {
         "label": "rows_to_dict",
+        "importPath": "functions.functions",
+        "description": "functions.functions",
+        "isExtraImport": true,
+        "detail": "functions.functions",
+        "documentation": {}
+    },
+    {
+        "label": "tuple_to_dict",
         "importPath": "functions.functions",
         "description": "functions.functions",
         "isExtraImport": true,
@@ -105,6 +122,22 @@
         "documentation": {}
     },
     {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Blueprint",
         "importPath": "flask",
         "description": "flask",
@@ -161,6 +194,14 @@
         "documentation": {}
     },
     {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Blueprint",
         "importPath": "flask",
         "description": "flask",
@@ -178,6 +219,14 @@
     },
     {
         "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -308,11 +357,62 @@
         "documentation": {}
     },
     {
+        "label": "PagSeguro",
+        "importPath": "pagseguro",
+        "description": "pagseguro",
+        "isExtraImport": true,
+        "detail": "pagseguro",
+        "documentation": {}
+    },
+    {
+        "label": "PagSeguro",
+        "importPath": "pagseguro",
+        "description": "pagseguro",
+        "isExtraImport": true,
+        "detail": "pagseguro",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "date",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -397,15 +497,6 @@
         "documentation": {}
     },
     {
-        "label": "requests",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
-        "documentation": {}
-    },
-    {
         "label": "id_token",
         "importPath": "google.oauth2",
         "description": "google.oauth2",
@@ -464,14 +555,6 @@
         "documentation": {}
     },
     {
-        "label": "PagSeguro",
-        "importPath": "pagseguro",
-        "description": "pagseguro",
-        "isExtraImport": true,
-        "detail": "pagseguro",
-        "documentation": {}
-    },
-    {
         "label": "list_aside",
         "kind": 2,
         "importPath": "carrinho.carrinho",
@@ -499,11 +582,20 @@
         "documentation": {}
     },
     {
+        "label": "finalizar",
+        "kind": 2,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "def finalizar():\n    cliente = session['cliente']\n    usuario = session['usuario']\n    if(not(cliente) or not(usuario)):\n        return os.abort\n    if(cliente['telefone'] == '' or not(cliente['telefone'])):\n        return os.abort\n    pg.sender = {\n        \"name\": usuario['nome'],\n        \"area_code\": cliente['telefone1'].split(')')[0].replace('(', ''),",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
         "label": "POSTGRESQL_URI",
         "kind": 5,
         "importPath": "carrinho.carrinho",
         "description": "carrinho.carrinho",
-        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\ncarrinhoBP = Blueprint('carrinho', __name__, template_folder='templates', static_folder='static')\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])\ndef list_aside(id_cliente):\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_item_carrinho\n                    , c.quantidade",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\ncarrinhoBP = Blueprint('carrinho', __name__, template_folder='templates', static_folder='static')\nconfig = {'sandbox': True}\n# pg = PagSeguro(email=\"madarah.impacta@gmail.com\", token=\"45B4AE1FB8684648B476ACA83627DA1D\")\npg = PagSeguro(email=\"v94208027278758069937@sandbox.pagseguro.com.br\", token=\"4F540BCC2828D389943F6F9687FD198B\")\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\nheaders = {}\nheaders['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"",
         "detail": "carrinho.carrinho",
         "documentation": {}
     },
@@ -512,7 +604,25 @@
         "kind": 5,
         "importPath": "carrinho.carrinho",
         "description": "carrinho.carrinho",
-        "peekOfCode": "carrinhoBP = Blueprint('carrinho', __name__, template_folder='templates', static_folder='static')\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])\ndef list_aside(id_cliente):\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_item_carrinho\n                    , c.quantidade\n                    , c.id_cliente",
+        "peekOfCode": "carrinhoBP = Blueprint('carrinho', __name__, template_folder='templates', static_folder='static')\nconfig = {'sandbox': True}\n# pg = PagSeguro(email=\"madarah.impacta@gmail.com\", token=\"45B4AE1FB8684648B476ACA83627DA1D\")\npg = PagSeguro(email=\"v94208027278758069937@sandbox.pagseguro.com.br\", token=\"4F540BCC2828D389943F6F9687FD198B\")\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\nheaders = {}\nheaders['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "config = {'sandbox': True}\n# pg = PagSeguro(email=\"madarah.impacta@gmail.com\", token=\"45B4AE1FB8684648B476ACA83627DA1D\")\npg = PagSeguro(email=\"v94208027278758069937@sandbox.pagseguro.com.br\", token=\"4F540BCC2828D389943F6F9687FD198B\")\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\nheaders = {}\nheaders['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "pg",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "pg = PagSeguro(email=\"v94208027278758069937@sandbox.pagseguro.com.br\", token=\"4F540BCC2828D389943F6F9687FD198B\")\nPOSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\nheaders = {}\nheaders['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',",
         "detail": "carrinho.carrinho",
         "documentation": {}
     },
@@ -521,7 +631,7 @@
         "kind": 5,
         "importPath": "carrinho.carrinho",
         "description": "carrinho.carrinho",
-        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])\ndef list_aside(id_cliente):\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_item_carrinho\n                    , c.quantidade\n                    , c.id_cliente\n                    , p.sabor",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nconnection = psycopg2.connect(POSTGRESQL_URI)\nheaders = {}\nheaders['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',",
         "detail": "carrinho.carrinho",
         "documentation": {}
     },
@@ -530,7 +640,52 @@
         "kind": 5,
         "importPath": "carrinho.carrinho",
         "description": "carrinho.carrinho",
-        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])\ndef list_aside(id_cliente):\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_item_carrinho\n                    , c.quantidade\n                    , c.id_cliente\n                    , p.sabor\n                    , p.descricao",
+        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\nheaders = {}\nheaders['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "headers",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "headers = {}\nheaders['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "headers['Authorization']",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "headers['Authorization'] = \"Bearer 4F540BCC2828D389943F6F9687FD198B\"\nheaders['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "headers['Accept']",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "headers['Accept'] = \"appplication/json\"\nheaders['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n})",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "headers['Content-Type']",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "headers['Content-Type'] = \"appplication/json\"\n# r = requests.post('https://sandbox.api.pagseguro.com/public-keys', json={}, headers=headers  )\nr = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n})\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])",
+        "detail": "carrinho.carrinho",
+        "documentation": {}
+    },
+    {
+        "label": "r",
+        "kind": 5,
+        "importPath": "carrinho.carrinho",
+        "description": "carrinho.carrinho",
+        "peekOfCode": "r = requests.post('https://sandbox.api.pagseguro.com/oauth2/application', json={\n    \"name\": 'Madarah pizzas',\n    \"description\": 'Delivery de pizzas',\n    \"site\": 'http://127.0.0.1:5000/',\n    \"redirect_uri\": 'http://127.0.0.1:5000/',\n    \"logo\": 'https://www.meliuz.com.br/blog/wp-content/uploads/2020/02/sabores-pizza-sao-paulo.jpg'\n})\n@carrinhoBP.route('/carrinho/aside/<id_cliente>', methods=['GET'])\ndef list_aside(id_cliente):\n    with connection.cursor() as cursor:",
         "detail": "carrinho.carrinho",
         "documentation": {}
     },
@@ -625,6 +780,15 @@
         "documentation": {}
     },
     {
+        "label": "pedido_finalizado",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def pedido_finalizado(id):\n    authenticate =  session if 'google_id' in session else False\n    with connection.cursor() as cursor: \n        cliente = False\n        user = False\n        if authenticate:\n            sql = \"\"\"SELECT * FROM madarah.tb_usuario WHERE google_id = '\"\"\" + authenticate['google_id'] + \"\"\"' LIMIT 1\"\"\"\n            cursor.execute(sql)\n            user = tuple_to_dict(cursor.description, cursor.fetchone())\n            sql = \"\"\"SELECT * FROM madarah.tb_cliente WHERE id_usuario = \"\"\" + str(user['id_usuario']) + \"\"\" LIMIT 1\"\"\"",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
         "label": "cadastro_pedido",
         "kind": 2,
         "importPath": "pedido.pedido",
@@ -665,7 +829,7 @@
         "kind": 5,
         "importPath": "pedido.pedido",
         "description": "pedido.pedido",
-        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npedidoBP = Blueprint('pedido', __name__, template_folder='templates', static_folder='static')\n@pedidoBP.route('/cadastro_pedido', methods=['GET', 'POST'])\ndef cadastro_pedido():\n    if flask.request.method == 'POST':\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npedidoBP = Blueprint('pedido', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pedidoBP.route('/pedido/pedido-finalizado/<id>')\ndef pedido_finalizado(id):\n    authenticate =  session if 'google_id' in session else False\n    with connection.cursor() as cursor: \n        cliente = False\n        user = False\n        if authenticate:",
         "detail": "pedido.pedido",
         "documentation": {}
     },
@@ -674,7 +838,16 @@
         "kind": 5,
         "importPath": "pedido.pedido",
         "description": "pedido.pedido",
-        "peekOfCode": "pedidoBP = Blueprint('pedido', __name__, template_folder='templates', static_folder='static')\n@pedidoBP.route('/cadastro_pedido', methods=['GET', 'POST'])\ndef cadastro_pedido():\n    if flask.request.method == 'POST':\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        id_cliente_usuario = int(request.form['id_cliente_usuario']),\n        nome = str(request.form['nome']),\n        endereco = str(request.form['endereco']),\n        telefone1 = str(request.form['cep']),\n        telefone2 = float(request.form['telefone'])",
+        "peekOfCode": "pedidoBP = Blueprint('pedido', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pedidoBP.route('/pedido/pedido-finalizado/<id>')\ndef pedido_finalizado(id):\n    authenticate =  session if 'google_id' in session else False\n    with connection.cursor() as cursor: \n        cliente = False\n        user = False\n        if authenticate:\n            sql = \"\"\"SELECT * FROM madarah.tb_usuario WHERE google_id = '\"\"\" + authenticate['google_id'] + \"\"\"' LIMIT 1\"\"\"",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "connection",
+        "kind": 5,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@pedidoBP.route('/pedido/pedido-finalizado/<id>')\ndef pedido_finalizado(id):\n    authenticate =  session if 'google_id' in session else False\n    with connection.cursor() as cursor: \n        cliente = False\n        user = False\n        if authenticate:\n            sql = \"\"\"SELECT * FROM madarah.tb_usuario WHERE google_id = '\"\"\" + authenticate['google_id'] + \"\"\"' LIMIT 1\"\"\"\n            cursor.execute(sql)",
         "detail": "pedido.pedido",
         "documentation": {}
     },
@@ -683,7 +856,7 @@
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)\n@pizzaBP.route('/pizzas', methods=['GET'])\ndef list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:",
+        "peekOfCode": "def cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False\n        auth = session if usuario else False\n    return render_template(\"cardapio.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=auth)\n@pizzaBP.route('/pizzas', methods=['GET'])",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -692,7 +865,7 @@
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"list.html\", pizzas=lista)\n@pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])\ndef cadastro_pizza():\n    if flask.request.method == 'POST':",
+        "peekOfCode": "def list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente']\n        usuario = session['usuario']\n    return render_template(\"list.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=session)\n@pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -728,7 +901,7 @@
         "kind": 5,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -737,7 +910,7 @@
         "kind": 5,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)\n@pizzaBP.route('/pizzas', methods=['GET'])",
+        "peekOfCode": "pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -746,7 +919,7 @@
         "kind": 5,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template(\"cardapio.html\", pizzas=lista)\n@pizzaBP.route('/pizzas', methods=['GET'])\ndef list():",
+        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False\n        auth = session if usuario else False",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -1000,6 +1173,33 @@
         "description": "app",
         "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\ndef login_is_required(function):\n    def wrapper(*args, **kwargs):\n        if \"google_id\" not in session:\n            return abort(401)  # Authorization required\n        else:\n            return function()\n    return wrapper\n@app.route('/')\ndef index():",
         "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "class Config:\n    EXTRA_AMOUNT = 12.12\n    REDIRECT_URL = \"http://meusite.com/obrigado\"\n    NOTIFICATION_URL = \"http://meusite.com/notification\"\n    EMAIL = \"madarah.impacta@gmail.com\"\n    TOKEN = \"45B4AE1FB8684648B476ACA83627DA1D\"\n    SECRET_KEY = \"s3cr3t\"\nclass DevelopmentConfig(Config):\n    FLASK_ENV = 'development'\nCONFIG = {",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "DevelopmentConfig",
+        "kind": 6,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "class DevelopmentConfig(Config):\n    FLASK_ENV = 'development'\nCONFIG = {\n    'development': DevelopmentConfig\n}",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "CONFIG",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "CONFIG = {\n    'development': DevelopmentConfig\n}",
+        "detail": "config",
         "documentation": {}
     }
 ]

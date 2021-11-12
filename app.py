@@ -107,7 +107,6 @@ def login_is_required(function):
 
     return wrapper
 
-
 @app.route('/')
 def index():
     authenticate =  session if 'google_id' in session else False
@@ -121,10 +120,17 @@ def index():
             sql = """SELECT * FROM madarah.tb_usuario WHERE google_id = '""" + authenticate['google_id'] + """' LIMIT 1"""
             cursor.execute(sql)
             user = tuple_to_dict(cursor.description, cursor.fetchone())
+            if(user):
+                session['id_usuario'] = user['id_usuario']
 
             sql = """SELECT * FROM madarah.tb_cliente WHERE id_usuario = """ + str(user['id_usuario']) + """ LIMIT 1"""
             cursor.execute(sql)
             cliente = tuple_to_dict(cursor.description, cursor.fetchone())
+            if(cliente):
+                session['id_cliente'] = cliente['id_cliente']
+
+        session['usuario'] = user
+        session['cliente'] = cliente
 
     return render_template('index.html', pizzas=lista, auth=authenticate, cliente=cliente, usuario=user)
 

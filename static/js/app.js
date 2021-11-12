@@ -7,7 +7,7 @@ $(window).on('load', function () {
         dots: true,
         arrows: true,
     })
-    $('body').on('click', '.close', function() {
+    $('body').on('click', '.close', function () {
         closeModal($(this).parents('.modal'))
     });
 
@@ -27,18 +27,22 @@ $(window).on('load', function () {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    
+
     $.ajaxSetup({
         beforeSend: beforeSend,
         complete: afterSend,
     });
 
-    $('body').on('click', '.btn-submit', function(event){
+    $('body').on('click', '.btn-submit', function (event) {
         event.preventDefault();
         postForm(event)
 
     })
 
     carregaCarrinho()
+
+    $.ajax({
+   
+    })
 })
 fnProgressBarLoading();

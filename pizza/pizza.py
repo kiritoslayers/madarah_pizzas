@@ -1,5 +1,5 @@
 from functions.functions import rows_to_dict, tuple_to_dict
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 import flask
 import psycopg2
 import psycopg2.extras
@@ -15,7 +15,10 @@ def cardapio():
         sql = """SELECT * FROM madarah.tb_pizza order by sabor"""
         cursor.execute(sql)
         lista = rows_to_dict(cursor.description, cursor.fetchall())
-    return render_template("cardapio.html", pizzas=lista)
+        cliente = session['cliente'] or False
+        usuario = session['usuario'] or False
+        auth = session if usuario else False
+    return render_template("cardapio.html", pizzas=lista, cliente=cliente, usuario=usuario, auth=auth)
 
 @pizzaBP.route('/pizzas', methods=['GET'])
 def list():
@@ -24,7 +27,9 @@ def list():
         sql = """SELECT * FROM madarah.tb_pizza order by sabor"""
         cursor.execute(sql)
         lista = rows_to_dict(cursor.description, cursor.fetchall())
-    return render_template("list.html", pizzas=lista)
+        cliente = session['cliente']
+        usuario = session['usuario']
+    return render_template("list.html", pizzas=lista, cliente=cliente, usuario=usuario, auth=session)
 
 
 @pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])

@@ -39,7 +39,12 @@
 </head>
 
 <body>
+    {% if cliente %}
     <input type="hidden" name="id_cliente" id="id_cliente" value="{{cliente['id_cliente']}}">
+    {% endif %}
+    {% if not(cliente) %}
+    <input type="hidden" name="id_cliente" id="id_cliente" value="0">
+    {% endif %}
     <header class="header navbar navbar-expand justify-content-between">
         <div class="wrapper d-flex justify-content-between">
             <div class="d-flex justify-content-between menu-mobile h-100">
