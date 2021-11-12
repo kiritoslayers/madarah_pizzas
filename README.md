@@ -40,3 +40,8 @@ python app.py
 ```
 
 Desenvolvido com muito ☕ por Noemi Cavalcanti, Fabio Moraes, Fernando Silva, Thiago Bortoleto, Vitor Augusto e Willian Costa.
+
+
+
+# Tutorial PAGSEGURO
+https://github.com/Japle/python-pagseguro

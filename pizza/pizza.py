@@ -12,7 +12,7 @@ connection = psycopg2.connect(POSTGRESQL_URI)
 @pizzaBP.route('/cardapio', methods=['GET'])
 def cardapio():
     with connection.cursor() as cursor:
-        sql = """select * from madarah.tb_pizza order by sabor"""
+        sql = """SELECT * FROM madarah.tb_pizza order by sabor"""
         cursor.execute(sql)
         lista = rows_to_dict(cursor.description, cursor.fetchall())
     return render_template("cardapio.html", pizzas=lista)
@@ -21,7 +21,7 @@ def cardapio():
 def list():
     connection = psycopg2.connect(POSTGRESQL_URI)
     with connection.cursor() as cursor:
-        sql = """select * from madarah.tb_pizza order by sabor"""
+        sql = """SELECT * FROM madarah.tb_pizza order by sabor"""
         cursor.execute(sql)
         lista = rows_to_dict(cursor.description, cursor.fetchall())
     return render_template("list.html", pizzas=lista)
@@ -51,14 +51,15 @@ def edicao_pizza(id):
     connection = psycopg2.connect(POSTGRESQL_URI)
     if flask.request.method == 'POST':
         id_pizza = int(request.form['id_pizza'])
-        sabor = str(request.form['sabor']),
-        descricao = str(request.form['descricao']),
+        sabor = str(request.form['sabor'])
+        descricao = str(request.form['descricao'])
         valor = request.form['valor'].replace('.', ',').replace(',', '.')
         valor = float(valor)
         url_foto = str(request.form['url_foto'])
+        weight = str(request.form['weight'])
         with connection.cursor() as cursor:
-            sql = """update madarah.tb_pizza SET sabor = (%s), descricao = (%s), valor = (%s), url_foto = (%s) WHERE id_pizza = (%s)"""
-            cursor.execute(sql, (sabor, descricao, valor, url_foto, id_pizza))
+            sql = """UPDATE madarah.tb_pizza SET sabor = (%s), descricao = (%s), valor = (%s), weight = (%s), url_foto = (%s) WHERE id_pizza = (%s)"""
+            cursor.execute(sql, (sabor, descricao, valor, url_foto, id_pizza, weight))
             connection.commit()
             cursor.close()
         return '/pizzas'
@@ -76,14 +77,14 @@ def delete_pizza(id):
     connection = psycopg2.connect(POSTGRESQL_URI)
     if flask.request.method == 'POST':
         with connection.cursor() as cursor:
-            sql = "delete from madarah.tb_pizza where id_pizza = " + id
+            sql = "DELETE FROM madarah.tb_pizza WHERE id_pizza = " + id
             cursor.execute(sql)
             connection.commit()
             cursor.close()
         return '/pizzas'
     else:
         with connection.cursor() as cursor:
-            sql = "select * from madarah.tb_pizza where id_pizza = " + id
+            sql = "SELECT * FROM madarah.tb_pizza WHERE id_pizza = " + id
             cursor.execute(sql)
             oi = cursor.fetchone()
             pizza = tuple_to_dict(cursor.description, oi)

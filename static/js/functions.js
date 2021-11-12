@@ -106,13 +106,18 @@ function postForm(event){
     });
 }
 
+function pegarClienteId(){
+    return document.getElementById('id_cliente').value
+}
+
 function carregaCarrinho(){
     NProgress.start();
-    return $.ajax({
+    $.ajax({
         type: 'GET',
-        url: '/carrinho/aside',
+        url: '/carrinho/aside/' + pegarClienteId(),
         success: function(data){
-            $('#carrinho').html(data)
+            $('#carrinho').html(data);
+            openCarrinho();
             NProgress.done();
         }
     })
@@ -123,17 +128,45 @@ function toggleCarrinho(){
     $('.btn-carrinho').toggleClass('active')
 }
 
+function openCarrinho(){
+    $('.carrinho').addClass('active')
+    $('.btn-carrinho').addClass('active')
+}
+
+function pedir(el){
+    let id = $(el).data('id');
+    let cliente = $(el).data('cliente');
+    NProgress.start();
+    $.ajax({
+        url: '/carrinho/adicionar/' + id + '/' + cliente,
+        type: 'POST',
+        success: function(data){
+            if(data == 'ok') {
+                console.log(data)
+                carregaCarrinho()
+            }
+        },
+        error: function(data){
+            postError(data)
+        },
+        finally: function(data) {
+            console.log(data)
+        }
+    })
+}
 
 function plus(el){
     let input = $(el).siblings('.carrinho__item-qtd--text');
     let value = parseInt($(input).val()) + 1;
     if(value > 10) {
         $(el).attr('disabled', true)
+        toastr.warning('Você não pode pedir mais que 10 pizzas por sabor!!')
         return;
     } else {
         $(el).siblings('.minus').attr('disabled', false)
         $(input).val(value);
         $(input).trigger("change");
+        set_quantidade(input)
         if(value == 10) {
             $(el).attr('disabled', true);
         }
@@ -145,52 +178,41 @@ function minus(el){
     let value = parseInt($(input).val()) - 1;
     if(value < 1) {
         $(el).attr('disabled', true);
+        remove_item(input)
         return;
     } else {
         $(el).siblings('.plus').attr('disabled', false)
         $(input).val(value);
         $(input).trigger("change");
+        set_quantidade(input)
         if(value == 1) {
             $(el).attr('disabled', true);
         }
     }
 }
 
-function value_change(el){
-    let value = parseInt($(el).val());
-    calcula_total();
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '',
-    //     data: value,
-    //     success: function(data){}, 
-    //     error: function(data){} 
-    // })
+function remove_item(el) {
+    $(el).val(0)
+    $(el).trigger("change");
+    let qtd = $(el).val();
+    let id = $(el).data('id');
+    set_quantidade(el)
 }
 
-function remove_item(el, id_item) {
-    $(el).parents('.carrinho__item').remove()
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '/' + id_item,
-    //     success: function(data) {},
-    //     error: function(data) {}
-    // })
-}
-
-
-function calcula_total(){
-    let total = 0;
-    $('.carrinho').find('.carrinho__item').each(function(){
-        var qtd = parseInt($(this).find('.carrinho__item-qtd--text').val());
-        var valor = parseFloat($(this).find('#valor').html());
-        total += valor * qtd;
+function set_quantidade(el) {
+    let qtd = $(el).val();
+    let id = $(el).data('id');
+    NProgress.start();
+    $.ajax({
+        url: '/carrinho/set_quantidade/' + id + '/' + qtd,
+        type: 'POST',
+        success: function(data){
+           if(data == 'ok') {
+               carregaCarrinho()
+           }
+        },
+        error: function(data){
+            postError(data)
+        }
     })
-    total = total.toFixed(2);
-    $('#valorTotal').html(total)
-    return total;
-}
-
-function adicionar_carrinho(id){
-    console.log(id)
 }

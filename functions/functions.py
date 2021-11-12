@@ -1,3 +1,6 @@
+from os import abort
+from flask import  session
+
 def row_to_dict(description, row):
     if row is None:
         return None
@@ -32,3 +35,4 @@ def tuple_to_dict(description, row):
         except NameError:
             print("Variable x is not defined")
     return d
+

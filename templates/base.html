@@ -39,6 +39,7 @@
 </head>
 
 <body>
+    <input type="hidden" name="id_cliente" id="id_cliente" value="{{cliente['id_cliente']}}">
     <header class="header navbar navbar-expand justify-content-between">
         <div class="wrapper d-flex justify-content-between">
             <div class="d-flex justify-content-between menu-mobile h-100">
@@ -69,7 +70,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="/profile">
+                            <a class="dropdown-item" onclick="carregaModal('cliente', 'editar/' + pegarClienteId())">
                                 <span>Perfil</span>
                                 <i class="fas fa-user"></i>
                             </a>
@@ -93,9 +94,11 @@
             </nav>
         </div>
     </header>
+    {% if auth %} 
     <div id="carrinho">
        
     </div>
+    {% endif %}
     <main class="main">
         {% block conteudo %}{% endblock %}
         <div class="modal" tabindex="-1" role="dialog" id="modal">

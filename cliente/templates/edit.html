@@ -1,0 +1,112 @@
+<script>
+    $('.cep').mask('00000-000')
+    $('.telefone').mask('(00) 0000-0000')
+    $('.celular').mask('(00) 0.0000-0000')
+</script>
+<div class="modal-header"> 
+        <h5 class="modal-title">Editar</h5>
+        <button type="button" class="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="editar_cliente" method="POST" action="/cliente/editar/{{cliente['id_cliente']}}">
+            <input type="hidden" name="id_cliente" id="id_cliente" value="{{cliente['id_cliente']}}">
+            <input type="hidden" name="id_usuario" id="id_usuario" value="{{cliente['id_usuario']}}">
+            <div class="form-row">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="nome">Nome: </label>
+                    <input class="form-control" id="nome" name="nome" value="{{cliente['nome']}}" require readonlyd>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="telefone">Telefone/Celular: </label>
+                    <input class="form-control telefone" id="telefone" name="telefone" value="{{cliente['telefone']}}" required>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="telefone1">Telefone/Celular 2: </label>
+                    <input class="form-control celular" id="telefone1" name="telefone1" value="{{cliente['telefone1']}}" required>
+                </div>
+            </div>
+            <div class="form-row"> 
+                <h5>Endereço</h5>
+                <hr>
+            </div>
+            <div class="form-row"> 
+                <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2">
+                    <label for="type">Tipo: </label>
+                    <select class="form-control" id="type" name="type" value="{{cliente['type']}}" required>
+                        <option value="Rua">Rua</option>
+                        <option value="Avenida">Avenida</option>
+                        <option value="Estrada">Estrada</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-8 col-8">
+                    <label for="street">Endereço: </label>
+                    <input class="form-control" id="street" name="street" value="{{cliente['street']}}" required>
+                </div>
+                <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2">
+                    <label for="number"> Número: </label>
+                    <input class="form-control" id="number" name="number" required value="{{cliente['number']}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="postal_code">CEP: </label>
+                    <input class="form-control cep" id="postal_code" name="postal_code" value="{{cliente['postal_code']}}" required>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-12 col-12">
+                    <label for="complement"> Complemento: </label>
+                    <input class="form-control" id="complement" name="complement" required value="{{cliente['complement']}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-5 col-md-5 col-sm-12 col-12">
+                    <label for="district">Bairro: </label>
+                    <input class="form-control" id="district" name="district" value="{{cliente['district']}}" required>
+                </div>
+                <div class="form-group col-lg-5 col-md-5 col-sm-12 col-12">
+                    <label for="city"> Cidade: </label>
+                    <input class="form-control" id="city" name="city" required value="{{cliente['city']}}">
+                </div>
+                <div class="form-group col-lg-2 col-md-2 col-sm-12 col-12">
+                    <label for="state"> UF: </label>
+                    <select class="form-control" id="state" name="state" required >
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP" selected>São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between p-0">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn btn-submit btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+
+    

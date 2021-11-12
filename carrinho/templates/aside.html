@@ -3,25 +3,31 @@
     <span><i class="fas fa-times"></i></span>
 </button>
 <aside class="carrinho">
-    <div class="carrinho__item">
-        <div class="carrinho__item-img"
-            style="background-image: url(https://blog.duogourmet.com.br/wp-content/uploads/2019/07/41-Duo-Gourmet-pizza.jpg)">
+    {% if itens|length > 0 %}
+        {% for item in itens %}
+        <div class="carrinho__item">
+            <div class="carrinho__item-img">
+                <img src="{{ item['url_foto'] }}" alt="Foto {{ item['sabor'] }}">
+            </div>
+            <div class="carrinho__item-text">
+                <h2>{{ item['sabor'] }}</h2>
+                <p>{{ item['descricao'] }}</p>
+                <p>R$ <span id="valor">{{ item['valor'] }}</span> - <strong>Total</strong> {{ item['total_item']}}</p>
+                <p>
+                    <button type="button" class="btn carrinho__item-qtd minus" onclick="minus(this)">-</button>
+                    <input class="carrinho__item-qtd--text" value="{{ item['quantidade'] }}" min="0" max="10" data-id="{{ item['id_item_carrinho'] }}">
+                    <button type="button" class="btn carrinho__item-qtd plus" onclick="plus(this)">+</button>
+                </p>
+                <button class="carrinho__item-trash" onclick="remove_item($('.carrinho__item-qtd--text'))"><i class="fas fa-trash-alt"></i></button>
+            </div>
         </div>
-        <div class="carrinho__item-text">
-            <h2>Pizza Calabreza</h2>
-            <p>Lorem ipsum...</p>
-            <p>R$ <span id="valor">50,00</span></p>
-            <p>
-                <button class="btn carrinho__item-qtd minus" onclick="minus(this)">-</button>
-                <input class="carrinho__item-qtd--text" value="1" min="0"
-                    onchange="value_change(this)">
-                <button class="btn carrinho__item-qtd plus" onclick="plus(this)">+</button>
-            </p>
-            <button class="carrinho__item-trash" onclick="remove_item(this, 15)"><i class="fas fa-trash-alt"></i></button>
-        </div>
-    </div>
+        {%endfor%}
+    {% endif %}
+    {% if itens|length == 0 %}
+    <p>Nenhum item no carrinho</p>
+    {% endif %}
     <div class="carrinho__item-total">
-        <span>Total: R$ <span id="valorTotal" class="fw-bold">00,00</span></span>
+        <span>Total: R$ <span id="valorTotal" class="fw-bold">{{total}}</span></span>
         <button>Finalizar</button>
     </div>
 </aside>

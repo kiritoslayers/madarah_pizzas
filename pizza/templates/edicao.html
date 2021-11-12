@@ -11,13 +11,17 @@
         <form id="editar_pizza" method="POST" action="/pizza/edicao/{{pizza['id_pizza']}}">
             <input type="hidden" name="id_pizza" id="id_pizza" value="{{pizza['id_pizza']}}">
             <div class="form-row">
-                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
                     <label for="sabor">Sabor: </label>
                     <input class="form-control" id="sabor" name="sabor" value="{{pizza['sabor']}}" required>
                 </div>
-                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
                     <label for="valor">Valor<small>(R$)</small> </label>
                     <input class="form-control decimal" id="valor" name="valor" value="{{pizza['valor']}}" required>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="weight">Peso<small>(g)</small> </label>
+                    <input class="form-control decimal" id="weight" name="weight" value="{{pizza['weight']}}" required>
                 </div>
             </div>
             <div class="form-row"> 

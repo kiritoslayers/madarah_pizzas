@@ -56,7 +56,9 @@
                     <h4 class="card-title mb-1 lh-1">{{pizza['sabor']}}</h4>
                     <p class="card-text mb-1">{{pizza['descricao']}}</p>
                     <p class="card-text h4 mb-1 mt-auto">R$  {{pizza['valor']}}</p>
-                    <a class="btn btn-dark mt-1" onclick="adicionar_carrinho($event)" data-id="{{pizza['id']}}">Pedir</a>
+                    {% if cliente %}
+                        <a class="btn btn-dark mt-1" onclick="pedir($(this))" data-id="{{pizza['id_pizza']}}" data-cliente="{{cliente['id_cliente']}}">Pedir</a>
+                    {% endif %}
                 </div>
             </div>
           {% endfor %}

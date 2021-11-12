@@ -4,6 +4,7 @@ from flask import Flask, render_template
 from flask_login import LoginManager, login_manager, login_user
 from pizza.pizza import pizzaBP
 from carrinho.carrinho import carrinhoBP
+from cliente.cliente import clienteBP
 import psycopg2
 import psycopg2.extras
 from functions import *
@@ -23,10 +24,57 @@ import google.auth.transport.requests
 import smtplib 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from pagseguro import PagSeguro
+
+config = {'sandbox': True}
+pg = PagSeguro(email="madarah.impacta@gmail.com", token="45B4AE1FB8684648B476ACA83627DA1D", config=config)
+
+# Comprador
+pg.sender = {
+    "name": "Noemi Cavalcanti",
+    "area_code": 11,
+    "phone": 953463376,
+    "email": "calmeida.no@gmail.com",
+}
+# Endereço de entrega
+pg.shipping = {
+    "type": pg.SEDEX,
+    "street": "Av Brig Faria Lima",
+    "number": 1234,
+    "complement": "5 andar",
+    "district": "Jardim Paulistano",
+    "postal_code": "06650030",
+    "city": "Sao Paulo",
+    "state": "SP",
+    "country": "BRA", # Default: 'BRA',
+    "cost": "15.26"
+}
+
+# TYPE 
+# Número	Descrição	     Type
+#   1	      PAC	        pg.PAC
+#   2	     SEDEX	        pg.SEDEX
+#   3	Nao especificado	pg.NONE
+
+pg.reference_prefix = "CODE"
+
+pg.extra_amount = 12.70 # Taxa adicional ou desconto
+
+# itens do carrinho
+pg.items = [
+    {"id": "0001", "description": "Produto 1", "amount": 1.0, "quantity": 1, "weight": 200},
+    {"id": "0002", "description": "Produto 2", "amount": 1.0, "quantity": 1, "weight": 1000}
+]
+
+pg.redirect_url = "http://meusite.com/obrigado" #redirecionamento apos completar a compra
+pg.notification_url = "http://meusite.com/notification" # url de notificação
+
+response = pg.checkout() #botão de salvar
+# return redirect(response.payment_url) ## Redirecionamento para o pagamento
+
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.secret_key = "CodeSpecialist.com"
-
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 GOOGLE_CLIENT_ID = "255715985919-6rjumhu5881vldgqdkjh7i558o7h3cso.apps.googleusercontent.com"
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
@@ -45,6 +93,7 @@ login_manager.init_app(app)
 
 app.register_blueprint(pizzaBP)
 app.register_blueprint(carrinhoBP)
+app.register_blueprint(clienteBP)
 
 POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg"
 connection = psycopg2.connect(POSTGRESQL_URI)
@@ -61,11 +110,23 @@ def login_is_required(function):
 
 @app.route('/')
 def index():
-    with connection.cursor() as cursor:
-        cursor.execute('''SELECT sabor, descricao, valor, url_foto from madarah.tb_pizza order by id_pizza''')
-        lista = rows_to_dict(cursor.description, cursor.fetchall())
     authenticate =  session if 'google_id' in session else False
-    return render_template('index.html', pizzas=lista, auth=authenticate)
+    
+    with connection.cursor() as cursor:
+        cursor.execute('''SELECT * from madarah.tb_pizza order by id_pizza''')
+        lista = rows_to_dict(cursor.description, cursor.fetchall())
+        cliente = False
+        user = False
+        if authenticate:
+            sql = """SELECT * FROM madarah.tb_usuario WHERE google_id = '""" + authenticate['google_id'] + """' LIMIT 1"""
+            cursor.execute(sql)
+            user = tuple_to_dict(cursor.description, cursor.fetchone())
+
+            sql = """SELECT * FROM madarah.tb_cliente WHERE id_usuario = """ + str(user['id_usuario']) + """ LIMIT 1"""
+            cursor.execute(sql)
+            cliente = tuple_to_dict(cursor.description, cursor.fetchone())
+
+    return render_template('index.html', pizzas=lista, auth=authenticate, cliente=cliente, usuario=user)
 
     
 
@@ -103,15 +164,40 @@ def callback():
     with connection.cursor() as cursor:
         sql = """SELECT * FROM madarah.tb_usuario WHERE google_id = '""" + google_id + """' LIMIT 1"""
         cursor.execute(sql)
-        objeto = tuple_to_dict(cursor.description, cursor.fetchone())
-        if objeto == None:
+        user = tuple_to_dict(cursor.description, cursor.fetchone())
+        if user == None:
             sql = """INSERT INTO madarah.tb_usuario (nome, email, role, google_id) VALUES (%s, %s, %s, %s)"""
             cursor.execute(sql, (name, email, 'cliente', google_id))
             connection.commit()
+            sql = """SELECT * FROM madarah.tb_usuario WHERE google_id = '""" + google_id + """' LIMIT 1"""
+            cursor.execute(sql)
+            user = tuple_to_dict(cursor.description, cursor.fetchone())
             cursor.close()
             session["role"] = 'cliente'
         else:
-            session['role'] = objeto['role']
+            session['role'] = user['role']
+           
+        sql = """SELECT * FROM madarah.tb_cliente WHERE id_usuario = """ + str(user['id_usuario']) + """ LIMIT 1"""
+        cursor.execute(sql)
+        cliente = tuple_to_dict(cursor.description, cursor.fetchone())
+        if(cliente == None):
+            sql = """INSERT INTO madarah.tb_cliente (id_usuario
+                                            , nome
+                                            , telefone
+                                            , telefone1
+                                            , type
+                                            , street
+                                            , number
+                                            , complement
+                                            , district
+                                            , postal_code
+                                            , city
+                                            , state
+                                            , country ) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+            cursor.execute(sql, (user['id_usuario'], user['nome'], '', '', '', '', '', '', '', '', '', '', ''))
+            connection.commit()          
+
     return redirect("/")
 
 

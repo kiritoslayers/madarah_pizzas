@@ -10,13 +10,17 @@
     <div class="modal-body">
         <form method="POST" action="/pizza/cadastro">
             <div class="form-row">
-                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
                     <label for="sabor">Sabor: </label>
                     <input class="form-control" id="sabor" name="sabor" required>
                 </div>
-                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
                     <label for="valor">Valor<small>(R$)</small> </label>
                     <input class="form-control decimal" id="valor" name="valor" required>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="weight">Peso<small>(g)</small> </label>
+                    <input class="form-control decimal" id="weight" name="weight" required>
                 </div>
             </div>
             <div class="form-row"> 
