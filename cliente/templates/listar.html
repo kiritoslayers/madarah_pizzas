@@ -33,7 +33,10 @@
                 <td>{{ item['email']}}</td>
                 <td>{{ item['telefone']}}</td>
                 <td>{{ item['telefone1']}}</td>
-                <td></td>
+                <td>
+                    <button class="btn btn-primary">Excluir</button>
+                    <button class="btn btn-info" onclick="carregaModal('cliente', 'editar/' + $(this).data('id'))" data-id="{{ item['id_cliente']}}">Editar</button>
+                </td>
             </tr>
             {% endfor %}
             {% else %}

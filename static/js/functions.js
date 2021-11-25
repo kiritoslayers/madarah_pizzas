@@ -9,8 +9,11 @@ function toggleMenuMobile() {
     }
 }
 
-function carregaModal(controller, acctions){
-    let url = `/${controller}/${acctions}`;
+function carregaModal(controller, actions){
+    let url = `/${controller}`;
+    if(actions) {
+        url += `/${actions}`
+    }
     $.ajax({
         method: 'GET',
         url: url,

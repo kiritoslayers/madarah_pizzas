@@ -9,6 +9,10 @@ POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02
 clienteBP = Blueprint('cliente', __name__, template_folder='templates', static_folder='static')
 connection = psycopg2.connect(POSTGRESQL_URI)
 
+@clienteBP.route('/cliente/cadastrar-endereco-perfil/<id_cliente>', methods=['GET'])
+def cadastrar_endereco_perfil_get(id_cliente):
+    return render_template('cadastrar-endereco-perfil.html', id_cliente=id_cliente)
+
 @clienteBP.route('/clientes', methods=['GET'])
 def list_clientes():
     with connection.cursor() as cursor:
@@ -26,8 +30,7 @@ def list_clientes():
         cliente = session['cliente'] or False
         usuario = session['usuario'] or False
         auth = session if usuario else False
-    return render_template("list.html", clientes=lista, cliente=cliente, usuario=usuario, auth=auth)
-
+    return render_template("listar.html", clientes=lista, cliente=cliente, usuario=usuario, auth=auth)
 
 @clienteBP.route('/cliente/cadastrar', methods=['GET', 'POST'])
 def cadastro_cliente():
@@ -45,7 +48,6 @@ def cadastro_cliente():
             connection.commit()
     
     return render_template('cadastro.html')
-
 
 @clienteBP.route('/cliente/editar/<id_cliente>', methods=['GET'])
 def editar_get(id_cliente):
@@ -79,12 +81,11 @@ def editar_post(id_cliente):
         except:
             connection.rollback()
             
-        return '/'
-
+        return '/clientes'
 
 @clienteBP.route('/cliente/cadastrar-endereco/<id_cliente>', methods=['GET'])
 def cadastrar_endereco_get(id_cliente):
-    return render_template('cadastrar-endereco.html', id_cliente=id_cliente)
+    return render_template('endereco-cadastrar.html', id_cliente=id_cliente)
 
 @clienteBP.route('/cliente/cadastrar-endereco/<id_cliente>', methods=['POST'])
 def cadastrar_endereco_post(id_cliente):
@@ -124,7 +125,7 @@ def editar_endereco_get(id_endereco):
         cursor.execute(sql)
         endereco = tuple_to_dict(cursor.description, cursor.fetchone())
 
-    return render_template('editar-endereco.html', endereco=endereco)
+    return render_template('endereco-editar.html', endereco=endereco)
 
 @clienteBP.route('/cliente/editar-endereco/<id_endereco>', methods=['POST'])
 def editar_endereco_post(id_endereco):
@@ -151,11 +152,10 @@ def editar_endereco_post(id_endereco):
                     , postal_code  = %s
                 WHERE id_endereco = %s
                     """ 
-        cursor.execute(sql, ( type, street, number, complement, district, city, state, country, postal_code, id_endereco ))
+        cursor.execute(sql, ( type, street, number, complement, district, city, state, country, postal_code, str(id_endereco) ))
         cursor.close()
         connection.commit()
     return 'OK'
-    
 
 @clienteBP.route('/cliente/excluir-endereco/<id_endereco>', methods=['POST'])
 def excluir_endereco(id_endereco):

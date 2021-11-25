@@ -10,7 +10,7 @@
             method: 'POST',
             data: data,
             success: function(data) {
-                carregaModal('cliente', 'editar/' + pegarClienteId());
+                carregaModal('profile');
                 toastr.success('Endereço atualizado')
             }, 
             error: function(data) {
@@ -23,13 +23,13 @@
     $('#state').val($('#state').attr('value'))
 </script>
 <div class="modal-header">
-    <h5 class="modal-title">Editar</h5>
+    <h5 class="modal-title">Editar endereço</h5>
     <button type="button" class="close" >
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <form id="cadastrar_endereco" method="POST" action="/cliente/editar-endereco/{{endereco['id_endereco']}}">
+    <form id="cadastrar_endereco" method="POST" action="/profile/editar-endereco/{{endereco['id_endereco']}}">
         <div class="form-row">
             <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2">
                 <label for="type">Tipo: </label>
@@ -102,7 +102,7 @@
         </div>
 
         <div class="modal-footer d-flex justify-content-between p-0">
-            <button type="button" class="btn btn-secondary mx-0"  onclick="carregaModal('cliente', 'editar/' + pegarClienteId())">Voltar</button>
+            <button type="button" class="btn btn-secondary mx-0"  onclick="carregaModal('profile')">Voltar</button>
             <button type="button" class="btn btn-submit btn-primary mx-0" onclick="editarEndereco(event, $('#id_cliente'))">Salvar</button>
         </div>
     </form>

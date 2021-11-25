@@ -6,11 +6,11 @@
     function excluirEndereco(el) {
         let id_endereco = $(el).data('id');
         $.ajax({
-            url: '/cliente/excluir-endereco/' + id_endereco,
+            url: '/profile/excluir-endereco/' + id_endereco,
             type: 'POST',
             success: function(data){
                 toastr.success('Endereco excluido')
-                carregaModal('cliente', 'editar/' + $('#editar_cliente #id_cliente').val());
+                carregaModal('cliente', 'editar/' + pegarClienteId());
             },
             error: function(){
                 toastr.error('Não foi possível excluir esse endereço')
@@ -33,13 +33,13 @@
 
 </script>
 <div class="modal-header"> 
-        <h5 class="modal-title">Editar</h5>
+        <h5 class="modal-title">Meu Perfil</h5>
         <button type="button" class="close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <form id="editar_cliente" method="POST" action="/cliente/editar/{{cliente['id_cliente']}}">
+        <form id="editar_cliente" method="POST" action="/profile/editar">
             <input type="hidden" name="id_cliente" id="id_cliente" value="{{cliente['id_cliente']}}">
             <input type="hidden" name="id_usuario" id="id_usuario" value="{{cliente['id_usuario']}}">
             <div class="form-row">
@@ -60,6 +60,7 @@
                 <h6 class="col-12">Endereços</h6>
                 <hr>
             </div>
+
             {% if enderecos|length > 0 %}
             {% for endereco in enderecos %}
             <div class="form-row">
@@ -67,7 +68,7 @@
                    <div>
                        <div class="d-flex align-items-center justify-content-between">
                            <p><small>{{ endereco['type'] }} {{ endereco['street'] }}, {{ endereco['number'] }}</small></p>
-                            <button type="button" class="btn btn-info" onclick="carregaModal('cliente', 'editar-endereco/' + $(this).data('id'))" data-id="{{ endereco['id_endereco'] }}" style="line-height: 1.1;">Editar</button>
+                            <button type="button" class="btn btn-info" onclick="carregaModal('profile', 'editar-endereco/' + $(this).data('id'))" data-id="{{ endereco['id_endereco'] }}" style="line-height: 1.1;">Editar</button>
                        </div>
                         <p><small>{{ endereco['district'] }}, {{ endereco['city'] }} - {{ endereco['state'] }} - {{
                             endereco['postal_code'] }}</small></p>
@@ -87,7 +88,7 @@
             {% else %}
             <p>Nenhum endereço registrado</p>
             {% endif %}
-            <button type="button" class="btn btn-primary small py-1 px-2 mt-2" onclick="carregaModal('cliente', 'cadastrar-endereco/' + $('#editar_cliente #id_cliente').val())">Adicionar endereço</button>
+            <button type="button" class="btn btn-primary small py-1 px-2 mt-2" onclick="carregaModal('profile', 'cadastrar-endereco')">Adicionar endereço</button>
 
        
             <div class="modal-footer d-flex justify-content-between p-0">

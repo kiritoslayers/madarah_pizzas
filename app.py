@@ -26,6 +26,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pagseguro import PagSeguro
+from perfil.perfil import perfilBP
 
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -46,10 +47,11 @@ admin = Admin(app, name='Pizza For Fun', template_mode='bootstrap3')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-app.register_blueprint(pizzaBP)
 app.register_blueprint(carrinhoBP)
 app.register_blueprint(clienteBP)
 app.register_blueprint(pedidoBP)
+app.register_blueprint(perfilBP)
+app.register_blueprint(pizzaBP)
 
 POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg"
 connection = psycopg2.connect(POSTGRESQL_URI)
