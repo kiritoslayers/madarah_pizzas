@@ -1,42 +1,36 @@
 <script>
-    $('#valor').mask('000.000.000.000.000,00', {reverse: true})
+    $('.cep').mask('00000-000')
+    $('.telefone').mask('(00) 0000-0000')
+    $('.celular').mask('(00) 0.0000-0000')
 </script>
 <div class="modal-header"> 
-        <h5 class="modal-title">Cadastro</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title">Cadastrar</h5>
+        <button type="button" class="close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <form method="POST" action="/pizza/cadastro">
+        <form id="cadastrar_cliente" method="POST" action="/cliente/cadastrar">
+            <input type="hidden" name="id_usuario" id="id_usuario" value="{{cliente['id_usuario']}}">
             <div class="form-row">
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
-                    <label for="sabor">Sabor: </label>
-                    <input class="form-control" id="sabor" name="sabor" required>
+                    <label for="nome">Nome: </label>
+                    <input class="form-control" id="nome" name="nome" value="{{cliente['nome']}}" require readonlyd>
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
-                    <label for="valor">Valor<small>(R$)</small> </label>
-                    <input class="form-control decimal" id="valor" name="valor" required>
+                    <label for="telefone">Telefone/Celular: </label>
+                    <input class="form-control telefone" id="telefone" name="telefone" value="{{cliente['telefone']}}" required>
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
-                    <label for="weight">Peso<small>(g)</small> </label>
-                    <input class="form-control decimal" id="weight" name="weight" required>
+                    <label for="telefone1">Telefone/Celular 2: </label>
+                    <input class="form-control celular" id="telefone1" name="telefone1" value="{{cliente['telefone1']}}" required>
                 </div>
             </div>
-            <div class="form-row"> 
-                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
-                    <label for="url_foto">URL Foto: </label>
-                    <input type="url" class="form-control" id="url_foto" name="url_foto" required>
-                </div>
-                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
-                    <label for="descricao"> Descrição: </label>
-                    <textarea class="form-control" id="descricao" name="descricao" required style="resize: vertical;"></textarea>
-                </div>
-            </div>
-
             <div class="modal-footer d-flex justify-content-between p-0">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-submit btn-primary">Salvar</button>
+                <button type="button" class="btn btn-secondary mx-0" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn btn-submit btn-primary mx-0">Salvar</button>
             </div>
         </form>
     </div>
+
+    

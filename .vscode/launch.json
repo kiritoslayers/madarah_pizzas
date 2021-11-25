@@ -18,7 +18,7 @@
                 // "--no-debugger"
             ],
             "jinja": true,
-            "justMyCode": false
+            // "justMyCode": false
         }
     ]
 }

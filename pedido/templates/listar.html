@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block conteudo %}
+
+<script defer>
+    $('.data').each(function(i, el){
+        var data = new Date($(el).html()).toLocaleDateString()
+        $(el).html(data)
+    })
+
+    $(window).on('load', function () {
+        $('.status').each(function(i, el) {
+            let status = $(el).data('status');
+            $(el).val(status);
+            console.log(status);    
+        });
+    });
+</script>
+<section class="cardapio py-5 px-5">
+   <div class="wrapper">
+    <h3 class="text-center">Pedidos</h3>
+
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Código</th>
+                <th>Data</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if pedidos|length > 0 %}
+            {% for item in pedidos %}
+            <tr>
+                <td> </td>
+                <td>{{ item['codigo']}}</td>
+                <td>{{ item['date']}}</td>
+                <td class="data">{{ item['nome']}} - {{ item['telefone1']}}</td>
+                <td>{{ item['total']}}</td>
+                <td>
+                    <select class="form-control status" value="{{ item['status'] }}" onchange="statusPedido(this)" data-id="{{ item['id_pedido'] }}" data-status="{{ item['status'] }}">
+                        <option value="ProcessandoPagamento">Processando pagamento</option>
+                        <option value="PagamentoConfirmado">Pagamento confirmado</option>
+                        <option value="PreparandoPedido">Preparando</option>
+                        <option value="SaiuParaEntrega">Saiu para entrega</option>
+                        <option value="Entregue">Entregue</option>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td></td>
+                <td colspan="4">Nenhum pedido registrado</td>
+                <td></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+   </div>
+</section>
+
+{% endblock %}

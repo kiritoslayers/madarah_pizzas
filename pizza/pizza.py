@@ -3,7 +3,6 @@ from flask import Blueprint, render_template, request, session
 import flask
 import psycopg2
 import psycopg2.extras
-from functions import *
 
 POSTGRESQL_URI = "postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg"
 pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')

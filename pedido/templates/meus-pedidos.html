@@ -1,38 +1,36 @@
 {% extends "base.html" %}
 {% block conteudo %}
 
-<script defer>
+<script>
     $('.data').each(function(i, el){
         var data = new Date($(el).html()).toLocaleDateString()
         $(el).html(data)
-    });
+    })
 </script>
 <section class="cardapio py-5 px-5">
    <div class="wrapper">
-    <h3 class="text-center">Clientes</h3>
+    <h3 class="text-center">Pedidos</h3>
 
     <table class="table table-stripped">
         <thead>
             <tr>
                 <th></th>
                 <th>Código</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone 1</th>
-                <th>Celular</th>
+                <th>Data</th>
+                <th>Cliente</th>
+                <th>Total</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            {% if clientes|length > 0 %}
-            {% for item in clientes %}
+            {% if pedidos|length > 0 %}
+            {% for item in pedidos %}
             <tr>
-                <td> </td>
-                <td>{{ item['id_cliente']}}</td>
-                <td>{{ item['nome']}}</td>
-                <td>{{ item['email']}}</td>
-                <td>{{ item['telefone']}}</td>
-                <td>{{ item['telefone1']}}</td>
+                <td></td>
+                <td>{{ item['codigo']}}</td>
+                <td class="data">{{ item['date']}}</td>
+                <td>{{ item['nome']}} - {{ item['telefone1']}}</td>
+                <td>{{ item['total']}}</td>
                 <td></td>
             </tr>
             {% endfor %}

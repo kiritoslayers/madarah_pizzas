@@ -28,6 +28,10 @@
     {% endif %}
     <div class="carrinho__item-total">
         <span>Total: R$ <span id="valorTotal" class="fw-bold">{{total}}</span></span>
-        <a href="/carrinho/finalizar" target="_blank">Finalizar</a>
+        
+        {% if itens|length > 0 %}
+        <!-- <a class="btn btn-info" href="/carrinho/finalizar" target="_blank">Finalizar</a> -->
+        <a class="btn btn-info" onclick="carregaModal('pedido', 'confirmar-endereco')">Finalizar</a>
+        {% endif %}
     </div>
 </aside>

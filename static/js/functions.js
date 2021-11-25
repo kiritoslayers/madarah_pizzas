@@ -27,7 +27,6 @@ function carregaModal(controller, acctions){
 
 }
 
-
 function closeModal(modal){
     modal = modal == undefined ? $('#modal') : modal;
     $(modal).modal('hide')
@@ -51,7 +50,6 @@ function fnProgressBarLoading() {
     });
 }
 
-
 function beforeSend(data) {
     NProgress.start()
     $('.loading').css({
@@ -59,6 +57,7 @@ function beforeSend(data) {
         'visibility': 'visible'
     });
 }
+
 function afterSend(data) {
     NProgress.done();
     $('.loading').css({
@@ -89,7 +88,6 @@ function postError(data){
     })
 }
 
-
 function postForm(event){
     event.preventDefault();
     $('.loading').css({
@@ -112,12 +110,11 @@ function pegarClienteId(){
 
 function carregaCarrinho(){
     NProgress.start();
-    $.ajax({
+    return $.ajax({
         type: 'GET',
         url: '/carrinho/aside/' + pegarClienteId(),
         success: function(data){
             $('#carrinho').html(data);
-            openCarrinho();
             NProgress.done();
         }
     })
@@ -126,11 +123,13 @@ function carregaCarrinho(){
 function toggleCarrinho(){
     $('.carrinho').toggleClass('active')
     $('.btn-carrinho').toggleClass('active')
+    localStorage.setItem('carrinho-open', $('.btn-carrinho').hasClass('active'))
 }
 
 function openCarrinho(){
     $('.carrinho').addClass('active')
     $('.btn-carrinho').addClass('active')
+    localStorage.setItem('carrinho-open', true)
 }
 
 function pedir(el){
@@ -142,8 +141,9 @@ function pedir(el){
         type: 'POST',
         success: function(data){
             if(data == 'ok') {
-                console.log(data)
-                carregaCarrinho()
+                carregaCarrinho().then(res =>{
+                    openCarrinho();
+                });
             }
         },
         error: function(data){
@@ -208,7 +208,9 @@ function set_quantidade(el) {
         type: 'POST',
         success: function(data){
            if(data == 'ok') {
-               carregaCarrinho()
+                carregaCarrinho().then(res =>{
+                    openCarrinho();
+                });
            }
         },
         error: function(data){
@@ -226,6 +228,24 @@ function finalizar(){
         },
         error: function(response){
         
+        }
+    })
+}
+function statusPedido(el) {
+    let id = $(el).data('id');
+    let status = $(el).val();
+    $.ajax({
+        url: `/pedidos/status/` + id,
+        method: 'POST',
+        data: { status: status },
+        success: function (data) {
+            if(data == 'OK' ) {
+                toastr.success('Status atualizado')
+                $(el).val(status)
+            }
+        },
+        error: function(data) {
+            toastr.error('Houve um erro')
         }
     })
 }

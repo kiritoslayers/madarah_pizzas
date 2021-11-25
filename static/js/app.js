@@ -39,10 +39,7 @@ $(window).on('load', function () {
 
     })
 
-    carregaCarrinho()
+    carregaCarrinho();
 
-    $.ajax({
-   
-    })
 })
 fnProgressBarLoading();

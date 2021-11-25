@@ -1,0 +1,111 @@
+<div class="modal-header">
+    <h5 class="modal-title">Endereço de entrega</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form method="POST" action="/pedido/confirmar-endereco">
+        {% if temEndereco %}
+        <div class="form-row">
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 pb-0 mb-1">
+                <p>Endereço padrão </p>
+                <small>{{ cliente['type'] }} {{ cliente['street'] }}, {{ cliente['number'] }}</small><br>
+                <small>{{ cliente['district'] }}, {{ cliente['city'] }} - {{ cliente['state'] }} - {{
+                    cliente['postal_code'] }}</small> <br>
+                <small><strong>Complemento: </strong>{{ cliente['complement'] }}</small>
+                <p><label class="btn btn-success d-inline-flex align-items-center"
+                        style="padding: 4px 10px;font-size: 11px;"><input type="checkbox" name="enderecoPadrao" value="true"
+                            id="enderecoPadrao" class="mr-3">Usar endereço padrão</label></p>
+            </div>
+        </div>
+        <div class="">
+            <small>Usar outro endereço</small>
+            <hr class="mt-0">
+        </div>
+        {% else %}
+        <small>Você não possui nenhum endereço cadastrado</small><br>
+        <small><strong>Cadastrar endereço:</strong></small>
+        {% endif %}
+
+
+        <div class="form-row">
+            <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2 pb-0 mb-1">
+                <label class="small" for="type"><small>Tipo:</small> </label>
+                <select class="form-control small" id="type" name="type" value="{{cliente['type']}}" required>
+                    <option value="Rua"><small>Rua</small></option>
+                    <option value="Avenida"><small>Avenida</small></option>
+                    <option value="Estrada"><small>Estrada</small></option>
+                </select>
+            </div>
+            <div class="form-group col-lg-8 col-md-8 col-sm-8 col-8 pb-0 mb-1">
+                <label class="small" for="street">Endereço: </label>
+                <input class="form-control small" id="street" name="street" value="{{cliente['street']}}" required>
+            </div>
+            <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2 pb-0 mb-1">
+                <label class="small" for="number"> Número: </label>
+                <input class="form-control small" id="number" name="number" required value="{{cliente['number']}}"
+                    required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12 pb-0 mb-1">
+                <label class="small" for="postal_code">CEP: </label>
+                <input class="form-control small cep" id="postal_code" name="postal_code"
+                    value="{{cliente['postal_code']}}" required>
+            </div>
+            <div class="form-group col-lg-8 col-md-8 col-sm-12 col-12 pb-0 mb-1">
+                <label class="small" for="complement"> Complemento: </label>
+                <input class="form-control small" id="complement" name="complement" required
+                    value="{{cliente['complement']}}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-lg-5 col-md-5 col-sm-12 col-12 pb-0 mb-1">
+                <label class="small" for="district">Bairro: </label>
+                <input class="form-control small" id="district" name="district" value="{{cliente['district']}}"
+                    required>
+            </div>
+            <div class="form-group col-lg-5 col-md-5 col-sm-12 col-12 pb-0 mb-1">
+                <label class="small" for="city"> Cidade: </label>
+                <input class="form-control small" id="city" name="city" required value="{{cliente['city']}}">
+            </div>
+            <div class="form-group col-lg-2 col-md-2 col-sm-12 col-12 pb-0 mb-1">
+                <label class="small" for="state"> UF: </label>
+                <select class="form-control small" id="state" name="state" required>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP" selected>São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-between p-0 mt-2 pt-2">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-submit btn-primary">Finalizar</button>
+        </div>
+    </form>
+</div>
