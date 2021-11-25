@@ -1,5 +1,5 @@
 from os import stat
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 import flask
 import psycopg2
 import psycopg2.extras
@@ -11,7 +11,6 @@ connection = psycopg2.connect(POSTGRESQL_URI)
 
 @clienteBP.route('/clientes', methods=['GET'])
 def list_clientes():
-    connection = psycopg2.connect(POSTGRESQL_URI)    
     with connection.cursor() as cursor:
         sql = """SELECT 
                       c.id_cliente
@@ -24,7 +23,10 @@ def list_clientes():
         ORDER BY nome"""
         cursor.execute(sql)
         lista = rows_to_dict(cursor.description, cursor.fetchall())
-    return render_template("list.html", clientes=lista)
+        cliente = session['cliente'] or False
+        usuario = session['usuario'] or False
+        auth = session if usuario else False
+    return render_template("list.html", clientes=lista, cliente=cliente, usuario=usuario, auth=auth)
 
 
 @clienteBP.route('/cliente/cadastrar', methods=['GET', 'POST'])
@@ -45,14 +47,13 @@ def cadastro_cliente():
     return render_template('cadastro.html')
 
 
-
 @clienteBP.route('/cliente/editar/<id_cliente>', methods=['GET'])
 def editar_get(id_cliente):
     with connection.cursor() as cursor:
         sql = """SELECT * FROM madarah.tb_cliente WHERE id_cliente = (%s) LIMIT 1 """
         cursor.execute(sql, id_cliente)
         cliente = tuple_to_dict(cursor.description, cursor.fetchone())
-        sql = """SELECT * FROM madarah.tb_endereco WHERE id_cliente = (%s)"""
+        sql = """SELECT * FROM madarah.tb_endereco WHERE id_cliente = (%s) AND ativo = true"""
         cursor.execute(sql, id_cliente)
         enderecos = rows_to_dict(cursor.description, cursor.fetchall())
 
@@ -61,37 +62,18 @@ def editar_get(id_cliente):
 @clienteBP.route('/cliente/editar/<id_cliente>', methods=['POST'])
 def editar_post(id_cliente):
     id_cliente = int(request.form['id_cliente'])
-    id_usuario = int(request.form['id_usuario'])
     nome = str(request.form['nome'])
     telefone = str(request.form['telefone'])
     telefone1 = str(request.form['telefone1'])
-    type = str(request.form['type'])
-    street = str(request.form['street'])
-    number = str(request.form['number'])
-    postal_code = str(request.form['postal_code'])
-    complement = str(request.form['complement'])
-    district = str(request.form['district'])
-    city = str(request.form['city'])
-    state = str(request.form['state'])
-    country = 'BRA'
+   
     with connection.cursor() as cursor:
         sql = """UPDATE madarah.tb_cliente SET 
                         nome = (%s), 
                         telefone = (%s), 
-                        telefone1 = (%s), 
-                        type = (%s), 
-                        street = (%s), 
-                        number = (%s), 
-                        postal_code = (%s), 
-                        complement = (%s), 
-                        district = (%s), 
-                        city = (%s), 
-                        state = (%s), 
-                        country = (%s) 
+                        telefone1 = (%s)
                 WHERE id_cliente = (%s)"""
-                
         try:
-            cursor.execute(sql, (nome, telefone, telefone1, type, street, number, postal_code, complement, district, city, state, country, id_cliente))
+            cursor.execute(sql, (nome, telefone, telefone1, id_cliente))
             connection.commit()
             cursor.close()
         except:
@@ -99,23 +81,6 @@ def editar_post(id_cliente):
             
         return '/'
 
-@clienteBP.route('/excluir/<id>', methods=['POST', 'GET'])
-def delete_cliente(id):
-    if flask.request.method == 'POST':
-        with connection.cursor() as cursor:
-            sql = """delete madarah.tb_pedido where id_cliente = (%s)"""
-            cursor.execute(sql, id)
-            lista = cursor.fetchall()
-            return '/cliente'
-    else:
-        with connection.cursor() as cursor:
-            sql = """SELECT * FROM madarah.tb_cliente where id_cliente = (%s)"""
-            cursor.execute(sql, id)
-            cliente = tuple_to_dict(cursor.description, cursor.fetchone())
-        
-        return render_template('delete.html', cliente=cliente)
-        
-    
 
 @clienteBP.route('/cliente/cadastrar-endereco/<id_cliente>', methods=['GET'])
 def cadastrar_endereco_get(id_cliente):
@@ -144,8 +109,9 @@ def cadastrar_endereco_post(id_cliente):
                     , city
                     , state
                     , country
-                    , postal_code ) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """ 
+                    , postal_code
+                    , ativo ) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, true) """ 
         cursor.execute(sql, ( id_cliente, type, street, number, complement, district, city, state, country, postal_code ))
         cursor.close()
         connection.commit()
@@ -194,9 +160,13 @@ def editar_endereco_post(id_endereco):
 @clienteBP.route('/cliente/excluir-endereco/<id_endereco>', methods=['POST'])
 def excluir_endereco(id_endereco):
     with connection.cursor() as cursor:
-        sql = """DELETE FROM madarah.tb_endereco WHERE id_endereco = """ + id_endereco
+        sql = """UPDATE madarah.tb_endereco SET
+                    ativo = false
+                WHERE id_endereco = """ + id_endereco
         cursor.execute(sql)
+        cursor.close()
         connection.commit()
+        
     return 'OK'
     
 

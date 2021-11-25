@@ -1,5 +1,5 @@
 <script>
-    function cadastrarEndereco(e){
+    function editarEndereco(e){
         e.preventDefault();
         e.stopPropagation();
         var form = $(e.target).parents('form');
@@ -10,28 +10,30 @@
             method: 'POST',
             data: data,
             success: function(data) {
-                carregaModal('cliente', 'editar/' + pegarClienteId());
-                toastr.success('Endereço cadastrado')
+                carregaModal('pedido', 'confirmar-endereco')
+                toastr.success('Endereço atualizado')
             }, 
             error: function(data) {
                 toastr.error('Ocorreu um erro')
             }
         })
     }
+
+    $('#type').val($('#type').attr('value'))
+    $('#state').val($('#state').attr('value'))
 </script>
 <div class="modal-header">
-    <h5 class="modal-title">Cadastrar</h5>
+    <h5 class="modal-title">Editar</h5>
     <button type="button" class="close" >
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <form id="cadastrar_endereco" method="POST" action="/cliente/cadastrar-endereco/{{id_cliente}}">
-        <input type="hidden" name="id_cliente" id="id_cliente" class="form-row" value="{{id_cliente}}">
+    <form id="cadastrar_endereco" method="POST" action="/cliente/editar-endereco/{{endereco['id_endereco']}}">
         <div class="form-row">
             <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2">
                 <label for="type">Tipo: </label>
-                <select class="form-control" id="type" name="type" required>
+                <select class="form-control" id="type" name="type" required value="{{endereco['type']}}">
                     <option value="Rua">Rua</option>
                     <option value="Avenida">Avenida</option>
                     <option value="Estrada">Estrada</option>
@@ -39,35 +41,35 @@
             </div>
             <div class="form-group col-lg-8 col-md-8 col-sm-8 col-8">
                 <label for="street">Endereço: </label>
-                <input class="form-control" id="street" name="street" required>
+                <input class="form-control" id="street" name="street" required value="{{endereco['street']}}">
             </div>
             <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2">
                 <label for="number"> Número: </label>
-                <input class="form-control" id="number" name="number" required required>
+                <input class="form-control" id="number" name="number" required required value="{{endereco['number']}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
                 <label for="postal_code">CEP: </label>
-                <input class="form-control cep" id="postal_code" name="postal_code" required>
+                <input class="form-control cep" id="postal_code" name="postal_code" required value="{{endereco['postal_code']}}">
             </div>
             <div class="form-group col-lg-8 col-md-8 col-sm-12 col-12">
                 <label for="complement"> Complemento: </label>
-                <input class="form-control" id="complement" name="complement" required required>
+                <input class="form-control" id="complement" name="complement" required  value="{{endereco['complement']}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-lg-5 col-md-5 col-sm-12 col-12">
                 <label for="district">Bairro: </label>
-                <input class="form-control" id="district" name="district" required>
+                <input class="form-control" id="district" name="district" required value="{{endereco['district']}}">
             </div>
             <div class="form-group col-lg-5 col-md-5 col-sm-12 col-12">
                 <label for="city"> Cidade: </label>
-                <input class="form-control" id="city" name="city" required>
+                <input class="form-control" id="city" name="city" required value="{{endereco['city']}}">
             </div>
             <div class="form-group col-lg-2 col-md-2 col-sm-12 col-12">
                 <label for="state"> UF: </label>
-                <select class="form-control" id="state" name="state" required>
+                <select class="form-control" id="state" name="state" required value="{{endereco['state']}}">
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
                     <option value="AP">Amapá</option>
@@ -101,7 +103,7 @@
 
         <div class="modal-footer d-flex justify-content-between p-0">
             <button type="button" class="btn btn-secondary mx-0"  onclick="carregaModal('cliente', 'editar/' + pegarClienteId())">Voltar</button>
-            <button type="submit" class="btn btn-submit btn-primary mx-0" onclick="cadastrarEndereco(event, $('#id_cliente'))">Salvar</button>
+            <button type="button" class="btn btn-submit btn-primary mx-0" onclick="editarEndereco(event, $('#id_cliente'))">Salvar</button>
         </div>
     </form>
 </div>

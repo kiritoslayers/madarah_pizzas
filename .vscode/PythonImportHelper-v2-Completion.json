@@ -194,6 +194,14 @@
         "documentation": {}
     },
     {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Blueprint",
         "importPath": "flask",
         "description": "flask",
@@ -664,7 +672,7 @@
         "kind": 2,
         "importPath": "cliente.cliente",
         "description": "cliente.cliente",
-        "peekOfCode": "def list_clientes():\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome\n                    , u.email\n                    , c.telefone\n                    , c.telefone1\n        FROM madarah.tb_cliente as c ",
+        "peekOfCode": "def list_clientes():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome\n                    , u.email\n                    , c.telefone\n                    , c.telefone1\n        FROM madarah.tb_cliente as c \n        INNER JOIN madarah.tb_usuario as u on u.id_usuario = c.id_usuario ",
         "detail": "cliente.cliente",
         "documentation": {}
     },
@@ -682,7 +690,7 @@
         "kind": 2,
         "importPath": "cliente.cliente",
         "description": "cliente.cliente",
-        "peekOfCode": "def editar_get(id_cliente):\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_cliente WHERE id_cliente = (%s) LIMIT 1 \"\"\"\n        cursor.execute(sql, id_cliente)\n        cliente = tuple_to_dict(cursor.description, cursor.fetchone())\n        sql = \"\"\"SELECT * FROM madarah.tb_endereco WHERE id_cliente = (%s)\"\"\"\n        cursor.execute(sql, id_cliente)\n        enderecos = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template('edit.html', cliente=cliente, enderecos=enderecos)\n@clienteBP.route('/cliente/editar/<id_cliente>', methods=['POST'])",
+        "peekOfCode": "def editar_get(id_cliente):\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_cliente WHERE id_cliente = (%s) LIMIT 1 \"\"\"\n        cursor.execute(sql, id_cliente)\n        cliente = tuple_to_dict(cursor.description, cursor.fetchone())\n        sql = \"\"\"SELECT * FROM madarah.tb_endereco WHERE id_cliente = (%s) AND ativo = true\"\"\"\n        cursor.execute(sql, id_cliente)\n        enderecos = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template('edit.html', cliente=cliente, enderecos=enderecos)\n@clienteBP.route('/cliente/editar/<id_cliente>', methods=['POST'])",
         "detail": "cliente.cliente",
         "documentation": {}
     },
@@ -691,16 +699,7 @@
         "kind": 2,
         "importPath": "cliente.cliente",
         "description": "cliente.cliente",
-        "peekOfCode": "def editar_post(id_cliente):\n    id_cliente = int(request.form['id_cliente'])\n    id_usuario = int(request.form['id_usuario'])\n    nome = str(request.form['nome'])\n    telefone = str(request.form['telefone'])\n    telefone1 = str(request.form['telefone1'])\n    type = str(request.form['type'])\n    street = str(request.form['street'])\n    number = str(request.form['number'])\n    postal_code = str(request.form['postal_code'])",
-        "detail": "cliente.cliente",
-        "documentation": {}
-    },
-    {
-        "label": "delete_cliente",
-        "kind": 2,
-        "importPath": "cliente.cliente",
-        "description": "cliente.cliente",
-        "peekOfCode": "def delete_cliente(id):\n    if flask.request.method == 'POST':\n        with connection.cursor() as cursor:\n            sql = \"\"\"delete madarah.tb_pedido where id_cliente = (%s)\"\"\"\n            cursor.execute(sql, id)\n            lista = cursor.fetchall()\n            return '/cliente'\n    else:\n        with connection.cursor() as cursor:\n            sql = \"\"\"SELECT * FROM madarah.tb_cliente where id_cliente = (%s)\"\"\"",
+        "peekOfCode": "def editar_post(id_cliente):\n    id_cliente = int(request.form['id_cliente'])\n    nome = str(request.form['nome'])\n    telefone = str(request.form['telefone'])\n    telefone1 = str(request.form['telefone1'])\n    with connection.cursor() as cursor:\n        sql = \"\"\"UPDATE madarah.tb_cliente SET \n                        nome = (%s), \n                        telefone = (%s), \n                        telefone1 = (%s)",
         "detail": "cliente.cliente",
         "documentation": {}
     },
@@ -745,7 +744,7 @@
         "kind": 2,
         "importPath": "cliente.cliente",
         "description": "cliente.cliente",
-        "peekOfCode": "def excluir_endereco(id_endereco):\n    with connection.cursor() as cursor:\n        sql = \"\"\"DELETE FROM madarah.tb_endereco WHERE id_endereco = \"\"\" + id_endereco\n        cursor.execute(sql)\n        connection.commit()\n    return 'OK'",
+        "peekOfCode": "def excluir_endereco(id_endereco):\n    with connection.cursor() as cursor:\n        sql = \"\"\"UPDATE madarah.tb_endereco SET\n                    ativo = false\n                WHERE id_endereco = \"\"\" + id_endereco\n        cursor.execute(sql)\n        cursor.close()\n        connection.commit()\n    return 'OK'",
         "detail": "cliente.cliente",
         "documentation": {}
     },
@@ -754,7 +753,7 @@
         "kind": 5,
         "importPath": "cliente.cliente",
         "description": "cliente.cliente",
-        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nclienteBP = Blueprint('cliente', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@clienteBP.route('/clientes', methods=['GET'])\ndef list_clientes():\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\nclienteBP = Blueprint('cliente', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@clienteBP.route('/clientes', methods=['GET'])\ndef list_clientes():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome\n                    , u.email",
         "detail": "cliente.cliente",
         "documentation": {}
     },
@@ -763,7 +762,7 @@
         "kind": 5,
         "importPath": "cliente.cliente",
         "description": "cliente.cliente",
-        "peekOfCode": "clienteBP = Blueprint('cliente', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@clienteBP.route('/clientes', methods=['GET'])\ndef list_clientes():\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome\n                    , u.email",
+        "peekOfCode": "clienteBP = Blueprint('cliente', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@clienteBP.route('/clientes', methods=['GET'])\ndef list_clientes():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome\n                    , u.email\n                    , c.telefone",
         "detail": "cliente.cliente",
         "documentation": {}
     },
@@ -772,7 +771,7 @@
         "kind": 5,
         "importPath": "cliente.cliente",
         "description": "cliente.cliente",
-        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@clienteBP.route('/clientes', methods=['GET'])\ndef list_clientes():\n    connection = psycopg2.connect(POSTGRESQL_URI)    \n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome\n                    , u.email\n                    , c.telefone",
+        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@clienteBP.route('/clientes', methods=['GET'])\ndef list_clientes():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT \n                      c.id_cliente\n                    , c.nome\n                    , u.email\n                    , c.telefone\n                    , c.telefone1",
         "detail": "cliente.cliente",
         "documentation": {}
     },
@@ -826,7 +825,7 @@
         "kind": 2,
         "importPath": "pedido.pedido",
         "description": "pedido.pedido",
-        "peekOfCode": "def confirmar_endereco_get():\n    cliente = session['cliente']\n    temEndereco = True if cliente['type'] and cliente['street'] and cliente['number'] and cliente['city'] and cliente['state'] and cliente['postal_code'] else False\n    return render_template('confirmar-endereco.html', cliente=cliente, temEndereco=temEndereco)\n@pedidoBP.route('/pedido/confirmar-endereco', methods=['POST'])\ndef confirmar_endereco_post():\n    cliente = session['cliente']\n    type = str(request.form['type'])\n    street = str(request.form['street'])\n    number = str(request.form['number'])",
+        "peekOfCode": "def confirmar_endereco_get():\n    cliente = session['cliente']\n    with connection.cursor() as cursor: \n        sql = \"\"\"SELECT * FROM madarah.tb_endereco WHERE id_cliente = (%s) AND ativo = true\"\"\"\n        cursor.execute(sql, str(cliente['id_cliente']))\n        enderecos = rows_to_dict(cursor.description, cursor.fetchall())\n    return render_template('confirmar-endereco.html', cliente=cliente, enderecos=enderecos)\n@pedidoBP.route('/pedido/confirmar-endereco', methods=['POST'])\ndef confirmar_endereco_post():\n    cliente = session['cliente']",
         "detail": "pedido.pedido",
         "documentation": {}
     },
@@ -880,7 +879,52 @@
         "kind": 2,
         "importPath": "pedido.pedido",
         "description": "pedido.pedido",
-        "peekOfCode": "def status(id):\n    status = str(request.form['status'])\n    with connection.cursor() as cursor:\n        sql = \"\"\"UPDATE madarah.tb_pedido SET status = (%s) where id_pedido = (%s) returning * \"\"\"\n        cursor.execute(sql, (status, str(id)))\n        connection.commit()\n    return 'OK'",
+        "peekOfCode": "def status(id):\n    status = str(request.form['status'])\n    with connection.cursor() as cursor:\n        sql = \"\"\"UPDATE madarah.tb_pedido SET status = (%s) where id_pedido = (%s) returning * \"\"\"\n        cursor.execute(sql, (status, str(id)))\n        connection.commit()\n    return 'OK'\n@pedidoBP.route('/pedidos/cadastrar-endereco/<id_cliente>', methods=['GET'])\ndef cadastrar_endereco_get(id_cliente):\n    return render_template('cadastrar-endereco.html', id_cliente=id_cliente)",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "cadastrar_endereco_get",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def cadastrar_endereco_get(id_cliente):\n    return render_template('cadastrar-endereco.html', id_cliente=id_cliente)\n@pedidoBP.route('/pedidos/cadastrar-endereco/<id_cliente>', methods=['POST'])\ndef cadastrar_endereco_post(id_cliente):\n    type = str(request.form['type'])\n    street = str(request.form['street'])\n    number = str(request.form['number'])\n    postal_code = str(request.form['postal_code'])\n    complement = str(request.form['complement'])\n    district = str(request.form['district'])",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "cadastrar_endereco_post",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def cadastrar_endereco_post(id_cliente):\n    type = str(request.form['type'])\n    street = str(request.form['street'])\n    number = str(request.form['number'])\n    postal_code = str(request.form['postal_code'])\n    complement = str(request.form['complement'])\n    district = str(request.form['district'])\n    city = str(request.form['city'])\n    state = str(request.form['state'])\n    country = 'BRA'",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "editar_endereco_get",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def editar_endereco_get(id_endereco):\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_endereco WHERE id_endereco = \"\"\" + id_endereco\n        cursor.execute(sql)\n        endereco = tuple_to_dict(cursor.description, cursor.fetchone())\n    return render_template('editar-endereco.html', endereco=endereco)\n@pedidoBP.route('/pedidos/editar-endereco/<id_endereco>', methods=['POST'])\ndef editar_endereco_post(id_endereco):\n    type = str(request.form['type'])\n    street = str(request.form['street'])",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "editar_endereco_post",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def editar_endereco_post(id_endereco):\n    type = str(request.form['type'])\n    street = str(request.form['street'])\n    number = str(request.form['number'])\n    postal_code = str(request.form['postal_code'])\n    complement = str(request.form['complement'])\n    district = str(request.form['district'])\n    city = str(request.form['city'])\n    state = str(request.form['state'])\n    country = 'BRA'",
+        "detail": "pedido.pedido",
+        "documentation": {}
+    },
+    {
+        "label": "excluir_endereco",
+        "kind": 2,
+        "importPath": "pedido.pedido",
+        "description": "pedido.pedido",
+        "peekOfCode": "def excluir_endereco(id_endereco):\n    with connection.cursor() as cursor:\n        sql = \"\"\"UPDATE madarah.tb_endereco SET\n                    ativo = false\n                WHERE id_endereco = \"\"\" + id_endereco\n        cursor.execute(sql)\n        cursor.close()\n        connection.commit()\n    return 'OK'",
         "detail": "pedido.pedido",
         "documentation": {}
     },

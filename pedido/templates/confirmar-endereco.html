@@ -6,30 +6,43 @@
 </div>
 <div class="modal-body">
     <form method="POST" action="/pedido/confirmar-endereco">
-        {% if temEndereco %}
+       
+        {% if enderecos|length > 0 %}
+        {% for endereco in enderecos %}
         <div class="form-row">
-            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 pb-0 mb-1">
-                <p>Endereço padrão </p>
-                <small>{{ cliente['type'] }} {{ cliente['street'] }}, {{ cliente['number'] }}</small><br>
-                <small>{{ cliente['district'] }}, {{ cliente['city'] }} - {{ cliente['state'] }} - {{
-                    cliente['postal_code'] }}</small> <br>
-                <small><strong>Complemento: </strong>{{ cliente['complement'] }}</small>
-                <p><label class="btn btn-success d-inline-flex align-items-center"
-                        style="padding: 4px 10px;font-size: 11px;"><input type="checkbox" name="enderecoPadrao" value="true"
-                            id="enderecoPadrao" class="mr-3">Usar endereço padrão</label></p>
+            <div class="col-lg-7 col-md-8 col-sm-12 col-12 p-2 mb-1" style="background-color: #eaeaea">
+               <div>
+                   <div class="d-flex align-items-center justify-content-between">
+                        <button class="btn btn-info" onclick="carregaModal('cliente', 'editar-endereco/' + $(this).data('id'))" data-id="{{ endereco['id_endereco'] }}" style="line-height: 1.1;">Editar</button>
+                        <p class="d-flex align-items-center">
+                            <input type="radio" name="id_endereco"  id="{{endereco['id_endereco']}}" value="{{endereco['id_endereco']}}">
+                            <label style="padding: 4px 10px;font-size: 11px;" for="{{endereco['id_endereco']}}">
+                                Usar esse
+                            </label>
+                        </p>
+                   </div>
+                    <p><small>{{ endereco['type'] }} {{ endereco['street'] }}, {{ endereco['number'] }}</small></p>
+                    <p><small>{{ endereco['district'] }}, {{ endereco['city'] }} - {{ endereco['state'] }} - {{
+                        endereco['postal_code'] }}</small></p>
+                        <div class="d-flex align-items-start justify-content-between">
+                            <p>
+                                <small><strong>Complemento: </strong>{{ endereco['complement'] }}</small>
+                            </p>
+                            <button type="button" class="btn btn-primary py-1 px-2 small" onclick="excluirEndereco(this)" data-id="{{endereco['id_endereco']}}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+               </div>
             </div>
         </div>
-        <div class="">
-            <small>Usar outro endereço</small>
-            <hr class="mt-0">
-        </div>
+        {% endfor %}
         {% else %}
         <small>Você não possui nenhum endereço cadastrado</small><br>
-        <small><strong>Cadastrar endereço:</strong></small>
         {% endif %}
+        <button type="button" class="btn btn-primary small py-1 px-2 mt-2" onclick="carregaModal('pedidos', 'cadastrar-endereco/' + $('#id_cliente').val())">Escolher outro endereço</button>
 
 
-        <div class="form-row">
+        <!-- <div class="form-row">
             <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2 pb-0 mb-1">
                 <label class="small" for="type"><small>Tipo:</small> </label>
                 <select class="form-control small" id="type" name="type" value="{{cliente['type']}}" required>
@@ -102,7 +115,7 @@
                     <option value="TO">Tocantins</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="modal-footer d-flex justify-content-between p-0 mt-2 pt-2">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-submit btn-primary">Finalizar</button>

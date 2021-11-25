@@ -10,7 +10,7 @@
             method: 'POST',
             data: data,
             success: function(data) {
-                carregaModal('cliente', 'editar/' + pegarClienteId());
+                carregaModal('pedido', 'confirmar-endereco')
                 toastr.success('Endereço cadastrado')
             }, 
             error: function(data) {

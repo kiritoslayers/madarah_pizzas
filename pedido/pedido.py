@@ -81,8 +81,12 @@ def list_meus_pedidos():
 @pedidoBP.route('/pedido/confirmar-endereco', methods=['GET'])
 def confirmar_endereco_get():
     cliente = session['cliente']
-    temEndereco = True if cliente['type'] and cliente['street'] and cliente['number'] and cliente['city'] and cliente['state'] and cliente['postal_code'] else False
-    return render_template('confirmar-endereco.html', cliente=cliente, temEndereco=temEndereco)
+    with connection.cursor() as cursor: 
+        sql = """SELECT * FROM madarah.tb_endereco WHERE id_cliente = (%s) AND ativo = true"""
+        cursor.execute(sql, str(cliente['id_cliente']))
+        enderecos = rows_to_dict(cursor.description, cursor.fetchall())
+
+    return render_template('confirmar-endereco.html', cliente=cliente, enderecos=enderecos)
 
 
 @pedidoBP.route('/pedido/confirmar-endereco', methods=['POST'])
@@ -185,4 +189,93 @@ def status(id):
         sql = """UPDATE madarah.tb_pedido SET status = (%s) where id_pedido = (%s) returning * """
         cursor.execute(sql, (status, str(id)))
         connection.commit()
+    return 'OK'
+
+
+
+@pedidoBP.route('/pedidos/cadastrar-endereco/<id_cliente>', methods=['GET'])
+def cadastrar_endereco_get(id_cliente):
+    return render_template('cadastrar-endereco.html', id_cliente=id_cliente)
+
+@pedidoBP.route('/pedidos/cadastrar-endereco/<id_cliente>', methods=['POST'])
+def cadastrar_endereco_post(id_cliente):
+    type = str(request.form['type'])
+    street = str(request.form['street'])
+    number = str(request.form['number'])
+    postal_code = str(request.form['postal_code'])
+    complement = str(request.form['complement'])
+    district = str(request.form['district'])
+    city = str(request.form['city'])
+    state = str(request.form['state'])
+    country = 'BRA'
+    
+    with connection.cursor() as cursor:
+        sql = """INSERT INTO madarah.tb_endereco (
+                      id_cliente
+                    , type
+                    , street
+                    , number
+                    , complement
+                    , district
+                    , city
+                    , state
+                    , country
+                    , postal_code
+                    , ativo ) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, true) """ 
+        cursor.execute(sql, ( id_cliente, type, street, number, complement, district, city, state, country, postal_code ))
+        cursor.close()
+        connection.commit()
+    return 'OK'
+    
+@pedidoBP.route('/pedidos/editar-endereco/<id_endereco>', methods=['GET'])
+def editar_endereco_get(id_endereco):
+    with connection.cursor() as cursor:
+        sql = """SELECT * FROM madarah.tb_endereco WHERE id_endereco = """ + id_endereco
+        cursor.execute(sql)
+        endereco = tuple_to_dict(cursor.description, cursor.fetchone())
+
+    return render_template('editar-endereco.html', endereco=endereco)
+
+@pedidoBP.route('/pedidos/editar-endereco/<id_endereco>', methods=['POST'])
+def editar_endereco_post(id_endereco):
+    type = str(request.form['type'])
+    street = str(request.form['street'])
+    number = str(request.form['number'])
+    postal_code = str(request.form['postal_code'])
+    complement = str(request.form['complement'])
+    district = str(request.form['district'])
+    city = str(request.form['city'])
+    state = str(request.form['state'])
+    country = 'BRA'
+    
+    with connection.cursor() as cursor:
+        sql = """UPDATE madarah.tb_endereco SET
+                    type = %s
+                    , street = %s
+                    , number = %s
+                    , complement = %s
+                    , district = %s
+                    , city = %s
+                    , state = %s
+                    , country = %s
+                    , postal_code  = %s
+                WHERE id_endereco = %s
+                    """ 
+        cursor.execute(sql, ( type, street, number, complement, district, city, state, country, postal_code, id_endereco ))
+        cursor.close()
+        connection.commit()
+    return 'OK'
+    
+
+@pedidoBP.route('/pedidos/excluir-endereco/<id_endereco>', methods=['POST'])
+def excluir_endereco(id_endereco):
+    with connection.cursor() as cursor:
+        sql = """UPDATE madarah.tb_endereco SET
+                    ativo = false
+                WHERE id_endereco = """ + id_endereco
+        cursor.execute(sql)
+        cursor.close()
+        connection.commit()
+        
     return 'OK'
