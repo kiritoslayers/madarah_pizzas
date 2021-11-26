@@ -242,7 +242,7 @@ def confirmar_endereco_get():
     return render_template('confirmar.html', cliente=cliente, enderecos=enderecos, items_carrinho=items_carrinho)
 
 
-@pedidoBP.route('/pedidos/finalizar', methods=['POST'])
+@pedidoBP.route('/pedidos/finalizar', methods=['GET'])
 def finalizar():
     with connection.cursor() as cursor:
         cliente = session['cliente']
@@ -265,7 +265,7 @@ def finalizar():
 
         sql = '''SELECT * FROM madarah.tb_endereco WHERE id_endereco = ''' + id_endereco
         cursor.execute(sql)
-        endereco = row_to_dict(cursor.description, cursor.fetchall())
+        endereco = row_to_dict(cursor.description, cursor.fetchone())
 
         if not(endereco):
             return os.abort()
@@ -321,15 +321,15 @@ def finalizar():
 
         codigo = str(random.random()).replace('.', '') # Codigo da compra
         pg.reference = codigo
-        sql = """INSERT INTO madarah.tb_pedido (id_cliente, total, codigo_de_compra, date, id_endereco, frete, statud) 
-                            VALUES (%s, %s, %s, %s, %s) RETURNIG *"""
-        cursor.execute(sql, (str(cliente['id_cliente']), total, pg.reference, datetime.now(), id_endereco, frete, 'ProcessandoPagamento'))
+        sql = """INSERT INTO madarah.tb_pedido (id_cliente, total, codigo_de_compra, date, id_endereco, frete, status) 
+                            VALUES (%s, %s, %s, %s, %s, %s, %s) returning *"""
+        cursor.execute(sql, (str(cliente['id_cliente']), str(total), str(pg.reference), str(datetime.now()), str(id_endereco), str(frete), 'ProcessandoPagamento'))
         connection.commit()
         pedido = row_to_dict(cursor.description, cursor.fetchone())
-
+        
         for item in lista:
             item['id_pedido'] = pedido['id_pedido']
-            sql = """INSERT INTO madarah.tb_pedido_pizza_rel (id_pizza, id_pedido, quantidade) VALUES (%s, %s, %s) RETURNIG *"""
+            sql = """INSERT INTO madarah.tb_pedido_pizza_rel (id_pizza, id_pedido, quantidade) VALUES (%s, %s, %s) returning *"""
             cursor.execute(sql, (item['id_pizza'], item['id_pedido'], item['quantidade']))
             connection.commit()
 
@@ -338,9 +338,17 @@ def finalizar():
 
     response = pg.checkout()
     if(not(response.errors)):
-        sql = """DELETE FROM madarah.tb_item_carrinho WHERE id_cliente = '""" + str(cliente['id_cliente']) + """' LIMIT 1"""
-        cursor.execute(sql)
-        connection.commit()
+        sql = """DELETE FROM madarah.tb_item_carrinho WHERE id_cliente = """ + str(cliente['id_cliente'])
+        try:
+            cursor.execute(sql)
+            connection.commit()
+        except:
+            cursor.close()
+            connection2 = psycopg2.connect(POSTGRESQL_URI)
+            with connection2.cursor() as cursor:
+                cursor.execute(sql)
+                connection2.commit()
+                
 
     return redirect(response.payment_url)
 
@@ -397,6 +405,7 @@ def relatorio():
                     INNER JOIN  madarah.tb_cliente as c ON c.id_cliente = p.id_cliente
                     INNER JOIN  madarah.tb_endereco as e ON e.id_endereco = p.id_endereco
                     INNER JOIN  madarah.tb_usuario as u ON u.id_usuario = c.id_usuario
+                    ORDER BY p.date
             """
         cursor.execute(sql)
         pedidos = rows_to_dict(cursor.description, cursor.fetchall())

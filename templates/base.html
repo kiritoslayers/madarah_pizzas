@@ -64,10 +64,7 @@
                 <a class="nav-item nav-link" href="/pedidos">Pedidos</a>
                 <a class="nav-item nav-link" href="/clientes">Clientes</a>
                 {% endif %}
-                {% if auth['role'] == 'cliente' %}
-                <a class="nav-item nav-link" href="/meus-pedidos">Meus pedidos</a>
-                {% endif %}
-
+                
                 <a class="nav-item nav-link" disabled>{{auth['name']}}</a>
                 <div class="nav-item dropdown">
                     <a class="nav-link nav-item dropdown-toggle noafter" id="navbarDropdown" role="button"
@@ -76,6 +73,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
+                            <a class="dropdown-item" href="/meus-pedidos">Meus pedidos</a>
                             <a class="dropdown-item" onclick="carregaModal('profile', '')">
                                 <span>Perfil</span>
                                 <i class="fas fa-user"></i>
