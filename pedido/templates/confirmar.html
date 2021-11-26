@@ -1,0 +1,106 @@
+<script>
+    function excluirEndereco(el) {
+        let id_endereco = $(el).data('id');
+        $.ajax({
+            url: '/cliente/excluir-endereco/' + id_endereco,
+            type: 'POST',
+            success: function(data){
+                toastr.success('Endereco excluido')
+                carregaModal('pedidos', 'confirmar');
+            },
+            error: function(){
+                toastr.error('Não foi possível excluir esse endereço')
+            },
+        })
+    }
+
+    function calcularFrete(e) {
+        e.stopPropagation();
+        e.preventdefault();
+        let id_endereco = $('input[name=id_endereco]:checked').val();
+        carregaModal('pedidos', 'frete/' + id_endereco);
+    }
+</script>
+
+<div class="modal-header">
+    <h5 class="modal-title">Confirmar pedido</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    {% if items_carrinho|length > 0 %}
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Sabor</th>
+                <th>Descrição</th>
+                <th>Valor unidade</th>
+                <th>Total</th>
+                <th>Qtd</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items_carrinho %}
+            <tr>
+                <td></td>
+                <td>{{ item['sabor'] }}</td>
+                <td>{{ item['descricao'] }}</td>
+                <td>{{ item['valor'] }}</td>
+                <td>{{ item['total_item'] }}</td>
+                <td>{{ item['quantidade'] }}</td>
+                <td></td>
+            </tr>
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <form method="POST" action="/pedidos/frete" id="escolher_endereco">
+        {% if enderecos|length > 0 %}
+        {% for endereco in enderecos %}
+        <div class="form-row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 p-2 mb-1" style="background-color: #eaeaea">
+               <div>
+                   <div class="d-flex align-items-center justify-content-between">
+                       <p><small>{{ endereco['type'] }} {{ endereco['street'] }}, {{ endereco['number'] }}</small></p>
+                        <p class="d-flex align-items-center">
+                            <input type="radio" name="id_endereco"  id="{{endereco['id_endereco']}}" value="{{endereco['id_endereco']}}">
+                            <label style="padding: 4px 10px;font-size: 11px;" for="{{endereco['id_endereco']}}">
+                                Usar esse
+                            </label>
+                        </p>
+                   </div>
+                    <p><small>{{ endereco['district'] }}, {{ endereco['city'] }} - {{ endereco['state'] }} - {{
+                        endereco['postal_code'] }}</small></p>
+                        <div class="d-flex align-items-start justify-content-between">
+                            <p>
+                                <small><strong>Complemento: </strong>{{ endereco['complement'] }}</small>
+                            </p>
+                            <div>
+                                <button type="button" class="btn btn-info" onclick="carregaModal('pedidos', 'editar-endereco/' + $(this).data('id'))" data-id="{{ endereco['id_endereco'] }}" style="line-height: 1.1;">Editar</button>
+                                <button type="button" class="btn btn-primary py-1 px-2 small" onclick="excluirEndereco(this)" data-id="{{endereco['id_endereco']}}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+               </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <small>Você não possui nenhum endereço cadastrado</small><br>
+        {% endif %}
+        <button type="button" class="btn btn-primary small py-1 px-2 mt-2" onclick="carregaModal('pedidos', 'cadastrar-endereco/' + $('#id_cliente').val())">Escolher outro endereço</button>
+     
+        <div class="modal-footer d-flex justify-content-between p-0 mt-2 pt-2">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-submit btn-primary" onclick="calcularFrete($event)">Calcular frete</button>
+        </div>
+    </form>
+</div>

@@ -10,7 +10,7 @@
             method: 'POST',
             data: data,
             success: function(data) {
-                carregaModal('pedido', 'confirmar-endereco')
+                carregaModal('pedidos', 'confirmar')
                 toastr.success('Endereço cadastrado')
             }, 
             error: function(data) {
@@ -20,8 +20,8 @@
     }
 </script>
 <div class="modal-header">
-    <h5 class="modal-title">Cadastrar</h5>
-    <button type="button" class="close" >
+    <h5 class="modal-title">Cadastrar novo endereço</h5>
+    <button type="button" class="close" onclick="carregaModal('pedidos', 'confirmar')" >
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -98,10 +98,9 @@
                 </select>
             </div>
         </div>
-
         <div class="modal-footer d-flex justify-content-between p-0">
-            <button type="button" class="btn btn-secondary mx-0"  onclick="carregaModal('cliente', 'editar/' + pegarClienteId())">Voltar</button>
-            <button type="submit" class="btn btn-submit btn-primary mx-0" onclick="cadastrarEndereco(event, $('#id_cliente'))">Salvar</button>
+            <button type="button" class="btn btn-secondary mx-0"  onclick="carregaModal('pedidos', 'confirmar')">Voltar</button>
+            <button type="submit" class="btn btn-submit btn-primary mx-0" onclick="cadastrarEndereco(event, $('#cadastrar_endereco #id_cliente'))">Salvar</button>
         </div>
     </form>
 </div>

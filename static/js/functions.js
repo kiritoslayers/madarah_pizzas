@@ -14,7 +14,7 @@ function carregaModal(controller, actions){
     if(actions) {
         url += `/${actions}`
     }
-    $.ajax({
+    return $.ajax({
         method: 'GET',
         url: url,
         success: function(data){
