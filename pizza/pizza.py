@@ -31,23 +31,29 @@ def list():
     return render_template("list.html", pizzas=lista, cliente=cliente, usuario=usuario, auth=session)
 
 
-@pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])
-def cadastro_pizza():
-    if flask.request.method == 'POST':
-        sabor = str(request.form['sabor']),
-        descricao = str(request.form['descricao']),
-        valor = request.form['valor'].replace('.', ',').replace(',', '.')
-        valor = float(valor)
-        url_foto = str(request.form['url_foto'])
-        connection = psycopg2.connect(POSTGRESQL_URI)
-        with connection.cursor() as cursor:
-            sql = """insert into madarah.tb_pizza (sabor, descricao, valor, url_foto) VALUES (%s, %s, %s, %s)"""
-            cursor.execute(sql, (sabor, descricao, valor, url_foto))
-            connection.commit()
-            cursor.close()
-        return '/pizzas'
+@pizzaBP.route('/pizza/cadastro', methods=['GET'])
+def cadastro_pizza_get():
+    usuario = session['usuario']
+    cliente = session['cliente']
+    auth = session
+    return render_template('cadastro.html', cliente=cliente, usuario=usuario, auth=session)
 
-    return render_template('cadastro.html')
+
+@pizzaBP.route('/pizza/cadastro', methods=['POST'])
+def cadastro_pizza_post():
+    sabor = str(request.form['sabor']),
+    descricao = str(request.form['descricao']),
+    valor = request.form['valor'].replace('.', ',').replace(',', '.')
+    valor = float(valor)
+    url_foto = str(request.form['url_foto'])
+    connection = psycopg2.connect(POSTGRESQL_URI)
+    with connection.cursor() as cursor:
+        sql = """insert into madarah.tb_pizza (sabor, descricao, valor, url_foto) VALUES (%s, %s, %s, %s)"""
+        cursor.execute(sql, (sabor, descricao, valor, url_foto))
+        connection.commit()
+        cursor.close()
+    return '/pizzas'
+
 
 
 @pizzaBP.route('/pizza/edicao/<id>', methods=['GET', 'POST'])

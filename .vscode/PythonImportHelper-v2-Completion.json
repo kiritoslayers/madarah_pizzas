@@ -1155,16 +1155,25 @@
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente']\n        usuario = session['usuario']\n    return render_template(\"list.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=session)\n@pizzaBP.route('/pizza/cadastro', methods=['GET', 'POST'])",
+        "peekOfCode": "def list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente']\n        usuario = session['usuario']\n    return render_template(\"list.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=session)\n@pizzaBP.route('/pizza/cadastro', methods=['GET'])",
         "detail": "pizza.pizza",
         "documentation": {}
     },
     {
-        "label": "cadastro_pizza",
+        "label": "cadastro_pizza_get",
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def cadastro_pizza():\n    if flask.request.method == 'POST':\n        sabor = str(request.form['sabor']),\n        descricao = str(request.form['descricao']),\n        valor = request.form['valor'].replace('.', ',').replace(',', '.')\n        valor = float(valor)\n        url_foto = str(request.form['url_foto'])\n        connection = psycopg2.connect(POSTGRESQL_URI)\n        with connection.cursor() as cursor:\n            sql = \"\"\"insert into madarah.tb_pizza (sabor, descricao, valor, url_foto) VALUES (%s, %s, %s, %s)\"\"\"",
+        "peekOfCode": "def cadastro_pizza_get():\n    usuario = session['usuario']\n    cliente = session['cliente']\n    auth = session\n    return render_template('cadastro.html', cliente=cliente, usuario=usuario, auth=session)\n@pizzaBP.route('/pizza/cadastro', methods=['POST'])\ndef cadastro_pizza_post():\n    sabor = str(request.form['sabor']),\n    descricao = str(request.form['descricao']),\n    valor = request.form['valor'].replace('.', ',').replace(',', '.')",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "cadastro_pizza_post",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def cadastro_pizza_post():\n    sabor = str(request.form['sabor']),\n    descricao = str(request.form['descricao']),\n    valor = request.form['valor'].replace('.', ',').replace(',', '.')\n    valor = float(valor)\n    url_foto = str(request.form['url_foto'])\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"insert into madarah.tb_pizza (sabor, descricao, valor, url_foto) VALUES (%s, %s, %s, %s)\"\"\"\n        cursor.execute(sql, (sabor, descricao, valor, url_foto))",
         "detail": "pizza.pizza",
         "documentation": {}
     },
