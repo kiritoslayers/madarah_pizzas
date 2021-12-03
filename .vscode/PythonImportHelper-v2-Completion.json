@@ -520,6 +520,14 @@
         "documentation": {}
     },
     {
+        "label": "make_response",
+        "importPath": "flask.helpers",
+        "description": "flask.helpers",
+        "isExtraImport": true,
+        "detail": "flask.helpers",
+        "documentation": {}
+    },
+    {
         "label": "Null",
         "importPath": "pyasn1.type.univ",
         "description": "pyasn1.type.univ",
@@ -985,7 +993,7 @@
         "kind": 2,
         "importPath": "pedido.pedido",
         "description": "pedido.pedido",
-        "peekOfCode": "def finalizar():\n    with connection.cursor() as cursor:\n        cliente = session['cliente']\n        usuario = session['usuario']\n        id_endereco = request.form['id_endereco']\n        frete = 12.5\n        if not(cliente) or not(usuario):\n            return os.abort()\n        if not(id_endereco):\n            return os.abort()",
+        "peekOfCode": "def finalizar():\n    with connection.cursor() as cursor:\n        cliente = session['cliente']\n        usuario = session['usuario']\n        # id_endereco = request.form['id_endereco']\n        id_endereco = request.args['id_endereco']\n        frete = 12.5\n        if not(cliente) or not(usuario):\n            return os.abort()\n        if not(id_endereco):",
         "detail": "pedido.pedido",
         "documentation": {}
     },

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, render_template, request, session, redirect
 import flask
+from flask.helpers import make_response
 import psycopg2
 from functions.functions import row_to_dict, rows_to_dict, tuple_to_dict
 import psycopg2.extras
@@ -242,12 +243,13 @@ def confirmar_endereco_get():
     return render_template('confirmar.html', cliente=cliente, enderecos=enderecos, items_carrinho=items_carrinho)
 
 
-@pedidoBP.route('/pedidos/finalizar', methods=['GET'])
+@pedidoBP.route('/pedidos/finalizar/', methods=['GET'])
 def finalizar():
     with connection.cursor() as cursor:
         cliente = session['cliente']
         usuario = session['usuario']
-        id_endereco = request.form['id_endereco']
+        # id_endereco = request.form['id_endereco']
+        id_endereco = request.args['id_endereco']
         frete = 12.5
         if not(cliente) or not(usuario):
             return os.abort()
@@ -336,21 +338,19 @@ def finalizar():
         pg.redirect_url = "http://127.0.0.1:5000/pedido/pedido-finalizado/" + str(pedido['id_pedido']) # URL de redirecionamento ("http://meusite.com/obrigado")
         pg.redirect_url = 'www.google.com'
 
-    response = pg.checkout()
-    if(not(response.errors)):
-        sql = """DELETE FROM madarah.tb_item_carrinho WHERE id_cliente = """ + str(cliente['id_cliente'])
-        try:
+        response = pg.checkout()
+        if(not(response.errors)):
+
+            sql = """UPDATE madarah.tb_pedido SET codigo_de_compra = '""" + str(response.code) + """' WHERE id_pedido = """ + str(pedido['id_pedido'])
             cursor.execute(sql)
             connection.commit()
-        except:
-            cursor.close()
-            connection2 = psycopg2.connect(POSTGRESQL_URI)
-            with connection2.cursor() as cursor:
-                cursor.execute(sql)
-                connection2.commit()
-                
 
-    return redirect(response.payment_url)
+
+            sql = """DELETE FROM madarah.tb_item_carrinho WHERE id_cliente = """ + str(cliente['id_cliente'])
+            cursor.execute(sql)
+            connection.commit()
+
+        return redirect(response.payment_url)
 
 
 
@@ -428,6 +428,36 @@ def relatorio():
                 """
             html = html + linha
 
+        for item in pedidos:
+            linha = """
+                <p><strong>Código de compra</strong>: """ + item['codigo_de_compra'] + """ </p>
+                <p><strong>Data</strong>: """ + item['date'].strftime("%m/%d/%Y, %H:%M:%S") + """&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>Total</strong>: R$""" + str("{:.2f}".format(item['total'])) + """&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>Frete</strong>: R$""" + str("{:.2f}".format(item['frete'])) + """</p>
+                <p><strong>Cliente</strong>: </p>
+                <p><strong>Nome</strong>: """ + item['nome'] + """ </p>
+                <p><strong>Telefone</strong>: """ + item['telefone'] + """ &nbsp;&nbsp;&nbsp;&nbsp; 
+                    <strong>Celular</strong>: """ + item['telefone1'] + """ </p>
+                <p><strong>E-mail</strong>: """ + item['email'] + """ </p>
+                <hr>
+                """
+            html = html + linha
+            
+        for item in pedidos:
+            linha = """
+                <p><strong>Código de compra</strong>: """ + item['codigo_de_compra'] + """ </p>
+                <p><strong>Data</strong>: """ + item['date'].strftime("%m/%d/%Y, %H:%M:%S") + """&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>Total</strong>: R$""" + str("{:.2f}".format(item['total'])) + """&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>Frete</strong>: R$""" + str("{:.2f}".format(item['frete'])) + """</p>
+                <p><strong>Cliente</strong>: </p>
+                <p><strong>Nome</strong>: """ + item['nome'] + """ </p>
+                <p><strong>Telefone</strong>: """ + item['telefone'] + """ &nbsp;&nbsp;&nbsp;&nbsp; 
+                    <strong>Celular</strong>: """ + item['telefone1'] + """ </p>
+                <p><strong>E-mail</strong>: """ + item['email'] + """ </p>
+                <hr>
+                """
+            html = html + linha
+
 
     apiKey = '70065a4d-a395-4a30-a434-e973e3f16827'
     options = {}
@@ -438,5 +468,8 @@ def relatorio():
     options['MarginTop'] = 10
     options['MarginBottom'] = 10
     options['fileName'] = 'Relatorios_de_Pedidos_' + str(datetime.now().strftime("%m/%d/%Y")) + '.pdf'
-    res = requests.get('https://api.html2pdfrocket.com/pdf', options)
-    return redirect(res.url)
+    res = requests.post('https://api.html2pdfrocket.com/pdf', data=options)
+    x = make_response(res.content)
+    x.content_type = 'application/pdf'
+    x.mimetype = 'application/pdf'
+    return x

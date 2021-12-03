@@ -14,11 +14,16 @@
         })
     }
 
-    function sendForm(e) {
-        e.stopPropagation();
-        e.preventdefault();
+    function sendForm() {
         let id_endereco = $('input[name=id_endereco]:checked').val();
-        
+        $.ajax({
+            method: 'POST',
+            url: '/pedidos/finalizar',
+            data: id_endereco,
+            success: function (url) {
+                window.open(url, target="_blank")
+            }
+        })
     }
 </script>
 
@@ -60,8 +65,7 @@
         </tbody>
     </table>
     {% endif %}
-
-    <form method="GET" action="/pedidos/finalizar" id="escolher_endereco" target="_blank">
+    <form action="/pedidos/finalizar/" method="get">
         {% if enderecos|length > 0 %}
         {% for endereco in enderecos %}
         <div class="form-row">
@@ -70,7 +74,7 @@
                    <div class="d-flex align-items-center justify-content-between">
                        <p><small>{{ endereco['type'] }} {{ endereco['street'] }}, {{ endereco['number'] }}</small></p>
                         <p class="d-flex align-items-center">
-                            <!-- <input type="radio" name="id_endereco"  id="{{endereco['id_endereco']}}" value="{{endereco['id_endereco']}}"> -->
+                            <input type="radio" name="id_endereco"  id="{{endereco['id_endereco']}}" value="{{endereco['id_endereco']}}">
                             <label style="padding: 4px 10px;font-size: 11px;" for="{{endereco['id_endereco']}}">
                                 Usar esse
                             </label>
@@ -100,7 +104,7 @@
      
         <div class="modal-footer d-flex justify-content-between p-0 mt-2 pt-2">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-submit btn-primary">Finalizar</button>
+            <button type="submit" class="btn btn-primary">Finalizar</button>
         </div>
     </form>
 </div>
