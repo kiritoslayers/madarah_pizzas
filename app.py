@@ -151,7 +151,9 @@ def callback():
                                             , telefone1) 
                     VALUES (%s, %s, %s, %s)"""
             cursor.execute(sql, (user['id_usuario'], user['nome'], '', ''))
-            connection.commit()          
+            connection.commit()  
+        
+        sendEmail(session['name'],session['email'], 'logout')        
 
     return redirect("/")
 
