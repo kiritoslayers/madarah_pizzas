@@ -11,7 +11,7 @@ connection = psycopg2.connect(POSTGRESQL_URI)
 @pizzaBP.route('/cardapio', methods=['GET'])
 def cardapio():
     with connection.cursor() as cursor:
-        sql = """SELECT * FROM madarah.tb_pizza order by sabor"""
+        sql = """SELECT * FROM madarah.tb_pizza WHERE ativo = true order by sabor"""
         cursor.execute(sql)
         lista = rows_to_dict(cursor.description, cursor.fetchall())
         cliente = session['cliente'] or False
@@ -23,7 +23,7 @@ def cardapio():
 def list():
     connection = psycopg2.connect(POSTGRESQL_URI)
     with connection.cursor() as cursor:
-        sql = """SELECT * FROM madarah.tb_pizza order by sabor"""
+        sql = """SELECT * FROM madarah.tb_pizza WHERE ativo = true order by sabor"""
         cursor.execute(sql)
         lista = rows_to_dict(cursor.description, cursor.fetchall())
         cliente = session['cliente']
@@ -33,10 +33,8 @@ def list():
 
 @pizzaBP.route('/pizza/cadastro', methods=['GET'])
 def cadastro_pizza_get():
-    usuario = session['usuario']
-    cliente = session['cliente']
-    auth = session
-    return render_template('cadastro.html', cliente=cliente, usuario=usuario, auth=session)
+    # return render_template('cadastrar_pizza.html', cliente=cliente, usuario=usuario, auth=session)
+    return render_template('cadastrar_pizza.html')
 
 
 @pizzaBP.route('/pizza/cadastro', methods=['POST'])
@@ -48,7 +46,7 @@ def cadastro_pizza_post():
     url_foto = str(request.form['url_foto'])
     connection = psycopg2.connect(POSTGRESQL_URI)
     with connection.cursor() as cursor:
-        sql = """insert into madarah.tb_pizza (sabor, descricao, valor, url_foto) VALUES (%s, %s, %s, %s)"""
+        sql = """insert into madarah.tb_pizza (sabor, descricao, valor, url_foto, ativo) VALUES (%s, %s, %s, %s, true)"""
         cursor.execute(sql, (sabor, descricao, valor, url_foto))
         connection.commit()
         cursor.close()
@@ -56,46 +54,47 @@ def cadastro_pizza_post():
 
 
 
-@pizzaBP.route('/pizza/edicao/<id>', methods=['GET', 'POST'])
-def edicao_pizza(id):
-    connection = psycopg2.connect(POSTGRESQL_URI)
-    if flask.request.method == 'POST':
-        id_pizza = int(request.form['id_pizza'])
-        sabor = str(request.form['sabor'])
-        descricao = str(request.form['descricao'])
-        valor = request.form['valor'].replace('.', ',').replace(',', '.')
-        valor = float(valor)
-        url_foto = str(request.form['url_foto'])
-        weight = str(request.form['weight'])
-        with connection.cursor() as cursor:
-            sql = """UPDATE madarah.tb_pizza SET sabor = (%s), descricao = (%s), valor = (%s), weight = (%s), url_foto = (%s) WHERE id_pizza = (%s)"""
-            cursor.execute(sql, (sabor, descricao, valor, url_foto, id_pizza, weight))
-            connection.commit()
-            cursor.close()
-        return '/pizzas'
-    else:
-        with connection.cursor() as cursor:
-            sql = "SELECT * FROM madarah.tb_pizza WHERE id_pizza = " + id
-            cursor.execute(sql)
-            oi = cursor.fetchone()
-            pizza = tuple_to_dict(cursor.description, oi)
-        return render_template('edicao.html', pizza=pizza)
+@pizzaBP.route('/pizza/edicao/<id>', methods=['GET'])
+def edicao_pizza_get(id):
+    with connection.cursor() as cursor:
+        sql = "SELECT * FROM madarah.tb_pizza WHERE id_pizza = " + id
+        cursor.execute(sql)
+        pizza = tuple_to_dict(cursor.description, cursor.fetchone())
+    return render_template('editar_pizza.html', pizza=pizza)
 
 
-@pizzaBP.route('/pizza/delete/<id>', methods=['GET', 'POST'])
-def delete_pizza(id):
-    connection = psycopg2.connect(POSTGRESQL_URI)
-    if flask.request.method == 'POST':
-        with connection.cursor() as cursor:
-            sql = "DELETE FROM madarah.tb_pizza WHERE id_pizza = " + id
-            cursor.execute(sql)
-            connection.commit()
-            cursor.close()
+@pizzaBP.route('/pizza/edicao/<id>', methods=['POST'])
+def edicao_pizza_post(id):
+    id_pizza = int(request.form['id_pizza'])
+    sabor = str(request.form['sabor'])
+    descricao = str(request.form['descricao'])
+    valor = request.form['valor'].replace('.', ',').replace(',', '.')
+    valor = float(valor)
+    url_foto = str(request.form['url_foto'])
+    weight = str(request.form['weight'])
+    with connection.cursor() as cursor:
+        sql = """UPDATE madarah.tb_pizza SET sabor = (%s), descricao = (%s), valor = (%s), url_foto = (%s), weight = (%s) WHERE id_pizza = (%s)"""
+        cursor.execute(sql, (sabor, descricao, valor, url_foto, weight, id_pizza))
+        connection.commit()
+        cursor.close()
         return '/pizzas'
-    else:
-        with connection.cursor() as cursor:
-            sql = "SELECT * FROM madarah.tb_pizza WHERE id_pizza = " + id
-            cursor.execute(sql)
-            oi = cursor.fetchone()
-            pizza = tuple_to_dict(cursor.description, oi)
-        return render_template('delete.html', pizza=pizza)
+
+
+@pizzaBP.route('/pizza/delete/<id>', methods=['GET'])
+def delete_pizza_get(id):
+    with connection.cursor() as cursor:
+        sql = "SELECT * FROM madarah.tb_pizza WHERE id_pizza = " + id
+        cursor.execute(sql)
+        oi = cursor.fetchone()
+        pizza = tuple_to_dict(cursor.description, oi)
+    return render_template('excluir_pizza.html', pizza=pizza)
+    
+@pizzaBP.route('/pizza/delete/<id>', methods=['POST'])
+def delete_pizza_post(id):
+    with connection.cursor() as cursor: 
+        sql = """UPDATE madarah.tb_pizza SET ativo = false WHERE id_pizza = """ + id
+        # sql = "DELETE FROM madarah.tb_pizza WHERE id_pizza = " + id
+        cursor.execute(sql)
+        connection.commit()
+        cursor.close()
+    return '/pizzas'

@@ -1,0 +1,42 @@
+<script>
+    $('#valor').mask('000.000.000.000.000,00', {reverse: true})
+</script>
+<div class="modal-header"> 
+        <h5 class="modal-title">Cadastro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form method="POST" action="/pizza/cadastro">
+            <div class="form-row">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="sabor">Sabor: </label>
+                    <input class="form-control" id="sabor" name="sabor" required>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="valor">Valor<small>(R$)</small> </label>
+                    <input class="form-control decimal" id="valor" name="valor" required>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label for="weight">Peso<small>(g)</small> </label>
+                    <input class="form-control decimal" id="weight" name="weight" required>
+                </div>
+            </div>
+            <div class="form-row"> 
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
+                    <label for="url_foto">URL Foto: </label>
+                    <input type="url" class="form-control" id="url_foto" name="url_foto" required>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
+                    <label for="descricao"> Descrição: </label>
+                    <textarea class="form-control" id="descricao" name="descricao" required style="resize: vertical;"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between p-0">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-submit btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>

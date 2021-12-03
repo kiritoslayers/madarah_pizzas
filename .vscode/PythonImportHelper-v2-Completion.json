@@ -1146,7 +1146,7 @@
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False\n        auth = session if usuario else False\n    return render_template(\"cardapio.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=auth)\n@pizzaBP.route('/pizzas', methods=['GET'])",
+        "peekOfCode": "def cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza WHERE ativo = true order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False\n        auth = session if usuario else False\n    return render_template(\"cardapio.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=auth)\n@pizzaBP.route('/pizzas', methods=['GET'])",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -1155,7 +1155,7 @@
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente']\n        usuario = session['usuario']\n    return render_template(\"list.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=session)\n@pizzaBP.route('/pizza/cadastro', methods=['GET'])",
+        "peekOfCode": "def list():\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza WHERE ativo = true order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente']\n        usuario = session['usuario']\n    return render_template(\"list.html\", pizzas=lista, cliente=cliente, usuario=usuario, auth=session)\n@pizzaBP.route('/pizza/cadastro', methods=['GET'])",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -1164,7 +1164,7 @@
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def cadastro_pizza_get():\n    usuario = session['usuario']\n    cliente = session['cliente']\n    auth = session\n    return render_template('cadastro.html', cliente=cliente, usuario=usuario, auth=session)\n@pizzaBP.route('/pizza/cadastro', methods=['POST'])\ndef cadastro_pizza_post():\n    sabor = str(request.form['sabor']),\n    descricao = str(request.form['descricao']),\n    valor = request.form['valor'].replace('.', ',').replace(',', '.')",
+        "peekOfCode": "def cadastro_pizza_get():\n    # return render_template('cadastrar_pizza.html', cliente=cliente, usuario=usuario, auth=session)\n    return render_template('cadastrar_pizza.html')\n@pizzaBP.route('/pizza/cadastro', methods=['POST'])\ndef cadastro_pizza_post():\n    sabor = str(request.form['sabor']),\n    descricao = str(request.form['descricao']),\n    valor = request.form['valor'].replace('.', ',').replace(',', '.')\n    valor = float(valor)\n    url_foto = str(request.form['url_foto'])",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -1173,25 +1173,43 @@
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def cadastro_pizza_post():\n    sabor = str(request.form['sabor']),\n    descricao = str(request.form['descricao']),\n    valor = request.form['valor'].replace('.', ',').replace(',', '.')\n    valor = float(valor)\n    url_foto = str(request.form['url_foto'])\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"insert into madarah.tb_pizza (sabor, descricao, valor, url_foto) VALUES (%s, %s, %s, %s)\"\"\"\n        cursor.execute(sql, (sabor, descricao, valor, url_foto))",
+        "peekOfCode": "def cadastro_pizza_post():\n    sabor = str(request.form['sabor']),\n    descricao = str(request.form['descricao']),\n    valor = request.form['valor'].replace('.', ',').replace(',', '.')\n    valor = float(valor)\n    url_foto = str(request.form['url_foto'])\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    with connection.cursor() as cursor:\n        sql = \"\"\"insert into madarah.tb_pizza (sabor, descricao, valor, url_foto, ativo) VALUES (%s, %s, %s, %s, true)\"\"\"\n        cursor.execute(sql, (sabor, descricao, valor, url_foto))",
         "detail": "pizza.pizza",
         "documentation": {}
     },
     {
-        "label": "edicao_pizza",
+        "label": "edicao_pizza_get",
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def edicao_pizza(id):\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    if flask.request.method == 'POST':\n        id_pizza = int(request.form['id_pizza'])\n        sabor = str(request.form['sabor'])\n        descricao = str(request.form['descricao'])\n        valor = request.form['valor'].replace('.', ',').replace(',', '.')\n        valor = float(valor)\n        url_foto = str(request.form['url_foto'])\n        weight = str(request.form['weight'])",
+        "peekOfCode": "def edicao_pizza_get(id):\n    with connection.cursor() as cursor:\n        sql = \"SELECT * FROM madarah.tb_pizza WHERE id_pizza = \" + id\n        cursor.execute(sql)\n        pizza = tuple_to_dict(cursor.description, cursor.fetchone())\n    return render_template('editar_pizza.html', pizza=pizza)\n@pizzaBP.route('/pizza/edicao/<id>', methods=['POST'])\ndef edicao_pizza_post(id):\n    id_pizza = int(request.form['id_pizza'])\n    sabor = str(request.form['sabor'])",
         "detail": "pizza.pizza",
         "documentation": {}
     },
     {
-        "label": "delete_pizza",
+        "label": "edicao_pizza_post",
         "kind": 2,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "def delete_pizza(id):\n    connection = psycopg2.connect(POSTGRESQL_URI)\n    if flask.request.method == 'POST':\n        with connection.cursor() as cursor:\n            sql = \"DELETE FROM madarah.tb_pizza WHERE id_pizza = \" + id\n            cursor.execute(sql)\n            connection.commit()\n            cursor.close()\n        return '/pizzas'\n    else:",
+        "peekOfCode": "def edicao_pizza_post(id):\n    id_pizza = int(request.form['id_pizza'])\n    sabor = str(request.form['sabor'])\n    descricao = str(request.form['descricao'])\n    valor = request.form['valor'].replace('.', ',').replace(',', '.')\n    valor = float(valor)\n    url_foto = str(request.form['url_foto'])\n    weight = str(request.form['weight'])\n    with connection.cursor() as cursor:\n        sql = \"\"\"UPDATE madarah.tb_pizza SET sabor = (%s), descricao = (%s), valor = (%s), url_foto = (%s), weight = (%s) WHERE id_pizza = (%s)\"\"\"",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "delete_pizza_get",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def delete_pizza_get(id):\n    with connection.cursor() as cursor:\n        sql = \"SELECT * FROM madarah.tb_pizza WHERE id_pizza = \" + id\n        cursor.execute(sql)\n        oi = cursor.fetchone()\n        pizza = tuple_to_dict(cursor.description, oi)\n    return render_template('excluir_pizza.html', pizza=pizza)\n@pizzaBP.route('/pizza/delete/<id>', methods=['POST'])\ndef delete_pizza_post(id):\n    with connection.cursor() as cursor: ",
+        "detail": "pizza.pizza",
+        "documentation": {}
+    },
+    {
+        "label": "delete_pizza_post",
+        "kind": 2,
+        "importPath": "pizza.pizza",
+        "description": "pizza.pizza",
+        "peekOfCode": "def delete_pizza_post(id):\n    with connection.cursor() as cursor: \n        sql = \"\"\"UPDATE madarah.tb_pizza SET ativo = false WHERE id_pizza = \"\"\" + id\n        # sql = \"DELETE FROM madarah.tb_pizza WHERE id_pizza = \" + id\n        cursor.execute(sql)\n        connection.commit()\n        cursor.close()\n    return '/pizzas'",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -1200,7 +1218,7 @@
         "kind": 5,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False",
+        "peekOfCode": "POSTGRESQL_URI = \"postgres://nrzaptwjbceonc:85e6f9cb1eb0447157fa9de8cc08cd804f02a1e555b5747860ec3a6d9f9140a0@ec2-35-153-91-18.compute-1.amazonaws.com:5432/d939kg82f0uljg\"\npizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza WHERE ativo = true order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -1209,7 +1227,7 @@
         "kind": 5,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False",
+        "peekOfCode": "pizzaBP = Blueprint('pizza', __name__, template_folder='templates', static_folder='static')\nconnection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza WHERE ativo = true order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False",
         "detail": "pizza.pizza",
         "documentation": {}
     },
@@ -1218,7 +1236,7 @@
         "kind": 5,
         "importPath": "pizza.pizza",
         "description": "pizza.pizza",
-        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False\n        auth = session if usuario else False",
+        "peekOfCode": "connection = psycopg2.connect(POSTGRESQL_URI)\n@pizzaBP.route('/cardapio', methods=['GET'])\ndef cardapio():\n    with connection.cursor() as cursor:\n        sql = \"\"\"SELECT * FROM madarah.tb_pizza WHERE ativo = true order by sabor\"\"\"\n        cursor.execute(sql)\n        lista = rows_to_dict(cursor.description, cursor.fetchall())\n        cliente = session['cliente'] or False\n        usuario = session['usuario'] or False\n        auth = session if usuario else False",
         "detail": "pizza.pizza",
         "documentation": {}
     },
