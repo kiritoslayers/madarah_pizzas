@@ -148,18 +148,9 @@ def callback():
             sql = """INSERT INTO madarah.tb_cliente (id_usuario
                                             , nome
                                             , telefone
-                                            , telefone1
-                                            , type
-                                            , street
-                                            , number
-                                            , complement
-                                            , district
-                                            , postal_code
-                                            , city
-                                            , state
-                                            , country ) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-            cursor.execute(sql, (user['id_usuario'], user['nome'], '', '', '', '', '', '', '', '', '', '', ''))
+                                            , telefone1) 
+                    VALUES (%s, %s, %s, %s)"""
+            cursor.execute(sql, (user['id_usuario'], user['nome'], '', ''))
             connection.commit()          
 
     return redirect("/")
